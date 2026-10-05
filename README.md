@@ -1,31 +1,56 @@
-# RepositorioTemplate
+# Plataforma de Streaming de Vídeo — Entrega 03
 
-Repositório que deve ser utilizado como template inicial pelos grupos da matéria de Arquitetura e Desenho de Software.
+Repositório do **Grupo 06, Turma 01**, da disciplina **FGA0208 — Arquitetura e Desenho de Software**, Universidade de Brasília, semestre **2026.2**.
 
-## Introdução
+Esta etapa trata do **Desenho de Software (Padrões de Projeto)**, em continuidade à modelagem da Entrega 02. A estrutura inicial contém a apresentação do projeto, os integrantes e os espaços para os relatórios das três subequipes.
 
-Este repositório traz um template de repo de documentação a ser seguido pelos grupos de arquitetura e desenho de software.
+- **Documentação:** [GitHub Pages da Entrega 03](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/)
+- **Etapa anterior:** [GitHub Pages da Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/)
 
-## Tecnologia
+## Organização
 
-A geração do site estático é realizada utilizando o [docsify](https://docsify.js.org/).
+| Subequipe | Foco | Relatório |
+| --- | --- | --- |
+| SubEquipe_01 | GoFs Criacionais + IA Generativa | [1.1.1. SubEquipe_01](docs/Base/Relatórios/1.1.1.SubEquipe_01/README.md) |
+| SubEquipe_02 | GoFs Estruturais + IA Generativa | [1.1.2. SubEquipe_02](docs/Base/Relatórios/1.1.2.SubEquipe_02/README.md) |
+| SubEquipe_03 | GoFs Comportamentais + IA Generativa | [1.1.3. SubEquipe_03](docs/Base/Relatórios/1.1.3.SubEquipe_03/README.md) |
 
-```shell
-"Docsify generates your documentation website on the fly. Unlike GitBook, it does not generate static html files. Instead, it smartly loads and parses your Markdown files and displays them as a website. To start using it, all you need to do is create an index.html and deploy it on GitHub Pages."
+```text
+docs/
+├── README.md                     # Página inicial e integrantes
+├── Introducao.md                 # Contexto e organização das subequipes
+├── Checklist.md                  # Pendências da entrega
+├── index.html                    # Configuração do Docsify
+├── _sidebar.md                   # Navegação do site
+├── Base/
+│   ├── 1.PadroesDeProjeto.md
+│   ├── Relatórios/
+│   │   ├── 1.1.1.SubEquipe_01/
+│   │   ├── 1.1.2.SubEquipe_02/
+│   │   └── 1.1.3.SubEquipe_03/
+│   ├── 1.2.ParticipacoesPadroesDeProjeto.md
+│   └── 1.3.IniciativasExtras.md
+└── Projeto/
+    ├── Projeto.md
+    └── Atas/
+        ├── README.md
+        └── TEMPLATE.md
 ```
 
-### Instalando o docsify
+## Visualização local
 
-Execute o comando:
+O site usa [Docsify](https://docsify.js.org/) e arquivos Markdown. Na raiz do repositório, execute:
 
-```shell
-npm i docsify-cli -g
+```bash
+python3 -m http.server 8000 --directory docs
 ```
 
-### Executando localmente
+Acesse `http://localhost:8000`. O tema e o Docsify são carregados de um CDN e precisam de conexão com a internet.
 
-Para iniciar o site localmente, utilize o comando:
+## Publicação
 
-```shell
-docsify serve ./docs
-```
+O GitHub Pages publica a pasta **`/docs` da branch `main`**. Alterações enviadas para essa branch atualizam o site automaticamente. O arquivo `docs/.nojekyll` mantém a publicação dos arquivos de documentação, incluindo `_sidebar.md`.
+
+## Como preencher
+
+Consulte [CONTRIBUTING.md](CONTRIBUTING.md). Cada subequipe deve acrescentar seu padrão escolhido, modelagem UML, código, manual de execução, vídeo e registros individuais. Os campos **A preencher**, **A definir** e **Pendente** identificam trabalho ainda não realizado.

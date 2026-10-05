@@ -1,5 +1,5 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: Organização ARQDSW
-    url: https://github.com/UnBArqDsw2022-1
-    about: Organização referente ao semestre de 2022-1.
+  - name: Documentação da Entrega 03
+    url: https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/
+    about: Introdução, relatórios e participações do Grupo 06.
