@@ -1,0 +1,194 @@
+# F1 · Recarga de Moeda Virtual — SubEquipe_02
+
+> **Etapa da história**: 1 · Recarga de moeda virtual ([visão geral](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)).
+> **Padrões aplicados**: **Adapter** · **Proxy** · **Decorator**.
+> **Status**: 🔴 Não iniciado · **Responsável**: Davi Severiano Freitas.
+
+## 1. Participantes na Frente
+
+| Membro | Papel na frente |
+| -- | -- |
+| Davi Severiano Freitas | Modelagem, implementação, testes e vídeo dos três padrões da frente |
+
+## 2. Metodologia da Frente
+
+*A preencher.* Descrever como a frente foi conduzida: estudo dos padrões, ordem de implementação, ferramentas utilizadas, revisões e eventuais mudanças de rumo. Relacionar às atas pertinentes.
+
+| Evento | Data | Registro |
+| -- | -- | -- |
+| Definição da frente e dos padrões | 10/10/2026 | [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) |
+
+## 3. Contexto (problema)
+
+Na recarga, o espectador compra um pacote de moeda virtual pagando por um meio de pagamento externo. Três problemas de projeto surgem nessa etapa:
+
+| # | Problema | Padrão |
+| -- | -- | -- |
+| P1 | Os meios de pagamento externos têm interfaces incompatíveis entre si, mas o sistema precisa tratá-los de forma uniforme e trocar de um para outro em caso de falha | Adapter |
+| P2 | A confirmação de pagamento pode chegar duplicada ou falsificada e precisa ser barrada antes de creditar a moeda virtual | Proxy |
+| P3 | O preço do pacote recebe desconto promocional, taxas e conversão de moeda, combinados de formas diferentes | Decorator |
+
+**Modelos anteriores relevantes**: BPMN de compra de moeda virtual (Entrega 01) · diagrama de sequência da Recarga e interface `GatewayPagamento` (Entrega 02).
+
+## 4. Fundamentação Teórica
+
+*A preencher com base na literatura consultada.* Para cada padrão, apresentar a intenção, a estrutura e os participantes segundo o GoF.
+
+| Padrão | Intenção (GoF) | Participantes |
+| -- | -- | -- |
+| Adapter | *A preencher* | *A preencher* |
+| Proxy | *A preencher* | *A preencher* |
+| Decorator | *A preencher* | *A preencher* |
+
+## 5. Padrões Aplicados
+
+### 5.1. Adapter — meios de pagamento
+
+**Escolha e justificativa.** *A preencher.*
+
+**Mapeamento dos participantes** *(proposta inicial, a confirmar na modelagem)*
+
+| Papel no padrão | Classe no sistema | Responsabilidade |
+| -- | -- | -- |
+| Client | `ServicoRecarga` | *A preencher* |
+| Target | `GatewayPagamento` | *A preencher* |
+| Adapter | *A definir* | *A preencher* |
+| Adaptee | *A definir* (meios de pagamento simulados) | *A preencher* |
+
+**Modelagem (UML)**
+
+<!-- ![Diagrama — Adapter](../../../assets/gof-estruturais/subequipe_02/f1-adapter.png) -->
+*(Pendente: inserção do diagrama)*
+
+*Figura 1 — A preencher. Arquivo-fonte: `assets/gof-estruturais/subequipe_02/f1-adapter.puml`.*
+
+**Implementação**
+
+*(Pendente: link para o código.)* Explicar os trechos correspondentes a cada participante.
+
+**Teste**
+
+*(Pendente: link para o teste.)* Descrever o comportamento verificado.
+
+---
+
+### 5.2. Proxy — confirmação de pagamento
+
+**Escolha e justificativa.** *A preencher.*
+
+**Mapeamento dos participantes** *(proposta inicial, a confirmar na modelagem)*
+
+| Papel no padrão | Classe no sistema | Responsabilidade |
+| -- | -- | -- |
+| Subject | *A definir* | *A preencher* |
+| Proxy | *A definir* | *A preencher* |
+| RealSubject | *A definir* | *A preencher* |
+
+**Modelagem (UML)**
+
+<!-- ![Diagrama — Proxy](../../../assets/gof-estruturais/subequipe_02/f1-proxy.png) -->
+*(Pendente: inserção do diagrama)*
+
+*Figura 2 — A preencher. Arquivo-fonte: `assets/gof-estruturais/subequipe_02/f1-proxy.puml`.*
+
+**Implementação**
+
+*(Pendente: link para o código.)*
+
+**Teste**
+
+*(Pendente: link para o teste.)*
+
+---
+
+### 5.3. Decorator — preço do pacote
+
+**Escolha e justificativa.** *A preencher.*
+
+**Mapeamento dos participantes** *(proposta inicial, a confirmar na modelagem)*
+
+| Papel no padrão | Classe no sistema | Responsabilidade |
+| -- | -- | -- |
+| Component | *A definir* | *A preencher* |
+| ConcreteComponent | *A definir* (preço base do pacote) | *A preencher* |
+| Decorator | *A definir* | *A preencher* |
+| ConcreteDecorator | *A definir* (desconto, taxa, conversão) | *A preencher* |
+
+**Modelagem (UML)**
+
+<!-- ![Diagrama — Decorator](../../../assets/gof-estruturais/subequipe_02/f1-decorator.png) -->
+*(Pendente: inserção do diagrama)*
+
+*Figura 3 — A preencher. Arquivo-fonte: `assets/gof-estruturais/subequipe_02/f1-decorator.puml`.*
+
+**Implementação**
+
+*(Pendente: link para o código.)*
+
+**Teste**
+
+*(Pendente: link para o teste.)*
+
+## 6. Execução e Vídeo
+
+**Pré-requisitos**: *A preencher.*
+
+**Comandos**
+
+```bash
+# A preencher
+```
+
+**Cenário demonstrado**: *A preencher.*
+
+**Resultado esperado**: *A preencher.*
+
+### 🎬 Vídeo da frente
+
+<!--
+Para incorporar um vídeo do YouTube, substitua ID_DO_VIDEO e remova o comentário:
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/ID_DO_VIDEO" title="F1 · Recarga" frameborder="0" allowfullscreen></iframe>
+-->
+*(Pendente: inserção do vídeo)*
+
+| Vídeo | Duração | Responsável | Link |
+| -- | -- | -- | -- |
+| F1 · Recarga de moeda virtual | *A preencher* | Davi Severiano Freitas | *Pendente* |
+
+## 7. Rastreabilidade & Elos com Outros Artefatos
+
+| Problema ou requisito | Artefato de origem | Elemento do modelo | Código | Evidência de execução |
+| -- | -- | -- | -- | -- |
+| P1 · Interfaces distintas e troca automática (O07) | [NFR Framework — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/2.NFRFramework) | `GatewayPagamento` | *Pendente* | *Pendente* |
+| P2 · Confirmação idempotente e autêntica (O11, O14) | [NFR Framework — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/2.NFRFramework) | `validarWebhook` | *Pendente* | *Pendente* |
+| P3 · Preço com desconto e imposto (RN01) | [Engenharia Reversa — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/3.EngenhariaReversa) | `Recarga.calcularValorTotal` | *Pendente* | *Pendente* |
+
+## 8. Senso Crítico
+
+**O que a frente entrega bem.** *A preencher.*
+
+**Limitações reconhecidas.** *A preencher.*
+
+**O que faria diferente.** *A preencher.*
+
+## 9. Participantes & Comprobatórios
+
+| Membro | Contribuição | Comprobatório (commit/PR) |
+| -- | -- | -- |
+| Davi Severiano Freitas | *A preencher* | *A preencher* |
+
+## 10. Referências
+
+As referências estão catalogadas em [1.1.2.5. Referências — SubEquipe_02](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.5.Referencias.md).
+
+| # | Onde foi usada nesta página |
+| -- | -- |
+| *A preencher* | *A preencher* |
+
+---
+
+## Histórico de Versões
+
+| Versão | Data | Descrição | Autor(es) | Revisor(es) |
+| -- | -- | -- | -- | -- |
+| 1.0 | 11/10/2026 | Criação do molde da página da Frente 1 | Davi Severiano Freitas | |

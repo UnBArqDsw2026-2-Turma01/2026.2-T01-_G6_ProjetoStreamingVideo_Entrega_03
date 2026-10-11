@@ -1,0 +1,163 @@
+# F2 · Doação com Mensagem e Repasse ao Criador — SubEquipe_02
+
+> **Etapas da história**: 2 · Doação com mensagem e 4 · Repasse ao criador ([visão geral](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)).
+> **Padrões aplicados**: **Facade** · **Proxy** *(se aplicável)*.
+> **Status**: 🔴 Não iniciado · **Responsáveis**: Daniel de Oliveira Lira e Pedro Henrique Freire Rodrigues.
+
+## 1. Participantes na Frente
+
+| Membro | Papel na frente |
+| -- | -- |
+| Daniel de Oliveira Lira | *A preencher* |
+| Pedro Henrique Freire Rodrigues | *A preencher* |
+
+## 2. Metodologia da Frente
+
+*A preencher.* Descrever como a frente foi conduzida: elaboração do diagrama antes do código ([Ata S2_02, D06](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md)), divisão do trabalho entre os dois membros, estudo dos padrões, ferramentas e revisões.
+
+| Evento | Data | Registro |
+| -- | -- | -- |
+| Definição da frente e dos padrões | 10/10/2026 | [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) |
+
+## 3. Contexto (problema)
+
+Na doação, o espectador envia moeda virtual a um criador, junto com uma mensagem. A doação aciona dois efeitos paralelos: o repasse ao criador e a exibição da mensagem destacada no chat — esta última de forma assíncrona, sem condicionar o repasse ([Ata S2_02, D05](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md)).
+
+| # | Problema | Padrão |
+| -- | -- | -- |
+| P1 | Uma operação simples de doação precisa, internamente, verificar a carteira, acionar o chat e realizar o repasse, sem expor essa coordenação a quem a utiliza | Facade |
+| P2 | A mesma doação não pode ser repassada duas vezes ao criador, mesmo que a operação seja reenviada | Proxy *(se aplicável)* |
+
+**Modelos anteriores relevantes**: diagrama de sequência da Doação, `ServicoDoacao` e `ServicoFinanceiro` (Entrega 02).
+
+## 4. Fundamentação Teórica
+
+*A preencher com base na literatura consultada.*
+
+| Padrão | Intenção (GoF) | Participantes |
+| -- | -- | -- |
+| Facade | *A preencher* | *A preencher* |
+| Proxy | *A preencher* | *A preencher* |
+
+## 5. Padrões Aplicados
+
+### 5.1. Facade — operação de doação
+
+**Escolha e justificativa.** *A preencher.*
+
+**Mapeamento dos participantes** *(proposta inicial, a confirmar na modelagem)*
+
+| Papel no padrão | Classe no sistema | Responsabilidade |
+| -- | -- | -- |
+| Facade | *A definir* | *A preencher* |
+| Subsistemas | *A definir* (carteira, chat, repasse) | *A preencher* |
+| Client | *A definir* | *A preencher* |
+
+**Modelagem (UML)**
+
+<!-- ![Diagrama — Facade](../../../assets/gof-estruturais/subequipe_02/f2-facade.png) -->
+*(Pendente: inserção do diagrama)*
+
+*Figura 1 — A preencher. Arquivo-fonte: `assets/gof-estruturais/subequipe_02/f2-facade.puml`.*
+
+**Implementação**
+
+*(Pendente: link para o código.)* Explicar os trechos correspondentes a cada participante.
+
+**Teste**
+
+*(Pendente: link para o teste.)*
+
+---
+
+### 5.2. Proxy — repasse ao criador *(se aplicável)*
+
+**Escolha e justificativa.** *A preencher, ou registrar o motivo da não aplicação.*
+
+**Mapeamento dos participantes** *(proposta inicial, a confirmar na modelagem)*
+
+| Papel no padrão | Classe no sistema | Responsabilidade |
+| -- | -- | -- |
+| Subject | *A definir* | *A preencher* |
+| Proxy | *A definir* | *A preencher* |
+| RealSubject | *A definir* | *A preencher* |
+
+**Modelagem (UML)**
+
+<!-- ![Diagrama — Proxy](../../../assets/gof-estruturais/subequipe_02/f2-proxy.png) -->
+*(Pendente: inserção do diagrama)*
+
+*Figura 2 — A preencher. Arquivo-fonte: `assets/gof-estruturais/subequipe_02/f2-proxy.puml`.*
+
+**Implementação**
+
+*(Pendente: link para o código.)*
+
+**Teste**
+
+*(Pendente: link para o teste.)*
+
+## 6. Execução e Vídeo
+
+**Pré-requisitos**: *A preencher.*
+
+**Comandos**
+
+```bash
+# A preencher
+```
+
+**Cenário demonstrado**: *A preencher.*
+
+**Resultado esperado**: *A preencher.*
+
+### 🎬 Vídeo da frente
+
+<!--
+Para incorporar um vídeo do YouTube, substitua ID_DO_VIDEO e remova o comentário:
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/ID_DO_VIDEO" title="F2 · Doação e Repasse" frameborder="0" allowfullscreen></iframe>
+-->
+*(Pendente: inserção do vídeo)*
+
+| Vídeo | Duração | Responsáveis | Link |
+| -- | -- | -- | -- |
+| F2 · Doação com mensagem e Repasse | *A preencher* | Daniel de Oliveira Lira e Pedro Henrique Freire Rodrigues | *Pendente* |
+
+## 7. Rastreabilidade & Elos com Outros Artefatos
+
+| Problema ou requisito | Artefato de origem | Elemento do modelo | Código | Evidência de execução |
+| -- | -- | -- | -- | -- |
+| P1 · Doação coordenando carteira, chat e repasse | [Modelagem Dinâmica — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica) | `ServicoDoacao` | *Pendente* | *Pendente* |
+| P2 · Repasse sem duplicidade (O11) | [NFR Framework — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/2.NFRFramework) | `ServicoFinanceiro.transferirValores` | *Pendente* | *Pendente* |
+| Repasse independente da exibição no chat (SC04) | [Engenharia Reversa complementar — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa) | Notificação assíncrona ao `Chat` | *Pendente* | *Pendente* |
+
+## 8. Senso Crítico
+
+**O que a frente entrega bem.** *A preencher.*
+
+**Limitações reconhecidas.** *A preencher.*
+
+**O que faria diferente.** *A preencher.*
+
+## 9. Participantes & Comprobatórios
+
+| Membro | Contribuição | Comprobatório (commit/PR) |
+| -- | -- | -- |
+| Daniel de Oliveira Lira | *A preencher* | *A preencher* |
+| Pedro Henrique Freire Rodrigues | *A preencher* | *A preencher* |
+
+## 10. Referências
+
+As referências estão catalogadas em [1.1.2.5. Referências — SubEquipe_02](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.5.Referencias.md).
+
+| # | Onde foi usada nesta página |
+| -- | -- |
+| *A preencher* | *A preencher* |
+
+---
+
+## Histórico de Versões
+
+| Versão | Data | Descrição | Autor(es) | Revisor(es) |
+| -- | -- | -- | -- | -- |
+| 1.0 | 11/10/2026 | Criação do molde da página da Frente 2 | Davi Severiano Freitas | |

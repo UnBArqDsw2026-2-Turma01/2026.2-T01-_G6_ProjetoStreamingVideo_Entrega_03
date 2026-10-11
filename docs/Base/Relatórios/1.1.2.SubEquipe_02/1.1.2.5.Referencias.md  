@@ -1,0 +1,48 @@
+# Referências — SubEquipe_02
+
+> A diretriz pede referências consultadas **com links e/ou especificadas na notação ABNT**, e embasamento na literatura para cada artefato gerado e decisão tomada. Incluir **apenas fontes efetivamente consultadas**.
+
+## 1. Bibliografia
+
+<!--
+PREENCHER em ABNT. Formato:
+SOBRENOME, Nome. **Título da obra**: subtítulo. Edição. Cidade: Editora, ano.
+SOBRENOME, Nome. Título do artigo. **Nome do Periódico**, v. X, n. Y, p. Z-W, ano.
+
+Referências candidatas para esta entrega (confirmar antes de citar — citar apenas o que foi lido):
+- GAMMA, Erich; HELM, Richard; JOHNSON, Ralph; VLISSIDES, John. **Padrões de Projeto: soluções reutilizáveis de software orientado a objetos**. Porto Alegre: Bookman, 2000.
+- Material didático da disciplina sobre padrões de projeto (videoaulas e slides da professora).
+-->
+
+| # | Referência (ABNT) | Onde foi usada | Link |
+| -- | -- | -- | -- |
+| R01 | *A preencher* | *A preencher* | *A preencher* |
+
+## 2. Fontes Complementares (links)
+
+<!--
+Candidatas (confirmar antes de citar):
+- REFACTORING GURU. Padrões de projeto estruturais. https://refactoring.guru/pt-br/design-patterns/structural-patterns
+-->
+
+| # | Descrição | Tipo (documentação / vídeo / artigo) | Link | Acesso em |
+| -- | -- | -- | -- | -- |
+| L01 | *A preencher* | *A preencher* | *A preencher* | *A preencher* |
+
+## 3. Artefatos Internos de Base
+
+Artefatos produzidos pela própria subequipe em entregas anteriores e utilizados como insumo nesta entrega.
+
+| # | Artefato | Entrega | Onde foi usado | Link |
+| -- | -- | -- | -- | -- |
+| A01 | NFR Framework (operacionalizações O07, O11 e O14) | 01 | F1 · Recarga · F2 · Repasse | [Acessar](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/2.NFRFramework) |
+| A02 | Engenharia Reversa (regra RN01) | 01 | F1 · Recarga | [Acessar](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/3.EngenhariaReversa) |
+| A03 | Modelagem Estática — diagrama de classes de Monetização | 02 | Todas as frentes | [Acessar](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.Foco01.ModelagemEstatica) |
+| A04 | Modelagem Dinâmica — diagramas de sequência de Recarga e Doação | 02 | F1 · Recarga · F2 · Doação e Repasse | [Acessar](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica) |
+| A05 | Engenharia Reversa complementar (achados SC01, SC02 e SC04) | 02 | F2 · Repasse · F3 · Mensagem destacada | [Acessar](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa) |
+
+## Histórico de Versões
+
+| Versão | Data | Descrição | Autor(es) | Revisor(es) | Descrição da revisão |
+| :--: | :--: | -- | -- | -- | -- |
+| 1.0 | 11/10/2026 | Criação do molde da página de referências, com o catálogo de artefatos internos de base | Davi Severiano Freitas | - | - |
