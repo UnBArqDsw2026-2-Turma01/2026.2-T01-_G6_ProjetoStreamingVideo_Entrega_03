@@ -176,4 +176,4 @@ As datas devem ser preenchidas na reunião, a partir do prazo oficial da Entrega
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | -- | -- | -- | -- | -- |
-| 1.0 | 06/10/2026 | Criação do documento de apoio à reunião S3_01, com proposta de padrões ancorada nas operacionalizações do NFR Framework, divisão e cronograma | Davi Severiano Freitas | |
+| 1.0 | 06/10/2026 | Criação do documento de apoio à reunião S2_01, com proposta de padrões ancorada nas operacionalizações do NFR Framework, divisão e cronograma | Davi Severiano Freitas | |
