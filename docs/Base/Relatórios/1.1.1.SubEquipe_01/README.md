@@ -64,7 +64,9 @@ Alternativas consideradas e descartadas, com o argumento de cada uma — constru
 
 **Builder — concluído.** Diagrama de classes "antes" (recorte do v3 da Entrega 02) e "depois" (Builder aplicado), correspondência entre participantes GoF e classes do domínio, regras de validação e as doze evidências que as sustentam: [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md). Fonte editável em PlantUML e exportações PNG/SVG ficam em [`assets/builder/`](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-classes-depois-v1.puml). Autoria: Lucas Andrade Zanetti.
 
-**Pendente.** Diagrama de sequência do Builder (Heitor); diagrama de classes e de sequência do Factory Method (Matheus e Pedro).
+**Builder — sequência concluída.** Diagrama de sequência do preset montado pelo `StreamConfigDirector` (Client → Director → Builder → `build()`), com o caminho de erro de validação e a correspondência mensagem a mensagem com o código: [1.1.1.2. Sequência — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md). Fonte editável em [`builder-sequencia-v1.puml`](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-sequencia-v1.puml). Autoria: Heitor Macedo Ricardo.
+
+**Pendente.** Diagrama de classes e de sequência do Factory Method (Matheus e Pedro).
 
 ### Implementação (código)
 
@@ -72,7 +74,42 @@ Alternativas consideradas e descartadas, com o argumento de cada uma — constru
 
 ### Execução e vídeo do padrão em funcionamento
 
-**Pendente.** Documentar pré-requisitos, comandos, cenário demonstrado e resultado esperado. Inserir o link para o vídeo mostrando o padrão em execução, com identificação dos participantes.
+Código no [repositório de código da SubEquipe_01](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo), separado deste para que código e testes não interfiram no GitHub Pages.
+
+**Pré-requisitos:** Node 22 ou superior e npm. Nenhuma outra dependência global; o TypeScript roda direto pelo `tsx`, sem etapa de build.
+
+```bash
+git clone https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo.git
+cd g6-streaming-entrega03-subgrupo01-codigo
+npm ci                # instala as dependências travadas no package-lock
+npm run check         # formatação → lint → tipos → testes (a mesma sequência da CI)
+npm run demo:builder  # demonstração do Builder no terminal
+```
+
+> Enquanto o [PR #1](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/1) não for integrado à `main`, rode `git checkout feat/builder-stream-config` antes do `npm ci`.
+
+**Cenário demonstrado (`demo:builder`).** Um único builder, reaproveitado do início ao fim:
+
+1. **Presets do Director** — `lowLatency`, `highQuality` e `mobile`, cada um impresso com título, perfil de vídeo, latência, visibilidade, gravação e a confirmação de que o objeto é imutável.
+2. **Configuração sob medida** — o Client usa o builder direto, sem Director (1080p, não listada, gravação desligada).
+3. **Configuração inválida** — título vazio, 4K com latência `ULTRA_LOW`, 75 fps e 2 Mbps. O `build()` rejeita e lista **as quatro violações de uma vez**, cada uma com o id da regra do [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md).
+
+**Resultado esperado** (trecho da parte 3, saída real):
+
+```text
+=== 3. Configuração inválida rejeitada no build() ===
+
+Título vazio + 4K com latência ULTRA_LOW + 75 fps + 2 Mbps (abaixo do piso de 4K):
+  InvalidStreamConfigError: 4 violações
+  - R1 título é obrigatório e não pode ser vazio
+  - R3 taxa de quadros não pode passar de 60 (recebido: 75)
+  - R4 latência ULTRA_LOW é incompatível com R2160P; use STANDARD ou reduza a resolução
+  - R5 bitrate 2000000 bps está abaixo do mínimo de 14000000 bps para R2160P a 75 fps
+```
+
+`npm run check` deve terminar sem erro; em 15/10/2026 eram 53 testes do Builder passando, com 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
+
+**Pendente.** Execução do Factory Method (`npm run demo:factory-method`, dupla Matheus + Pedro) e link para o vídeo do padrão em funcionamento.
 
 ## Rastreabilidade & Elos com Outros Artefatos
 
@@ -97,6 +134,7 @@ Registrar apenas alterações efetivamente realizadas, incluindo autoria, revis�
 | Versão | Data | Integrante | Contribuição | Revisor | Comprobatório (commit/PR) |
 | --- | --- | --- | --- | --- | --- |
 | 1.0 | 15/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Modelagem do Builder (diagrama antes/depois), ADR-001 e evidências; contexto, escolha e justificativa neste relatório | Pedro Druck Montalvão Reis (ADR-001) e Matheus Lemes Amaral (diagrama), conforme pares de revisão do planejamento | PR da branch `docs/subequipe-01-modelagem-builder` |
+| 1.1 | 15/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Diagrama de sequência do Builder (PlantUML) e presets do Director; seção Execução deste relatório | A preencher (Pedro Druck Montalvão Reis, sequência) | PR da branch `docs/subequipe-01-modelagem-builder` |
 | A preencher | A preencher | A preencher | A preencher | A preencher | A preencher |
 
 Atualizar também o [quadro consolidado de participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
