@@ -8,4 +8,4 @@ Use o [modelo de ata](/Projeto/Atas/TEMPLATE.md) para registrar reuniões gerais
 | --- | --- | --- | --- | --- |
 | S2_01 (SubEquipe_02) | 06/10/2026 | Davi Freitas, Daniel Lira, Mateus Barreto | [Ata](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-10-06.md) | [Gravação](https://youtu.be/G5uEe_wnqms) |
 | S2_02 (SubEquipe_02) | 10/10/2026 | Davi Freitas, Daniel Lira, Mateus Barreto, Pedro Rodrigues | [Ata](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) | [Gravação](https://youtu.be/WTeLRTYAAyw) |
-| S2_03 (SubEquipe_02) | 13/10/2026 | Davi Freitas, Daniel Lira, Mateus Barreto, Pedro Rodrigues | [Ata](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md) | Microsoft Teams |
+| S2_03 (SubEquipe_02) | 13/10/2026 | Davi Freitas, Daniel Lira, Mateus Barreto, Pedro Rodrigues | [Ata](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md) | [Gravação](https://youtu.be/m3XOiWJG238) |
