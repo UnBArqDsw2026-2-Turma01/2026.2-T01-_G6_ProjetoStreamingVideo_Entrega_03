@@ -6,7 +6,7 @@
 | Data | 15/10/2026 |
 | Autor | Lucas Andrade Zanetti |
 | Revisor | A preencher (Heitor Macedo Ricardo) |
-| Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-codigo). |
+| Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo). |
 
 > Este ADR registra o **processo de decisão**, na ordem em que o raciocínio aconteceu. Cada afirmação factual aponta para uma evidência (`E01`–`E12`) arquivada em [`assets/builder/evidencias/`](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md#evidencias). O que **não** tem evidência está marcado como *decisão de projeto*.
 
