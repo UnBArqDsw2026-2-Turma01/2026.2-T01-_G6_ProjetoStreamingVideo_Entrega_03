@@ -1,0 +1,56 @@
+@startuml factory-method-sequencia-v1
+title Factory Method — ClipCreator.submit(pedido de recorte)
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam sequenceMessageAlign left
+autonumber
+
+participant "Client\n(registrar)" as Client
+participant "ClipCreator\n«ConcreteCreator»" as Creator
+participant "ContentRepository" as Repo
+participant "Clip\n«ConcreteProduct»" as Clip
+participant "PolicyService" as Policy
+
+Client -> Creator : submit(input: ClipRequestInput)
+note right of Client
+  O Client só conhece UserContentCreator
+  e recebe o resultado como UserContent.
+end note
+
+group createContent(input) — método-fábrica, definido na subclasse
+  Creator -> Repo : findRecordingByStream(input.sourceStreamId)
+  Repo --> Creator : video: RecordedVideo [0..1]
+  alt sem gravação da transmissão
+    Creator --> Client : ContentRuleViolationError (F4)
+  else gravação encontrada
+    Creator -> Clip ** : new Clip(id, título, solicitante, offsets, origem = video)
+    alt video não READY (F4) ou recorte fora de 0 ≤ início < fim ≤ duração (F5)
+      Clip --> Client : ContentRuleViolationError — nada é persistido
+    else regras atendidas
+      Clip --> Creator : clip (dono = dono da gravação)
+    end
+  end
+end
+
+group operação comum do Creator — igual para LiveStream, RecordedVideo e Clip
+  Creator -> Repo : save(clip)
+  Creator -> Policy : moderate(clip.id)
+  Policy --> Creator : ModerationResult
+  Creator -> Clip : applyModeration(result)
+  alt result = APPROVED e isMediaReady()
+    Creator -> Clip : publish()
+  else REJECTED / NEEDS_REVIEW
+    note over Creator, Clip : fica registrado e fora do ar
+  end
+  Creator -> Repo : save(clip)
+end
+
+Creator --> Client : clip (visto como UserContent)
+
+note over Client, Policy
+  LiveStreamCreator e RecordedVideoCreator seguem o mesmo grupo "operação comum";
+  muda só o grupo do método-fábrica (new LiveStream a partir da StreamConfig,
+  ou findContentById da live + new RecordedVideo).
+end note
+@enduml
