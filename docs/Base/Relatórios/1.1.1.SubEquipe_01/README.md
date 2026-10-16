@@ -164,7 +164,13 @@ Clipe de uma transmissão que não tem gravação:
 
 O id `conteudo-05` não aparece porque o recorte recusado por F5 chegou a reservar um id antes de o construtor de `Clip` rejeitá-lo; nada foi persistido.
 
-**Pendente.** Link para o vídeo dos padrões em funcionamento.
+**Vídeo do Factory Method em funcionamento** (1 min 44 s, sem áudio; apresentação: Matheus Lemes Amaral). Gravação de um terminal executando os comandos reais do roteiro: participantes do padrão, `submit()` do Creator, `createContent()` do `ClipCreator`, `npm run check` (131 testes) e a demonstração completa, com os pedidos recusados por F5, F2 e F4. A digitação dos comandos é simulada por script, para manter o ritmo legível; as saídas são as dos comandos executados.
+
+<video controls preload="metadata" width="100%" src="Base/Relatórios/1.1.1.SubEquipe_01/assets/factory-method/video/factory-method-demo.mp4"></video>
+
+<a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/factory-method/video/factory-method-demo.mp4" target="_blank" rel="noopener">Abrir o vídeo (MP4)</a>
+
+**Pendente.** Vídeo do Builder em funcionamento.
 
 ## Rastreabilidade & Elos com Outros Artefatos
 
