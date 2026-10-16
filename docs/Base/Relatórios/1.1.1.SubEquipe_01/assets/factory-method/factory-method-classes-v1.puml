@@ -40,7 +40,7 @@ abstract class UserContent <<Product>> {
   + {readonly} ownerId: UUID
   + {readonly} title: string
   + {readonly} visibility: ContentVisibility
-  + {readonly} createdAt: Date
+  + createdAt: Date {readOnly}
   + publicationStatus: PublicationStatus {readOnly}
   + moderationStatus: ModerationResult {readOnly}
   + {abstract} isMediaReady(): boolean
@@ -55,20 +55,21 @@ class LiveStream <<ConcreteProduct>> {
   + {readonly} latencyMode: LatencyMode
   + {readonly} recordAutomatically: boolean
   + status: LiveStreamStatus {readOnly}
-  + startedAt: Date [0..1]
-  + endedAt: Date [0..1]
-  + markLive(): void
-  + finish(): void
+  + startedAt: Date [0..1] {readOnly}
+  + endedAt: Date [0..1] {readOnly}
+  + failureReason: string [0..1] {readOnly}
+  + markLive(at: Date = agora): void
+  + finish(at: Date = agora): void
   + fail(reason: string): void
 }
 
 class RecordedVideo <<ConcreteProduct>> {
   + {readonly} sourceStreamId: UUID
   + processingStatus: ProcessingStatus {readOnly}
-  + durationSeconds: Real [0..1]
-  + storageUri: string [0..1]
-  + availableAt: Date [0..1]
-  + viewCount: Integer
+  + durationSeconds: Real [0..1] {readOnly}
+  + storageUri: string [0..1] {readOnly}
+  + availableAt: Date [0..1] {readOnly}
+  + viewCount: Integer {readOnly}
   + markReady(ready: RecordingReadyFields): void
   + markFailed(): void
   + isReady(): boolean
@@ -139,7 +140,13 @@ note bottom of Clip
 end note
 
 note bottom of RecordedVideo
-  F2 origem com gravação automática
-  F3 READY exige duração e storageUri
+  F2 origem ENDED com gravação automática;
+     uma gravação por transmissão (RecordedVideoCreator)
+  F3 READY exige duração, storageUri e availableAt válidos
+end note
+
+note bottom of LiveStream
+  finish() e fail() despublicam (F6 vale
+  enquanto o conteúdo está publicado)
 end note
 @enduml
