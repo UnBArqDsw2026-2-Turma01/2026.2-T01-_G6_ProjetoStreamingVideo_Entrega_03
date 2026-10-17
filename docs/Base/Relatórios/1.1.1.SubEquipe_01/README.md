@@ -42,7 +42,7 @@ Na Entrega 02, `LiveStreamService.createStream(userId, config: StreamConfig)` re
 
 O problema de criação só existe de fato quando os parâmetros de vídeo entram em `StreamConfig`: aí a configuração passa a ter sete campos, vários opcionais e **interdependentes** — latência baixa não convive com 2160p, e o bitrate mínimo depende da combinação resolução × taxa de quadros. Um construtor único com sete argumentos fica ilegível e aceita combinações inválidas sem um ponto onde essas regras sejam verificadas.
 
-Essa incorporação é uma **revisão declarada** do modelo da Entrega 02 (decisão D1 do ADR-001) e precisa de aceite do grupo. O levantamento completo do problema, com as evidências que sustentam cada interdependência, está em [ADR-001 §1–§2](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md#1-contexto).
+Essa incorporação é uma **revisão declarada** do modelo da Entrega 02 (decisão D1 do ADR-001) e precisa de aceite do grupo. O levantamento completo do problema, com as evidências que sustentam cada interdependência, está em [ADR-001 §1–§2](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md#_1-contexto).
 
 **Pendente:** contexto do Factory Method (dupla Matheus + Pedro).
 
@@ -50,19 +50,15 @@ Essa incorporação é uma **revisão declarada** do modelo da Entrega 02 (decis
 
 **Builder** (padrão criacional GoF) para `StreamConfig`: a construção é feita passo a passo por uma interface fluente, todas as regras de combinação são verificadas em um único `build()`, e o produto devolvido é imutável. Isso separa a montagem da representação final e permite que um `StreamConfigDirector` ofereça presets (baixa latência, alta qualidade, móvel) sem duplicar validação em cada cliente.
 
-Alternativas consideradas e descartadas, com o argumento de cada uma — construtor de sete parâmetros, literal de objeto com campos opcionais, funções estáticas nomeadas e Builder sem Director — estão em [ADR-001 §3](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md#3-alternativas-consideradas), junto das sete decisões de projeto derivadas (D1–D7) e das cinco regras de validação (R1–R5).
+Alternativas consideradas e descartadas, com o argumento de cada uma — construtor de sete parâmetros, literal de objeto com campos opcionais, funções estáticas nomeadas e Builder sem Director — estão em [ADR-001 §3](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md#_3-alternativas-consideradas), junto das sete decisões de projeto derivadas (D1–D7) e das cinco regras de validação (R1–R5).
 
 **Limite declarado:** com os quatro atributos do v3, o Builder teria ganho pequeno e um construtor simples bastaria. A justificativa do padrão depende do aceite da revisão D1.
 
 **Pendente:** escolha e justificativa do Factory Method (dupla Matheus + Pedro).
 
-### Escolha e justificativa
-
-**A definir.** Registrar o padrão escolhido, alternativas consideradas, justificativa apoiada na literatura e limites de aplicação.
-
 ### Modelagem (notação UML)
 
-**Builder — concluído.** Diagrama de classes "antes" (recorte do v3 da Entrega 02) e "depois" (Builder aplicado), correspondência entre participantes GoF e classes do domínio, regras de validação e as doze evidências que as sustentam: [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md). Fonte editável em PlantUML e exportações PNG/SVG ficam em [`assets/builder/`](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-classes-depois-v1.puml). Autoria: Lucas Andrade Zanetti.
+**Builder — concluído.** Diagrama de classes "antes" (recorte do v3 da Entrega 02) e "depois" (Builder aplicado), correspondência entre participantes GoF e classes do domínio, regras de validação e as doze evidências que as sustentam: [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md). Fonte editável em PlantUML e exportações PNG/SVG ficam em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/" target="_blank" rel="noopener">assets/builder/</a>. Autoria: Lucas Andrade Zanetti.
 
 **Builder — sequência concluída.** Diagrama de sequência do preset montado pelo `StreamConfigDirector` (Client → Director → Builder → `build()`), com o caminho de erro de validação e a correspondência mensagem a mensagem com o código: [1.1.1.2. Sequência — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md). Fonte editável em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-sequencia-v1.puml" target="_blank" rel="noopener"><code>builder-sequencia-v1.puml</code></a>. Autoria: Heitor Macedo Ricardo.
 
@@ -70,7 +66,7 @@ Alternativas consideradas e descartadas, com o argumento de cada uma — constru
 
 ### Implementação (código)
 
-**Pendente.** Acrescentar o link para o código versionado no repositório e explicar os trechos associados aos participantes do padrão. Linguagem e dependências serão informadas pela subequipe.
+**Concluído no código integrado à `main` em 16/10/2026.** Implementação TypeScript do Builder, `StreamConfigDirector`, validação acumulada e testes estão no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo), integrado pelo [PR #1](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/1).
 
 ### Execução e vídeo do padrão em funcionamento
 

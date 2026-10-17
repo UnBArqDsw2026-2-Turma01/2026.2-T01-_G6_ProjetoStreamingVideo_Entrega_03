@@ -2,13 +2,13 @@
 
 | Campo | Valor |
 | --- | --- |
-| Status | Proposta (aguarda revisão de Heitor Macedo Ricardo, conforme o [planejamento](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md#fontes-do-planejamento)) |
+| Status | Proposta (aguarda revisão de Pedro Druck Montalvão Reis, conforme o [planejamento](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md#fontes-do-planejamento)) |
 | Data | 15/10/2026 |
 | Autor | Lucas Andrade Zanetti |
-| Revisor | A preencher (Heitor Macedo Ricardo) |
+| Revisor | Pedro Druck Montalvão Reis |
 | Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo). |
 
-> Este ADR registra o **processo de decisão**, na ordem em que o raciocínio aconteceu. Cada afirmação factual aponta para uma evidência (`E01`–`E12`) arquivada em [`assets/builder/evidencias/`](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md#evidencias). O que **não** tem evidência está marcado como *decisão de projeto*.
+> Este ADR registra o **processo de decisão**, na ordem em que o raciocínio aconteceu. Cada afirmação factual aponta para uma evidência (`E01`–`E12`) arquivada em [`assets/builder/evidencias/`](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md#evidências). O que **não** tem evidência está marcado como *decisão de projeto*.
 
 ## 1. Contexto
 
@@ -58,7 +58,7 @@ Adotar **D**: Builder para `StreamConfig`, validação em `build()`, Director fo
 | Product | `StreamConfig` (imutável, construtor privado) | Lucas |
 | Builder | interface `StreamConfigBuilder` | Lucas |
 | ConcreteBuilder | `DefaultStreamConfigBuilder` | Lucas |
-| Director | `StreamConfigDirector` | Heitor (contrato apenas) |
+| Director | `StreamConfigDirector` | Heitor |
 | Client | `LiveStreamService` / `demo.ts` | — |
 
 ### Decisões de projeto derivadas
@@ -68,8 +68,8 @@ Adotar **D**: Builder para `StreamConfig`, validação em `build()`, Director fo
 | D1 | `StreamConfig` ganha `resolution`, `framesPerSecond` e `bitrateBps` | Sem eles não há interdependência a validar (seção 1) | **Altera o diagrama v3.** `QualityVariant` permanece como vocabulário (DE08), mas deixa de ser a única casa desses valores |
 | D2 | `Resolution` passa a ser enumeração (`R360P`…`R2160P`) em vez de `string` | `QualityVariant.resolution` é `string` no v3 ([E03](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e03-v3-enumeracoes-e-qualityvariant.png)); regra R4 compara com 2160p e `string` não impede `"4k"`, `"2160"`, `"3840x2160"` | Sugere trocar o tipo em `QualityVariant` num próximo ciclo; **não** feito aqui |
 | D3 | Padrão `recordAutomatically = true` | A nota "Regras do fluxo de clipes" do v3 (regra 2) rejeita clipe sem gravação habilitada; padrão `false` tornaria clipagem inviável por omissão. Fonte: `foco01-classes-modelo-estatico-v3.drawio`, nota `y-9E5nLQ_uyiijW86kDa-213` — **sem print**, pois é texto do `.drawio` | Nenhum |
-| D4 | Validar tudo em `build()`, não em cada `with*()` | Regras R2–R5 envolvem pares de campos; validar por campo não as enxerga | — |
-| D5 | `build()` acumula **todas** as violações em `InvalidStreamConfigError.violations` | Quem monta uma configuração quer ver todos os erros de uma vez | — |
+| D4 | Validar tudo em `build()`, não em cada `with*()` | Regras R3–R5 envolvem valores de campos; R2 é garantida pela estrutura de `VideoSettings` | — |
+| D5 | `validate()` acumula **todas** as violações e `build()` as expõe em `InvalidStreamConfigError.violations` | Quem monta uma configuração quer ver todos os erros de uma vez | — |
 | D6 | `reset()` na interface | Permite reutilizar o builder pelo Director sem alocar outro | Efeito medido no benchmark |
 | D7 | `title` sem valor padrão | Obrigatório; inventar título geraria dado falso | — |
 
@@ -78,7 +78,7 @@ Adotar **D**: Builder para `StreamConfig`, validação em `build()`, Director fo
 | Id | Regra | Base |
 | --- | --- | --- |
 | R1 | `title` não vazio | D7 |
-| R2 | `resolution`, `framesPerSecond` e `bitrateBps` informados **juntos** (nenhum ou todos) | [E10](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png) |
+| R2 | `video` ausente ou `VideoSettings` contendo resolução, fps e bitrate juntos; a estrutura é garantida pelo tipo, sem verificação em `validate()` | [E10](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png) |
 | R3 | `framesPerSecond` ≤ 60 | [E11](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e11-taxa-de-quadros-ate-60-e-codecs.png) |
 | R4 | `latencyMode ∈ {LOW, ULTRA_LOW}` incompatível com `R2160P` | [E08](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e08-latencia-baixa-incompativel-com-4k.png), [E09](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e09-4k-forca-latencia-normal.png) |
 | R5 | `bitrateBps` ≥ mínimo da faixa (resolução × fps) | [E10](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png), [E12](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e12-plataforma-a-bitrate-por-resolucao.png) |
