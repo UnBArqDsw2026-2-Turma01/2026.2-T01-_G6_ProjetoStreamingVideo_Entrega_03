@@ -19,54 +19,45 @@ note right of Client
   e recebe o resultado como UserContent.
 end note
 
-Creator -> Creator : createContent(input)
-activate Creator
-note left of Creator
-  Método-fábrica: a única parte
-  definida na subclasse.
-end note
-Creator -> Repo : findRecordingByStream(input.sourceStreamId)
-Repo --> Creator : video: RecordedVideo [0..1]
-break sem gravação da transmissão
-  Creator --> Client : ContentRuleViolationError (F4) — nada é persistido
+group createContent(input) — método-fábrica, definido na subclasse
+  Creator -> Creator : createContent(input)
+  activate Creator
+  Creator -> Repo : findRecordingByStream(input.sourceStreamId)
+  Repo --> Creator : video: RecordedVideo [0..1]
+  break sem gravação da transmissão
+    Creator --> Client : ContentRuleViolationError (F4) — nada é persistido
+  end
+  Creator -> Clip ** : new Clip({ id, title, createdAt, createdByUserId,\nstartOffsetSeconds, endOffsetSeconds, source: video })
+  break video não READY (F4) ou recorte fora de 0 ≤ início < fim ≤ duração (F5)
+    Clip --> Creator : throw ContentRuleViolationError
+    Creator --> Client : ContentRuleViolationError — nada é persistido
+  end
+  Clip --> Creator : clip (dono = dono da gravação)
+  Creator --> Creator : clip
+  deactivate Creator
 end
-Creator -> Clip ** : new Clip(fields)
-note right of Clip
-  fields: id, title, createdAt, createdByUserId,
-  startOffsetSeconds, endOffsetSeconds, source = video
-end note
-break video não READY (F4) ou recorte fora de 0 ≤ início < fim ≤ duração (F5)
-  Clip --> Creator : throw ContentRuleViolationError
-  Creator --> Client : ContentRuleViolationError — nada é persistido
-end
-Clip --> Creator : clip (dono = dono da gravação)
-Creator --> Creator : clip
-deactivate Creator
 
-note left of Creator
-  Operação comum do Creator,
-  igual para LiveStream,
-  RecordedVideo e Clip.
-end note
-Creator -> Repo : save(clip)
-Creator -> Policy : moderate(clip.id)
-note right of Policy
-  Se moderate() lançar erro, o erro sobe e o clipe
-  fica registrado como PENDING (primeiro save).
-end note
-Policy --> Creator : ModerationResult
-Creator -> Clip : applyModeration(result)
-opt result = APPROVED e isMediaReady()
-  Creator -> Clip : publish()
+group operação comum do Creator — igual para LiveStream, RecordedVideo e Clip
+  Creator -> Repo : save(clip)
+  Creator -> Policy : moderate(clip.id)
+  note right of Policy
+    Se moderate() lançar erro, o erro sobe e o clipe
+    fica registrado como PENDING (primeiro save).
+  end note
+  Policy --> Creator : ModerationResult
+  Creator -> Clip : applyModeration(result)
+  opt result = APPROVED e isMediaReady()
+    Creator -> Clip : publish()
+  end
+  Creator -> Repo : save(clip)
 end
-Creator -> Repo : save(clip)
 
 Creator --> Client : clip (visto como UserContent)
 deactivate Creator
 
 note over Client, Policy
-  LiveStreamCreator e RecordedVideoCreator seguem a mesma operação comum;
-  muda só o método-fábrica (new LiveStream a partir da StreamConfig,
+  LiveStreamCreator e RecordedVideoCreator seguem o mesmo grupo "operação comum";
+  muda só o grupo do método-fábrica (new LiveStream a partir da StreamConfig,
   ou findContentById da live + new RecordedVideo).
 end note
 @enduml
