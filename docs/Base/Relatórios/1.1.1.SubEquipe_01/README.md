@@ -64,7 +64,7 @@ Alternativas consideradas e descartadas, com o argumento de cada uma — constru
 
 **Builder — concluído.** Diagrama de classes "antes" (recorte do v3 da Entrega 02) e "depois" (Builder aplicado), correspondência entre participantes GoF e classes do domínio, regras de validação e as doze evidências que as sustentam: [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md). Fonte editável em PlantUML e exportações PNG/SVG ficam em [`assets/builder/`](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-classes-depois-v1.puml). Autoria: Lucas Andrade Zanetti.
 
-**Builder — sequência concluída.** Diagrama de sequência do preset montado pelo `StreamConfigDirector` (Client → Director → Builder → `build()`), com o caminho de erro de validação e a correspondência mensagem a mensagem com o código: [1.1.1.2. Sequência — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md). Fonte editável em [`builder-sequencia-v1.puml`](/Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-sequencia-v1.puml). Autoria: Heitor Macedo Ricardo.
+**Builder — sequência concluída.** Diagrama de sequência do preset montado pelo `StreamConfigDirector` (Client → Director → Builder → `build()`), com o caminho de erro de validação e a correspondência mensagem a mensagem com o código: [1.1.1.2. Sequência — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md). Fonte editável em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-sequencia-v1.puml" target="_blank" rel="noopener"><code>builder-sequencia-v1.puml</code></a>. Autoria: Heitor Macedo Ricardo.
 
 **Pendente.** Diagrama de classes e de sequência do Factory Method (Matheus e Pedro).
 
@@ -86,8 +86,6 @@ npm run check         # formatação → lint → tipos → testes (a mesma sequ
 npm run demo:builder  # demonstração do Builder no terminal
 ```
 
-> Enquanto o [PR #1](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/1) não for integrado à `main`, rode `git checkout feat/builder-stream-config` antes do `npm ci`.
-
 **Cenário demonstrado (`demo:builder`).** Um único builder, reaproveitado do início ao fim:
 
 1. **Presets do Director** — `lowLatency`, `highQuality` e `mobile`, cada um impresso com título, perfil de vídeo, latência, visibilidade, gravação e a confirmação de que o objeto é imutável.
@@ -107,7 +105,7 @@ Título vazio + 4K com latência ULTRA_LOW + 75 fps + 2 Mbps (abaixo do piso de 
   - R5 bitrate 2000000 bps está abaixo do mínimo de 14000000 bps para R2160P a 75 fps
 ```
 
-`npm run check` deve terminar sem erro; em 15/10/2026 eram 53 testes do Builder passando, com 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
+`npm run check` deve terminar sem erro. O Builder foi integrado à `main` em 16/10/2026 ([PR #1](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/1)), com 53 testes passando e 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
 
 **Pendente.** Execução do Factory Method (`npm run demo:factory-method`, dupla Matheus + Pedro) e link para o vídeo do padrão em funcionamento.
 
