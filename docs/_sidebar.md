@@ -7,6 +7,11 @@
   - 1.1. Relatórios
     - [1.1.1. SubEquipe_01 — Criacionais](/Base/Relatórios/1.1.1.SubEquipe_01/README.md)
     - [1.1.2. SubEquipe_02 — Estruturais](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)
+      - [1.1.2.1. F1 · Recarga](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.F1.Recarga.md)
+      - [1.1.2.2. F2 · Doação e Repasse](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.F2.DoacaoRepasse.md)
+      - [1.1.2.3. F3 · Mensagem Destacada](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.F3.MensagemDestacada.md)
+      - [1.1.2.4. IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md)
+      - [1.1.2.5. Referências](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.5.Referencias.md)
     - [1.1.3. SubEquipe_03 — Comportamentais](/Base/Relatórios/1.1.3.SubEquipe_03/README.md)
   - [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md)
   - [1.3. Iniciativas extras](/Base/1.3.IniciativasExtras.md)
@@ -14,5 +19,9 @@
 - **Projeto**
   - [Contexto e continuidade](/Projeto/Projeto.md)
   - [Atas e reuniões](/Projeto/Atas/README.md)
+    - [Ata S2_01 (06/10)](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-10-06.md)
+    - [Ata S2_02 (10/10)](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md)
+    - [Ata S2_03 (13/10)](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md)
+    - [Organização da Entrega 3](/Projeto/Atas/Atas_Sg2/organizacao-entrega-03.md)
   - [Modelo de ata](/Projeto/Atas/TEMPLATE.md)
   - [Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/)
