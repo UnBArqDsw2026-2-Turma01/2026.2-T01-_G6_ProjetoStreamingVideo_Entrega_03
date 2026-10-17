@@ -29,10 +29,13 @@ SubEquipe_01 — GoFs Criacionais + IA Generativa
 │   ├── 1.1.1.2.SequenciaBuilder.md   UML de sequência (Director → Builder → build())
 │   ├── 1.1.1.5.Video.md              vídeo do padrão em funcionamento
 │   ├── 1.1.1.6.IAGenerativa.md       pontos de vista individuais
+│   ├── 1.1.1.7.BenchmarkBuilder.md   iniciativa extra: tempo e memória (padrão × manual)
 │   ├── ADR/ADR-001-builder-stream-config.md
 │   └── assets/builder/               .puml, .svg, .png e evidências
 └── 💻 Código · repositório separado · g6-streaming-entrega03-subgrupo01-codigo
-    └── src/criacionais/builder/      Product, Builder, ConcreteBuilder, Director, demo.ts
+    ├── src/criacionais/builder/      Product, Builder, ConcreteBuilder, Director, demo.ts
+    ├── bench/                        medidor TypeScript (cenários, rodadas, gc)
+    └── benchmark/                    Python: gerar_relatorio.py, gráficos, relatório
 ```
 
 | Foco da entrega | Builder (`StreamConfig`) | Factory Method (`UserContent`) | Onde |
@@ -43,6 +46,7 @@ SubEquipe_01 — GoFs Criacionais + IA Generativa
 | Implementação e testes | ✅ integrado em 16/10/2026 | 🟡 pendente | [Repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo) |
 | Execução documentada | ✅ `npm run demo:builder` | 🟡 pendente | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
 | Vídeo | ⬜ a preencher | ⬜ a preencher | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
+| Iniciativa extra — benchmark | ✅ tempo e memória | ⬜ sem cenário | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
 | IA Generativa | 🟡 Lucas preenchido | 🟡 a preencher | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado.
@@ -139,15 +143,51 @@ A [modelagem da SubEquipe_01 na Entrega 02](https://unbarqdsw2026-2-turma01.gith
 
 | Problema ou requisito | Artefato de origem (link) | Elemento do modelo | Trecho de código (link) | Evidência de execução (link) |
 | --- | --- | --- | --- | --- |
-| A preencher | A preencher | A preencher | A preencher | A preencher |
+| `StreamConfig` com sete parâmetros interdependentes cria combinações inválidas (D1) | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e01-planejamento-premissa-streamconfig.png" target="_blank" rel="noopener">E01</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e02-v3-streamconfig-quatro-atributos.png" target="_blank" rel="noopener">E02</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e04-e02-livestreamservice-recebe-streamconfig.png" target="_blank" rel="noopener">E04</a> · [ADR-001 §1](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_1-contexto) | Product `StreamConfig` («value object» revisado) | [`stream-config.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/stream-config.ts) | `npm run demo:builder`, parte 1 |
+| R1 — título obrigatório (D7) | [ADR-001 §4](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_4-decisão) | ConcreteBuilder · `validate()` | [`default-stream-config-builder.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/default-stream-config-builder.ts#L115) | Parte 3 do demo (`R1 título é obrigatório…`) · testes `R1 — título obrigatório` |
+| R2 — resolução, fps e bitrate informados juntos | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png" target="_blank" rel="noopener">E10</a> | `VideoSettings` (garantia pelo tipo, não por `validate()`) | [`video-settings.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/video-settings.ts) | Teste `deixa os três campos de vídeo indefinidos quando não há perfil (R2)` |
+| R3 — taxa de quadros até 60 fps | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e11-taxa-de-quadros-ate-60-e-codecs.png" target="_blank" rel="noopener">E11</a> | ConcreteBuilder · `validate()` | [`default-stream-config-builder.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/default-stream-config-builder.ts#L129) | Parte 3 do demo (75 fps rejeitado) · testes `R3 — teto de taxa de quadros` |
+| R4 — latência baixa incompatível com 4K | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e08-latencia-baixa-incompativel-com-4k.png" target="_blank" rel="noopener">E08</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e09-4k-forca-latencia-normal.png" target="_blank" rel="noopener">E09</a> | ConcreteBuilder · `validate()` | [`default-stream-config-builder.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/default-stream-config-builder.ts#L135) | Parte 3 do demo (`ULTRA_LOW` + 2160p) · testes `R4` |
+| R5 — bitrate mínimo por resolução × fps | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png" target="_blank" rel="noopener">E10</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e12-plataforma-a-bitrate-por-resolucao.png" target="_blank" rel="noopener">E12</a> | `minimumBitrateBps` (tabela de pisos) | [`bitrate-floor.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/bitrate-floor.ts#L49) | Parte 3 do demo (`2000000 bps … mínimo de 14000000`) · `bitrate-floor.test.ts` |
+| Presets de transmissão sem repetir validação em cada cliente | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e06-e02-encoder-parametros-do-cliente.png" target="_blank" rel="noopener">E06</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e07-e02-sequencia-createstream.png" target="_blank" rel="noopener">E07</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e12-plataforma-a-bitrate-por-resolucao.png" target="_blank" rel="noopener">E12</a> · [Sequência](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md) | Director `StreamConfigDirector` | [`stream-config-director.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/stream-config-director.ts) | Parte 1 do demo (3 presets) · teste `chama reset() primeiro e build() por último` |
+| Início da transmissão envia `StreamConfig` ao serviço (Client) | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e04-e02-livestreamservice-recebe-streamconfig.png" target="_blank" rel="noopener">E04</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e07-e02-sequencia-createstream.png" target="_blank" rel="noopener">E07</a> | Client `LiveStreamService` / `demo.ts` | [`demo.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/demo.ts) | `npm run demo:builder` completo |
+| Custo do padrão e decisão D6 eram hipóteses no ADR-001 | [ADR-001 §5](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_5-consequências) | Cenário de benchmark, três braços | [`bench/cenarios/builder.ts`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/bench/cenarios/builder.ts) · [`gerar_relatorio.py`](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/benchmark/gerar_relatorio.py) | [1.1.1.7. Benchmark](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) · [relatório gerado](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/blob/main/benchmark/relatorio/relatorio-benchmark.md) |
+
+As evidências E01–E12 são capturas de tela arquivadas em [Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md?id=evidências); cada linha acima aponta para as que sustentam a escolha. Os links de código apontam para a `main` do repositório de código. Rastreabilidade do Factory Method: **pendente** (Matheus e Pedro).
 
 ## Senso Crítico
 
-**A preencher.** Avaliar benefícios, custos e limitações do padrão, coerência entre UML e implementação e decisões revistas ao longo do trabalho. Relacionar a avaliação às evidências e à literatura consultada.
+**Benefícios que as evidências sustentam.**
+
+- A validação ficou em um só ponto: `build()` executa R1, R3, R4 e R5 e devolve **todas** as violações de uma vez, e o produto sai imutável. A demonstração da parte 3 mostra quatro violações simultâneas, cada uma com o id da regra do ADR-001.
+- A cobertura é verificável: 53 testes passando e 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
+- O Director concentra os presets sem duplicar validação: um título vazio num preset sai como `InvalidStreamConfigError` com R1.
+
+**Custos medidos.** O [benchmark](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) mostrou que o Builder custa de 2,2× a 2,9× a instanciação manual em tempo (cerca de 82 a 135 ns por instância, conforme N) e 326 B contra 80 B por instância em memória (N = 100 mil). Como a configuração é criada uma vez por transmissão, o custo é irrelevante para o sistema. O braço manual não valida nada; a diferença inclui, portanto, o custo das regras, e as duas parcelas não foram separadas.
+
+**Decisões revistas ao longo do trabalho.**
+
+- **D1 é uma revisão do modelo da Entrega 02.** A premissa do planejamento ("muitos parâmetros interdependentes") só se sustentava depois de mover resolução, fps e bitrate para `StreamConfig`. Com os quatro atributos do v3 o Builder teria ganho pequeno; esse limite continua declarado e depende do aceite do grupo.
+- **R2 deixou de ser verificação.** O código agrupou os três campos de vídeo em `VideoSettings`, e a regra passou a ser garantida pelo tipo. O diagrama de classes divergiu do código e a divergência foi apontada na revisão do PR #2; o diagrama foi corrigido a partir do código integrado.
+- **D6 perdeu a justificativa de desempenho.** O resultado preliminar do benchmark (reutilizado quase 2× mais lento) era ruído de amostra curta, e a medição pareada não achou diferença de tempo. A decisão se sustenta por design (o Director reaproveita o builder que recebe) e por `reset()` ser exigido por correção. O benchmark em Python acrescentou uma economia de memória de cerca de 17%, que não era a vantagem prometida.
+
+**Coerência entre UML e implementação.** Diagrama de classes, sequência e código foram conferidos entre si: a ordem `reset → withTitle → withLatencyMode → withVideo → build` do diagrama de sequência é verificada por um teste com builder dublê. Divergências remanescentes conhecidas: nenhuma registrada até esta data; a conferência do Factory Method depende da dupla responsável.
+
+**Limites.** R4 e R5 vêm de documentação pública de plataformas externas, não do nosso sistema; os valores numéricos são de referência e configuráveis. Os números do benchmark valem para uma máquina e uma versão do Node: a razão entre braços mudou de cerca de 3,9× (máquina do Heitor) para 2,9× (esta execução), então não deve ser tomada como constante.
 
 ## Referências
 
-**A preencher com fontes efetivamente consultadas.** Identificar autor, título, edição ou versão, ano e link quando disponível; relacionar as referências às decisões e artefatos que fundamentam.
+Fontes efetivamente consultadas, com a decisão ou artefato que cada uma fundamenta.
+
+| Fonte | Fundamenta | Observação |
+| --- | --- | --- |
+| GAMMA, E.; HELM, R.; JOHNSON, R.; VLISSIDES, J. *Padrões de Projeto: soluções reutilizáveis de software orientado a objetos*. Porto Alegre: Bookman, 2000 | Builder: participantes, estrutura e consequências ([ADR-001 §3–§4](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_3-alternativas-consideradas)) | **Páginas ainda a confirmar** no exemplar consultado; não foram verificadas |
+| Entrega 02, SubEquipe_01 — [Modelagem Estática](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica) e [Evidências da Modelagem Dinâmica](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.2.1.Foco02.Evidencias) | `StreamConfig` do v3, `QualityVariant`, sequência de `createStream` (E02–E07) | Fonte primária do "antes" |
+| Planejamento da SubEquipe_01, v1.0, 08/10/2026 | Escolha do Builder, divisão de entregas e pares de revisão | Premissa conferida contra o modelo (E01) |
+| Documentação pública de uma plataforma de transmissão ao vivo (ajuda do criador e configurações do encoder) | R3, R4 e R5 (E08–E11) | Plataforma **diferente** da de referência da Entrega 02; capturas arquivadas |
+| Documentação pública da plataforma de referência da Entrega 02 | Bitrate por resolução (E12) | Convergência com a anterior sustenta tratar R5 como regra de domínio |
+| Node.js. [`process.memoryUsage()`](https://nodejs.org/api/process.html) | Medida de `heapUsed` no [benchmark](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) | Documentação oficial; versão do Node usada: v26.8.1 |
+| Node.js. [Opções de linha de comando](https://nodejs.org/api/cli.html) (`--expose-gc`, `--max-semi-space-size`) | Coleta de lixo forçada e semi-space grande na fase de memória | Documentação oficial |
 
 ## Versionamentos & Participações
 
@@ -160,5 +200,6 @@ Registrar apenas alterações efetivamente realizadas, incluindo autoria, revis�
 | 1.2 | 16/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Imagem e links da sequência compatíveis com o roteador do Docsify | @1emes (revisão do [PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2)) | [`14126fa`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/14126fa) |
 | 1.3 | 16/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Diagrama de classes alinhado ao código integrado (`VideoSettings`, `fromBuilder`, R2 estrutural) | @1emes (revisão do [PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2)) | [`3b6aefc`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3b6aefc) |
 | 1.4 | 17/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Links 404 do ADR-001 corrigidos; históricos de versão atualizados com a autoria de Heitor; páginas de Vídeo e IA Generativa; estrutura visual da subequipe; relato de IA do Lucas | A preencher | PR `docs/subequipe-01-versionamento-ia` |
+| 1.5 | 17/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Rastreabilidade, senso crítico e referências preenchidos; iniciativa extra: [benchmark de tempo e memória](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) (script Python e relatório gerado no repositório de código) | A preencher | PR `docs/subequipe-01-rastreabilidade-benchmark` |
 
 Atualizar também o [quadro consolidado de participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
