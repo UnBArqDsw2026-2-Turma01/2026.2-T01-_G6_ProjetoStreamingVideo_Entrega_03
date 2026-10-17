@@ -1,6 +1,6 @@
 # 1.1.1. SubEquipe_01 — GoFs Criacionais + IA Generativa
 
-**Estado:** em elaboração. O planejamento da SubEquipe_01 v1.0 (08/10/2026) propõe **Builder** para `StreamConfig` como padrão principal e **Factory Method** para a hierarquia `UserContent` como segundo padrão; a proposta ainda depende de validação dos quatro integrantes na reunião da subequipe. A modelagem do Builder já está registrada em [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) e em [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md); a do Factory Method, em [1.1.1.3. Modelagem — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) e em [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md).
+**Estado:** em elaboração. Conforme o planejamento da SubEquipe_01 v1.0 (08/10/2026), a subequipe aplicou **Builder** a `StreamConfig` (padrão principal) e **Factory Method** à hierarquia `UserContent` (segundo padrão). A modelagem do Builder já está registrada em [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) e em [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md); a do Factory Method, em [1.1.1.3. Modelagem — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) e em [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md).
 
 Este relatório reúne os espaços necessários à Entrega 03. O conteúdo técnico e os relatos individuais serão produzidos pelos integrantes abaixo.
 
@@ -27,27 +27,32 @@ SubEquipe_01 — GoFs Criacionais + IA Generativa
 │   ├── README.md                     relatório geral (contexto, escolha, execução, versões)
 │   ├── 1.1.1.1.ModelagemBuilder.md   UML de classes antes/depois + evidências E01–E12
 │   ├── 1.1.1.2.SequenciaBuilder.md   UML de sequência (Director → Builder → build())
+│   ├── 1.1.1.3.ModelagemFactoryMethod.md  UML de classes antes/depois + evidências FM-E01–FM-E03
+│   ├── 1.1.1.4.SequenciaFactoryMethod.md  UML de sequência (ClipCreator.submit)
 │   ├── 1.1.1.5.Video.md              vídeo do padrão em funcionamento
 │   ├── 1.1.1.6.IAGenerativa.md       pontos de vista individuais
 │   ├── 1.1.1.7.BenchmarkBuilder.md   iniciativa extra: tempo e memória (padrão × manual)
 │   ├── ADR/ADR-001-builder-stream-config.md
-│   └── assets/builder/               .puml, .svg, .png e evidências
+│   ├── ADR/ADR-002-factory-method-user-content.md
+│   ├── assets/builder/               .puml, .svg, .png e evidências
+│   └── assets/factory-method/        .puml, .svg, .png, evidências e vídeo
 └── 💻 Código · repositório separado · g6-streaming-entrega03-subgrupo01-codigo
     ├── src/criacionais/builder/      Product, Builder, ConcreteBuilder, Director, demo.ts
+    ├── src/criacionais/factory-method/  Product, ConcreteProducts, Creator, ConcreteCreators, demo.ts
     ├── bench/                        medidor TypeScript (cenários, rodadas, gc)
     └── benchmark/                    Python: gerar_relatorio.py, gráficos, relatório
 ```
 
 | Foco da entrega | Builder (`StreamConfig`) | Factory Method (`UserContent`) | Onde |
 | --- | --- | --- | --- |
-| Contexto e justificativa | ✅ | 🟡 pendente (Matheus e Pedro) | [Contexto](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=contexto-problema) · [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md) |
-| Modelagem UML — classes | ✅ Lucas | 🟡 pendente | [1.1.1.1](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) |
-| Modelagem UML — sequência | ✅ Heitor | 🟡 pendente | [1.1.1.2](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md) |
-| Implementação e testes | ✅ integrado em 16/10/2026 | 🟡 pendente | [Repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo) |
-| Execução documentada | ✅ `npm run demo:builder` | 🟡 pendente | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
-| Vídeo | ⬜ a preencher | ⬜ a preencher | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
-| Iniciativa extra — benchmark | ✅ tempo e memória | ⬜ sem cenário | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
-| IA Generativa | 🟡 Lucas preenchido | 🟡 a preencher | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
+| Contexto e justificativa | ✅ | ✅ | [Contexto](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=contexto-problema) · [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md) · [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md) |
+| Modelagem UML — classes | ✅ Lucas | ✅ Matheus | [1.1.1.1](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) · [1.1.1.3](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) |
+| Modelagem UML — sequência | ✅ Heitor | ✅ Matheus | [1.1.1.2](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md) · [1.1.1.4](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.4.SequenciaFactoryMethod.md) |
+| Implementação e testes | ✅ integrado em 16/10/2026 | 🟡 [PR #2 do código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/2) aprovado, ainda fora da `main` | [Repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo) |
+| Execução documentada | ✅ `npm run demo:builder` | ✅ `npm run demo:factory-method` | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
+| Vídeo | ⬜ a preencher | ✅ Matheus (1 min 44 s) | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
+| Iniciativa extra — benchmark | ✅ tempo e memória | 🟡 cenário no PR #2 do código, fora do relatório | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
+| IA Generativa | 🟡 Lucas preenchido | 🟡 Matheus preenchido; Pedro a preencher | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado.
 
