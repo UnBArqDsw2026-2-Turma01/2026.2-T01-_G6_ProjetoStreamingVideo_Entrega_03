@@ -5,12 +5,14 @@
 - **Desenho de Software — Padrões de Projeto**
   - [1. Visão geral](/Base/1.PadroesDeProjeto.md)
   - 1.1. Relatórios
-    - [1.1.1. SubEquipe_01 — Criacionais](/Base/Relatórios/1.1.1.SubEquipe_01/README.md)
+    - [<span style="color:#2563eb">🔵 1.1.1. SubEquipe_01 — Criacionais</span>](/Base/Relatórios/1.1.1.SubEquipe_01/README.md)
       - [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md)
       - [1.1.1.2. Sequência — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md)
       - [ADR-001 — Builder para StreamConfig](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md)
-    - [1.1.2. SubEquipe_02 — Estruturais](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)
-    - [1.1.3. SubEquipe_03 — Comportamentais](/Base/Relatórios/1.1.3.SubEquipe_03/README.md)
+      - [1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md)
+      - [1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md)
+    - [<span style="color:#16a34a">🟢 1.1.2. SubEquipe_02 — Estruturais</span>](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)
+    - [<span style="color:#d97706">🟠 1.1.3. SubEquipe_03 — Comportamentais</span>](/Base/Relatórios/1.1.3.SubEquipe_03/README.md)
   - [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md)
   - [1.3. Iniciativas extras](/Base/1.3.IniciativasExtras.md)
 
