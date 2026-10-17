@@ -1,0 +1,82 @@
+@startuml builder-sequencia-v1
+title Builder aplicado a StreamConfig — diagrama de sequência (preset pelo Director)
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam sequenceMessageAlign left
+skinparam responseMessageBelowArrow true
+skinparam participant {
+  BackgroundColor<<Client>> #F5F5F5
+  BackgroundColor<<Director>> #E1D5E7
+  BackgroundColor<<ConcreteBuilder>> #FFE6CC
+  BackgroundColor<<Product>> #DAE8FC
+  BackgroundColor<<Error>> #F8CECC
+}
+autonumber
+
+participant "Client\n(demo.ts)" as client <<Client>>
+participant ":StreamConfigDirector" as director <<Director>>
+participant "builder:\nDefaultStreamConfigBuilder" as builder <<ConcreteBuilder>>
+participant "config:\nStreamConfig" as config <<Product>>
+participant ":InvalidStreamConfigError" as error <<Error>>
+
+note over client
+  Papel de quem chama
+  LiveStreamService.createStream(userId, config)
+  na Entrega 02.
+end note
+
+client -> builder ** : new DefaultStreamConfigBuilder()
+client -> director ** : new StreamConfigDirector(builder)
+
+client -> director : highQuality(title)
+activate director
+
+director -> builder : reset()
+activate builder
+note right of builder
+  D6: o builder é reaproveitado entre presets
+  e build() não limpa o estado; sem reset(),
+  um campo do uso anterior vazaria.
+end note
+builder --> director : builder
+director -> builder : withTitle(title)
+builder --> director : builder
+director -> builder : withLatencyMode(STANDARD)
+builder --> director : builder
+director -> builder : withVideo(R2160P, 60, 20_000_000)
+note right of builder
+  R2 garantida pelo tipo:
+  resolução, fps e bitrate
+  entram num único passo.
+end note
+builder --> director : builder
+
+director -> builder : build()
+builder -> builder : validate()\nR1, R3, R4, R5
+note right of builder
+  D4/D5: toda a validação acontece aqui,
+  acumulando todas as violações.
+end note
+
+alt nenhuma violação
+  builder -> config ** : StreamConfig.fromBuilder(fields)
+  config -> config : Object.freeze(this)
+  builder --> director : config
+  deactivate builder
+  director --> client : config
+else alguma regra violada (ex.: título vazio → R1)
+  activate builder
+  builder -> error ** : new InvalidStreamConfigError(violations)
+  builder --> director : throw error
+  deactivate builder
+  director --> client : throw error\n(o Director não captura nem valida)
+end
+
+deactivate director
+
+note over client, director
+  lowLatency(title) e mobile(title) seguem a mesma sequência;
+  só mudam os argumentos de withLatencyMode e withVideo.
+end note
+@enduml

@@ -1,0 +1,115 @@
+@startuml builder-classes-depois-v1
+title Builder aplicado a StreamConfig — diagrama de classes (depois)
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor<<Product>> #DAE8FC
+  BackgroundColor<<Builder>> #FFE6CC
+  BackgroundColor<<ConcreteBuilder>> #FFE6CC
+  BackgroundColor<<Director>> #E1D5E7
+  BackgroundColor<<Existente>> #F5F5F5
+  BackgroundColor<<Error>> #F8CECC
+}
+hide empty members
+
+class LiveStreamService <<Existente>> {
+  + createStream(userId: UUID, config: StreamConfig): LiveStream
+}
+
+class "StreamConfig" as StreamConfig <<Product>> {
+  + {readonly} title: string
+  + {readonly} visibility: ContentVisibility
+  + {readonly} latencyMode: LatencyMode
+  + {readonly} recordAutomatically: boolean
+  + {readonly} video: VideoSettings | undefined
+  + {static} fromBuilder(fields): StreamConfig
+  + hasVideoProfile: boolean
+  - StreamConfig(fields)
+}
+
+class VideoSettings {
+  + {readonly} resolution: Resolution
+  + {readonly} framesPerSecond: number
+  + {readonly} bitrateBps: number
+}
+
+interface StreamConfigBuilder <<Builder>> {
+  + withTitle(title: string): StreamConfigBuilder
+  + withVisibility(v: ContentVisibility): StreamConfigBuilder
+  + withLatencyMode(m: LatencyMode): StreamConfigBuilder
+  + withRecording(enabled: boolean): StreamConfigBuilder
+  + withVideo(res: Resolution, fps: number, bitrateBps: number): StreamConfigBuilder
+  + reset(): StreamConfigBuilder
+  + build(): StreamConfig
+}
+
+class DefaultStreamConfigBuilder <<ConcreteBuilder>> {
+  - title: string [0..1]
+  - visibility: ContentVisibility = PUBLIC
+  - latencyMode: LatencyMode = STANDARD
+  - recordAutomatically: boolean = true
+  - video: VideoSettings [0..1]
+  + build(): StreamConfig
+  - validate(): string[]
+}
+
+class StreamConfigDirector <<Director>> {
+  + StreamConfigDirector(builder: StreamConfigBuilder)
+  + lowLatency(title: string): StreamConfig
+  + highQuality(title: string): StreamConfig
+  + mobile(title: string): StreamConfig
+}
+
+class InvalidStreamConfigError <<Error>> {
+  + {readonly} violations: string[]
+}
+
+enum LatencyMode <<Existente>> {
+  STANDARD
+  LOW
+  ULTRA_LOW
+}
+enum ContentVisibility <<Existente>> {
+  PUBLIC
+  UNLISTED
+  PRIVATE
+}
+enum Resolution {
+  R360P
+  R480P
+  R720P
+  R1080P
+  R1440P
+  R2160P
+}
+
+StreamConfigBuilder <|.. DefaultStreamConfigBuilder
+DefaultStreamConfigBuilder ..> StreamConfig : <<create>>
+DefaultStreamConfigBuilder ..> InvalidStreamConfigError : <<throws>>
+InvalidStreamConfigError --|> Error
+StreamConfigDirector o--> StreamConfigBuilder : builder
+LiveStreamService ..> StreamConfig : entrada
+StreamConfig --> LatencyMode
+StreamConfig --> ContentVisibility
+StreamConfig --> Resolution
+
+note right of DefaultStreamConfigBuilder
+  validate() — regras checadas em build():
+  R1 título não vazio
+  R2 estrutural: video é ausente ou contém resolução, fps e bitrate juntos
+  (garantido pelo tipo VideoSettings; não é validação de validate())
+  R3 fps ≤ 60
+  R4 latência LOW/ULTRA_LOW incompatível com 2160p
+  R5 bitrate ≥ mínimo da faixa resolução × fps
+end note
+
+note bottom of StreamConfigDirector
+  Escopo de Heitor Macedo Ricardo.
+  Implementado; o construtor recebe o Builder.
+end note
+
+VideoSettings --> Resolution
+StreamConfig --> VideoSettings
+@enduml
