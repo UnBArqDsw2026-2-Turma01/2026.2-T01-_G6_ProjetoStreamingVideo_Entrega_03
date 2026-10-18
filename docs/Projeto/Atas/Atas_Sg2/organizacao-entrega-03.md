@@ -52,7 +52,7 @@ flowchart LR
 
 **Regra do repasse**: o repasse ao criador é acionado pela própria doação, de forma independente da exibição no chat. A mensagem destacada é uma notificação assíncrona: se o chat falhar, a doação e o repasse continuam válidos, conforme o modelo da Entrega 2 e o achado SC04 ([Ata S2_02, D05](./ata-S2-02-2026-10-10.md)). Os passos 3 e 4 são, portanto, consequências paralelas da doação, e não uma sequência dependente.
 
-**Fora do escopo**: o saque do criador. Ele é independente das demais etapas e, na plataforma de referência, ocorre por repasse periódico automático. Em 17/10/2026, foi decidido não implementar o saque do criador.
+**Fora do escopo**: o saque do criador. Ele é independente das demais etapas e, na plataforma de referência, ocorre por repasse periódico automático. Sua exclusão definitiva do escopo foi decidida em 17/10.
 
 ---
 
@@ -161,12 +161,11 @@ Para a fundamentação teórica do relatório, citamos a obra original:
 
 | # | Pendência | Prazo |
 | -- | -- | -- |
-| P02 | Validação, pela equipe, da mudança no O07 da F1: o espectador escolhe o meio de pagamento, e a troca automática só ocorre sem escolha | 18/10 |
-| P03 | Integração da história completa e front-end | 18/10, 12h |
-| P04 | Vídeos das frentes e vídeo geral | 18/10 |
-| P05 | Páginas F3, IA Generativa e Referências | 18/10 |
+| P01 | Integração da história completa e front-end | 18/10, 12h |
+| P02 | Vídeos das frentes e vídeo geral | 18/10 |
+| P03 | Páginas F3, IA Generativa e Referências | 18/10 |
 
-Pendências resolvidas desde a versão anterior: a Pendência 1 sobre o saque do criador (decidido em 17/10 não implementar, mantendo fora do escopo), o uso de Proxy na F2 (descartado na [Ata S2_04](./ata-S2-04-2026-10-16.md)) e o horário das reuniões de acompanhamento.
+Pendências resolvidas desde a versão anterior: a exclusão definitiva do saque do criador do escopo (decidida em 17/10), a validação da mudança no O07 da F1 para escolha do meio de pagamento com troca automática apenas sem escolha (decidida em 17/10), o uso de Proxy na F2 (descartado na [Ata S2_04](./ata-S2-04-2026-10-16.md)) e o horário das reuniões de acompanhamento.
 
 ---
 
@@ -177,4 +176,4 @@ Pendências resolvidas desde a versão anterior: a Pendência 1 sobre o saque do
 | 1.0 | 10/10/2026 | Criação do documento de organização da Entrega 3, com escopo, integração, divisão de padrões e cronograma | Davi Severiano Freitas | |
 | 1.1 | 10/10/2026 | Substituição dos nomes por frentes de trabalho; novo fluxo da demonstração; remoção do bloqueio de mensagens; inclusão do Composite opcional | Davi Severiano Freitas | |
 | 1.2 | 10/10/2026 | Atualização com as decisões da Reunião S2_02: história em quatro etapas, repasse independente da exibição no chat, saque fora do escopo, padrões adotados (Adapter, Proxy, Decorator e Facade), divisão em três frentes com responsáveis e novo cronograma de reuniões | Davi Severiano Freitas | |
-| 1.3 | 17/10/2026 | Atualização com as decisões das Reuniões S2_03 e S2_04: prazo do código em 15/10, Proxy descartado na F2, Mediator como extra comportamental, integração e front-end com Mateus, vídeos após a integração, extras realizados, mudanças da F1 (sem conversão de moeda, escolha do meio e processadores reais), saque do criador descartado em 17/10 e novas pendências | Davi Severiano Freitas | |
+| 1.3 | 17/10/2026 | Atualização com as decisões das Reuniões S2_03 e S2_04: prazo do código em 15/10, Proxy descartado na F2, Mediator como extra comportamental, exclusão definitiva do saque e validação da mudança no O07 da F1 decididas em 17/10, integração e front-end com Mateus, vídeos após a integração, extras realizados, mudanças da F1 (sem conversão de moeda, escolha do meio e processadores reais) e novas pendências | Davi Severiano Freitas | |
