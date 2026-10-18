@@ -46,7 +46,7 @@ Cada integrante deverá explicar o que aprendeu, como colaborou e, caso tenha us
 | S2_01 | 06/10/2026 | Linguagem (TypeScript), manutenção da divisão por módulos, prazo interno e regras de anonimização | [Ata S2_01](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-10-06.md) |
 | S2_02 | 10/10/2026 | História da demonstração, padrões adotados, padrões descartados e divisão em três frentes | [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) |
 | S2_03 | 13/10/2026 | Acompanhamento das entregas, esclarecimento sobre diagramas UML e ajuste de prazos | [Ata S2_03](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md) |
-| S2_04 | 16/10/2026 | Apresentação do código, definição da Facade com Mediator na F2 e preparação da integração | [Ata S2_04](/Projeto/Atas/Atas_Sg2/ata-S2-04.md) |
+| S2_04 | 16/10/2026 | Apresentação do código, definição da Facade com Mediator na F2 e preparação da integração | [Ata S2_04](/Projeto/Atas/Atas_Sg2/ata-S2-04-2026-10-16.md) |
 
 **Estudo.** Cada integrante estudou os padrões da própria frente, com apoio de material de referência sobre padrões estruturais. A discussão em reunião comparou os sete padrões estruturais do GoF quanto à aplicabilidade na história (ver [Ata S2_02, §4](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md)).
 
