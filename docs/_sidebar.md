@@ -17,6 +17,9 @@
       - [1.1.1.7. Extra — Benchmark do Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md)
     - [<span style="color:#16a34a">🟢 1.1.2. SubEquipe_02 — Estruturais</span>](/Base/Relatórios/1.1.2.SubEquipe_02/README.md)
     - [<span style="color:#d97706">🟠 1.1.3. SubEquipe_03 — Comportamentais</span>](/Base/Relatórios/1.1.3.SubEquipe_03/README.md)
+      - [1.1.3.3. Modelagem — Chain of Responsibility](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md)
+      - [1.1.3.4. Sequência — Chain of Responsibility](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md)
+      - [ADR-004 — Chain of Responsibility na autenticação](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md)
   - [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md)
   - [1.3. Iniciativas extras](/Base/1.3.IniciativasExtras.md)
 
