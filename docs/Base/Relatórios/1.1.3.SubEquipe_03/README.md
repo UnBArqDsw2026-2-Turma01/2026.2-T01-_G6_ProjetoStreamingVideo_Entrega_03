@@ -1,8 +1,6 @@
 # 1.1.3. SubEquipe_03 — GoFs Comportamentais + IA Generativa
 
-**Estado:** estrutura inicial. O padrão GoF comportamental está **a definir pela subequipe**.
-
-Este relatório reúne os espaços necessários à Entrega 03. O conteúdo técnico e os relatos individuais serão produzidos pelos integrantes abaixo.
+**Estado:** em elaboração. A subequipe aplica padrões comportamentais aos módulos que assumiu desde a Entrega 02 — autenticação, moderação e telemetria. **Chain of Responsibility** na autenticação (Hugo Freitas Silva) está modelado, implementado, testado e demonstrado em vídeo: [1.1.3.3. Modelagem](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md), [1.1.3.4. Sequência](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md) e [ADR-004](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md). **Observer** com Strategy de despacho no `StreamChannel` (Eduardo Lôbo Moreira) está na branch [`docs/subequipe-03-modelagem-observer`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/tree/docs/subequipe-03-modelagem-observer), ainda não integrada à `main`. O padrão de Philipe Amâncio Reis Caetano está a definir.
 
 ## Integrantes
 
@@ -18,57 +16,274 @@ Composição mantida conforme a [introdução da Entrega 02](https://unbarqdsw20
 
 **GoFs Comportamentais + IA Generativa.** A entrega mínima deste foco inclui um padrão comportamental, modelo UML, código e vídeo demonstrando sua execução, além dos pontos de vista individuais.
 
+## Estrutura da subequipe e focos entregues
+
+```text
+SubEquipe_03 — GoFs Comportamentais + IA Generativa
+├── 📘 Documentação · docs/Base/Relatórios/1.1.3.SubEquipe_03/
+│   ├── README.md                                   relatório geral (contexto, escolha, execução, versões)
+│   ├── 1.1.3.3.ModelagemChainOfResponsibility.md   UML de classes + evidências COR-E01–COR-E06
+│   ├── 1.1.3.4.SequenciaChainOfResponsibility.md   UML de sequência (login com segundo fator)
+│   ├── ADR/ADR-004-chain-of-responsibility-autenticacao.md
+│   └── assets/chain-of-responsibility/             .puml, .svg, .png, evidências e vídeo
+└── 💻 Código · docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo-autenticacao/
+    ├── src/cadeia/                                 Handler, ConcreteHandlers, contexto e montagem das cadeias
+    ├── src/dominio/                                recortes do diagrama de autenticação da Entrega 02
+    ├── src/login-service.ts                        Client
+    ├── src/demo.ts                                 demonstração no terminal
+    └── test/                                       56 testes (node:test)
+```
+
+O Observer de Eduardo, na branch citada acima, acrescenta as páginas 1.1.3.1, 1.1.3.2, 1.1.3.5, 1.1.3.6, o ADR-003 e a pasta `codigo/`; os nomes usados aqui não colidem com os dela.
+
+| Foco da entrega | Chain of Responsibility (autenticação) | Onde |
+| --- | --- | --- |
+| Contexto e justificativa | ✅ Hugo | [Contexto](/Base/Relatórios/1.1.3.SubEquipe_03/README.md?id=contexto-problema) · [ADR-004](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md) |
+| Modelagem UML — classes | ✅ Hugo | [1.1.3.3](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md) |
+| Modelagem UML — sequência | ✅ Hugo | [1.1.3.4](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md) |
+| Implementação e testes | ✅ Hugo · 56 testes | <a href="https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/tree/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao" target="_blank" rel="noopener"><code>codigo-autenticacao/</code></a> |
+| Execução documentada | ✅ `npm run demo` | [Execução](/Base/Relatórios/1.1.3.SubEquipe_03/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
+| Vídeo | ✅ Hugo (2 min 20 s) | [Vídeo](/Base/Relatórios/1.1.3.SubEquipe_03/README.md?id=vídeo-do-chain-of-responsibility) |
+| IA Generativa | 🟡 Hugo preenchido; Philipe e Eduardo a preencher nesta página | [Relatos](/Base/Relatórios/1.1.3.SubEquipe_03/README.md?id=participantes-no-foco--lições-aprendidas-e-ia-generativa) |
+
+Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado. A tabela descreve o que está nesta branch; o Observer será acrescentado quando a branch de Eduardo for integrada.
+
 ## Participantes no foco — lições aprendidas e IA Generativa
 
 | Integrante | Lições aprendidas | Uso da IA Generativa (senso crítico) |
 | --- | --- | --- |
-| Hugo Freitas Silva | A preencher pelo integrante | A preencher pelo integrante |
+| Hugo Freitas Silva | [Ver relato](/Base/Relatórios/1.1.3.SubEquipe_03/README.md?id=hugo-freitas-silva) | [Ver relato](/Base/Relatórios/1.1.3.SubEquipe_03/README.md?id=hugo-freitas-silva) |
 | Philipe Amâncio Reis Caetano | A preencher pelo integrante | A preencher pelo integrante |
 | Eduardo Lôbo Moreira | A preencher pelo integrante | A preencher pelo integrante |
 
 Cada integrante deverá explicar o que aprendeu, como colaborou e, caso tenha usado IA, qual ferramenta utilizou, o apoio recebido, como validou os resultados e quais limitações encontrou. Informar também quando não houver uso de IA.
 
+### Hugo Freitas Silva
+
+**Lições aprendidas.**
+
+- Chain of Responsibility não é só "uma lista de `if` em classes": o ganho apareceu quando a mesma família de elos montou **duas** cadeias (login e step-up) sem duplicar regra. Com uma cadeia só, o padrão quase não se pagaria.
+- A consequência do GoF de que o pedido pode chegar ao fim da cadeia sem tratamento é aceitável em muitos domínios, mas não em autenticação. Tratar o fim da cadeia como recusa (falha fechada) foi a decisão mais importante do desenho.
+- A ordem dos elos é um requisito de segurança, não um detalhe: verificar o estado da conta antes da senha revelaria contas suspensas a quem não sabe a senha. Por isso a ordem ficou protegida por teste.
+- O modelo da Entrega 02 tinha as classes de autenticação, mas não a coordenação entre elas; um padrão comportamental preenche exatamente esse tipo de lacuna.
+
+**Ferramenta:** Claude Code (Anthropic), usado no terminal sobre os repositórios das três entregas.
+
+**Onde a IA entrou.** Levantamento do que as Entregas 01 e 02 já diziam sobre autenticação (NFR O05–O07 e C03, escopo da SubEquipe_03, diagrama de classes de autenticação) e do que os colegas já haviam feito (Builder e Factory Method da SubEquipe_01, Observer de Eduardo); comparação das alternativas; escrita do código TypeScript, dos testes, dos diagramas PlantUML, do ADR-004 e destas páginas; captura das evidências e geração do vídeo a partir da saída real dos comandos.
+
+**Como validei.**
+
+- O TOTP foi conferido contra os vetores de teste do Apêndice B da RFC 6238; o filtro de Bloom, contra as fórmulas de dimensionamento e uma medição de falso positivo.
+- 56 testes e a verificação de tipos estrita (`tsc --noEmit`) passam; um teste confere a ordem dos elos e outro, o ponto de parada e a trilha de cada recusa.
+- A saída da demonstração foi lida caso a caso. Ela revelou um erro do primeiro roteiro: uma falha de senha de um cenário anterior contava para o limite de tentativas do cenário seguinte, e o bloqueio aparecia na quinta tentativa em vez da sexta. O roteiro foi corrigido para usar outra conta.
+- Os links das referências foram abertos e os trechos citados (OWASP, Spring Security, RFC 6238 §5.2) conferidos na fonte. Onde não havia o texto exato da edição em português do GoF, a citação virou paráfrase.
+
+**Limitações.**
+
+- As páginas do livro GoF não foram conferidas no exemplar; a referência é feita ao padrão, não a páginas.
+- A IA propôs inicialmente executar o TypeScript direto pelo Node 22; a versão instalada pelo sistema operacional não tem esse suporte, e o projeto passou a usar `tsx`.
+- O modelo previa Argon2id, indisponível no `crypto` do Node 22; a troca por scrypt é uma revisão declarada (D9 do ADR-004), não uma equivalência.
+- Todo o código e o texto foram produzidos com apoio da IA; a responsabilidade pelas decisões e pela conferência contra as entregas anteriores é minha.
+
 ## Metodologia
 
-**A preencher.** Descrever como a subequipe trabalhou: divisão de atividades, reuniões, estudos, ferramentas, debates e revisões. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
+**Chain of Responsibility (Hugo Freitas Silva).** O trabalho seguiu quatro passos:
+
+1. **Estudo do padrão.** Aula de GoFs comportamentais da disciplina (slides 9 e 61), capítulo do padrão no GoF e materiais indicados na aula.
+2. **Releitura das entregas anteriores.** Escopo do produto e NFR Framework da SubEquipe_03 na Entrega 01, diagrama de classes de autenticação e modelagem dinâmica da Entrega 02. Cada afirmação usada virou evidência arquivada (COR-E03 a COR-E06).
+3. **Decisão antes do código.** Regras A1–A8 e decisões D1–D9 registradas no [ADR-004](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md), com sete alternativas comparadas.
+4. **Código, testes e modelos em conjunto.** Um elo por classe, com testes isolados por sucessor dublê; diagramas PlantUML desenhados a partir do código e conferidos contra ele; demonstração com relógio fixo para a saída ser reproduzível.
+
+Ferramentas: TypeScript, `node:test`, `tsx`, PlantUML, Docsify, Git e GitHub. A metodologia da subequipe como um todo (reuniões, divisão e revisões entre os três integrantes) está **a preencher pela subequipe**, relacionando atas aos [registros de reuniões](/Projeto/Atas/README.md).
 
 ## GoF Comportamental
 
 ### Contexto (problema)
 
-**A preencher.** Identificar o problema concreto da plataforma, os requisitos envolvidos e os modelos anteriores relevantes.
+A autenticação é responsabilidade da SubEquipe_03 desde a Entrega 01, em que "Login/Cadastro & Autenticação (incl. 2FA/OAuth)" foi o fluxo mínimo da subequipe (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e03-e01-escopo-fluxo-login-subequipe03.png" target="_blank" rel="noopener">COR-E03</a>). O NFR Framework da mesma entrega pediu rate limiting no login (O07), MFA para quem transmite (O05) e credenciais com função de derivação resistente (O06), e resolveu o conflito C03 exigindo MFA **só** de criadores e transações financeiras (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e04-e01-nfr-o05-o06-o07.png" target="_blank" rel="noopener">COR-E04</a>, <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e05-e01-nfr-conflito-c03.png" target="_blank" rel="noopener">COR-E05</a>). Na Entrega 02, o diagrama de classes de autenticação modelou as peças — atestação do cliente com prova de trabalho, conta e estado, credencial, filtro de senhas vazadas, TOTP, sessão, desafio de step-up e auditoria (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e06-e02-classes-autenticacao.png" target="_blank" rel="noopener">COR-E06</a>).
+
+O que faltava era a coordenação: a modelagem dinâmica da Entrega 02 registra que o detalhamento do login, do desafio de borda, do MFA e da emissão de tokens não foi concluído. Escritas num único método, essas verificações viram uma sequência de condicionais em que cada regra conhece as outras, e o step-up (rotação de stream key, saque) repetiria metade do login. Detalhes em [ADR-004 §1](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md?id=_1-contexto).
 
 ### Escolha e justificativa
 
-**A definir.** Registrar o padrão escolhido, alternativas consideradas, justificativa apoiada na literatura e limites de aplicação.
+**Chain of Responsibility** (padrão comportamental GoF) para o login e o step-up: cada verificação é um elo — limite de tentativas, atestação do cliente, senha, estado da conta, senha vazada, segundo fator — que **recusa**, **responde** (com um desafio de segundo fator) ou **repassa** ao próximo; o último elo cria a sessão ou conclui o step-up. O `LoginService` entrega o pedido só ao primeiro elo e não sabe qual vai respondê-lo, que é a intenção do padrão segundo a aula: evitar a dependência entre quem solicita e quem trata, com a base mantendo o ponteiro para o "próximo" (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e01-slide09-visao-geral-comportamentais.png" target="_blank" rel="noopener">COR-E01</a>, <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e02-slide61-modelagem-chain.png" target="_blank" rel="noopener">COR-E02</a>). O Spring Security organiza a autenticação da mesma forma, com uma cadeia de filtros e um `ProviderManager` que delega a uma lista de provedores.
+
+Alternativas descartadas, com o argumento de cada uma — método único, Strategy (que já é usado por Eduardo no despacho do Observer), State, Template Method, Decorator e pipeline de funções — estão em [ADR-004 §3](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md?id=_3-alternativas-consideradas), junto das regras A1–A8 e das decisões D1–D9.
+
+**Limites declarados:** o fim da cadeia recusa (falha fechada), diferente do GoF, em que o pedido pode ficar sem tratamento (D2); o `RateLimitHandler` age também na volta do pedido, variação de cadeia de filtros que o GoF puro não prevê (D5); e a credencial usa scrypt em vez do Argon2id da Entrega 01, por limitação da plataforma (D9).
+
+**Relação com os outros padrões do grupo.** O Builder e o Factory Method da SubEquipe_01 criam a configuração e o conteúdo da transmissão; o Observer de Eduardo reage a eventos do canal. O Chain of Responsibility fica antes de todos eles: decide se a pessoa entra e, no step-up, se pode executar ações sensíveis sobre o canal, como rotacionar a stream key que o fluxo de transmissão usa.
 
 ### Modelagem (notação UML)
 
-**Pendente.** Inserir o modelo, seus arquivos-fonte, legenda e explicação de como os elementos do domínio correspondem aos participantes do padrão.
+**Chain of Responsibility — classes.** Diagrama "antes" (recorte do diagrama de autenticação da Entrega 02) e "depois" (padrão aplicado), correspondência entre participantes GoF e classes, regras A1–A8 e evidências: [1.1.3.3. Modelagem — Chain of Responsibility](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md). Fonte editável em PlantUML e exportações PNG/SVG em <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/chain-of-responsibility-classes-v1.puml" target="_blank" rel="noopener"><code>assets/chain-of-responsibility/</code></a>. Autoria: Hugo Freitas Silva.
+
+**Chain of Responsibility — sequência.** Login de uma criadora com segundo fator, com o ponto de parada de cada recusa, o desafio TOTP e a volta pelo `RateLimitHandler`: [1.1.3.4. Sequência — Chain of Responsibility](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md). Fonte editável em <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/chain-of-responsibility-sequencia-v1.puml" target="_blank" rel="noopener"><code>chain-of-responsibility-sequencia-v1.puml</code></a>. Autoria: Hugo Freitas Silva.
+
+![Diagrama de classes do Chain of Responsibility](assets/chain-of-responsibility/chain-of-responsibility-classes-v1.png)
+
+*Figura 1 — Diagrama de classes do Chain of Responsibility aplicado à autenticação, v1. Autoria: Hugo Freitas Silva, 2026.*
 
 ### Implementação (código)
 
-**Pendente.** Acrescentar o link para o código versionado no repositório e explicar os trechos associados aos participantes do padrão. Linguagem e dependências serão informadas pela subequipe.
+Código em <a href="https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/tree/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao" target="_blank" rel="noopener"><code>codigo-autenticacao/</code></a>, na pasta da subequipe, como o código do Observer de Eduardo. TypeScript sem dependência de execução: a criptografia (scrypt, HMAC, SHA-256) vem do módulo `node:crypto`; `tsx`, `typescript` e `@types/node` são só de desenvolvimento. Um arquivo por participante:
+
+| Participante | Arquivo | Trecho que realiza o padrão |
+| --- | --- | --- |
+| Handler | `src/cadeia/authentication-handler.ts` | interface `AuthenticationHandler` (`setNext`, `handle`); `AbstractAuthenticationHandler.handle` registra o elo na trilha e chama `next.handle`; sem sucessor, recusa com `UNHANDLED` |
+| ConcreteHandler | `rate-limit-handler.ts`, `client-integrity-handler.ts`, `password-handler.ts`, `account-status-handler.ts`, `leaked-password-handler.ts`, `two-factor-handler.ts` | cada `handle` verifica uma regra e devolve a recusa ou chama `super.handle(context)` |
+| ConcreteHandler terminal | `session-issuer-handler.ts`, `step-up-grant-handler.ts` | tratam o pedido (sessão + token, ou desafio concluído) e não repassam |
+| Client | `src/login-service.ts` | `login` e `confirmStepUp` entregam o contexto ao primeiro elo e registram a auditoria |
+| Request | `src/cadeia/authentication-context.ts` | `AuthenticationRequest` e `AuthenticationContext` (conta, marcas e trilha) |
+| Montagem | `src/cadeia/authentication-chains.ts` | `buildLoginChain` e `buildStepUpChain`, com `setNext` encadeado |
+
+O [README do código](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/README.md) resume participantes e limites. São 56 testes: os elos isolados com um sucessor dublê, as duas cadeias montadas, o `LoginService`, o domínio e os vetores da RFC 6238.
 
 ### Execução e vídeo do padrão em funcionamento
 
-**Pendente.** Documentar pré-requisitos, comandos, cenário demonstrado e resultado esperado. Inserir o link para o vídeo mostrando o padrão em execução, com identificação dos participantes.
+**Pré-requisitos:** Node 20 ou superior e npm. Nenhuma outra dependência global; o TypeScript roda pelo `tsx`, sem etapa de build.
+
+```bash
+cd "docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo-autenticacao"
+npm ci          # instala as dependências de desenvolvimento travadas no package-lock
+npm run check   # tipos (tsc --noEmit) e os 56 testes (node:test)
+npm run demo    # demonstração no terminal
+```
+
+**Cenário demonstrado (`npm run demo`).** Cinco contas fictícias, relógio fixo e ids sequenciais, para a saída ser igual a cada execução:
+
+1. **Cadeias montadas** — ordem dos elos no login e no step-up.
+2. **Espectador sem segundo fator** — o pedido percorre os sete elos e recebe sessão e token.
+3. **Criadora com segundo fator (C03)** — sem código, o `TwoFactorHandler` responde com desafio; com código, a sessão é criada; o mesmo código de novo é recusado (RFC 6238 §5.2).
+4. **Senha vazada** — autentica com a marca `PASSWORD_CHANGE_REQUIRED`.
+5. **Recusas** — cada uma vem de um elo diferente: cliente automatizado, e-mail inexistente e senha errada (mesma resposta), conta suspensa (só após a senha), criador sem segundo fator.
+6. **Limite de tentativas** — após cinco falhas, nem a senha correta passa.
+7. **Step-up** — rotação da stream key com a cadeia de step-up.
+8. **Cadeia sem elo terminal** — o pedido é recusado com `UNHANDLED` (falha fechada).
+9. **Auditoria** — eventos registrados pelo `LoginService`.
+
+**Resultado esperado** (parte 3, saída real):
+
+```text
+=== 3. Criadora com segundo fator (C03 da Entrega 01) ===
+
+ana@exemplo.com, senha correta, sem código:
+  resultado:  CHALLENGE
+  desafio:    TOTP_REQUIRED (emitido por TwoFactorHandler)
+  passou por: RateLimitHandler → ClientIntegrityHandler → PasswordHandler → AccountStatusHandler → LeakedPasswordHandler
+
+ana@exemplo.com, senha correta, código 477625:
+  resultado:  AUTHENTICATED
+  sessão:     sessao-02 (conta conta-ana)
+  token:      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…
+  marcas:     (nenhuma)
+  passou por: RateLimitHandler → ClientIntegrityHandler → PasswordHandler → AccountStatusHandler → LeakedPasswordHandler → TwoFactorHandler → SessionIssuerHandler
+
+ana@exemplo.com, o mesmo código 477625 de novo (reuso, RFC 6238 §5.2):
+  resultado:  REJECTED
+  motivo:     INVALID_TOTP — código do autenticador inválido ou já utilizado
+  recusado:   TwoFactorHandler
+  passou por: RateLimitHandler → ClientIntegrityHandler → PasswordHandler → AccountStatusHandler → LeakedPasswordHandler
+```
+
+A linha `passou por` é a trilha registrada pela base do Handler: mostra até onde o pedido foi e confere, em execução, a ordem desenhada no diagrama de sequência. A demonstração reduz o custo do scrypt (N = 2^14) para rodar em cerca de 3 s; o padrão do código é o do OWASP (N = 2^17).
+
+#### Vídeo do Chain of Responsibility
+
+| Campo | Conteúdo |
+| --- | --- |
+| Link do vídeo | <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/video/chain-of-responsibility-demo.mp4" target="_blank" rel="noopener"><code>chain-of-responsibility-demo.mp4</code></a> |
+| Duração | 2 min 20 s, sem áudio, 1920×1080 |
+| Participantes (nome e papel no vídeo) | Hugo Freitas Silva — roteiro, código exibido e apresentação (identificado no cartão inicial, no rodapé de todas as telas e no cartão final) |
+| Data de gravação | 18/10/2026 |
+
+<video controls preload="metadata" width="100%" src="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/video/chain-of-responsibility-demo.mp4"></video>
+
+**Roteiro.**
+
+| # | Etapa | Comando ou arquivo | O que a tela mostra |
+| --- | --- | --- | --- |
+| 1 | Participantes | `ls src/cadeia src/dominio` | Um arquivo por elo, o Handler, o contexto e a montagem |
+| 2 | Handler | `authentication-handler.ts`, linhas 13–44 | Sucessor, repasse padrão e recusa no fim da cadeia |
+| 3 | ConcreteHandler | `password-handler.ts`, linhas 13–34 | Verifica, recusa ou chama `super.handle()`; credencial fictícia (A3) |
+| 4 | Elo que age na volta | `rate-limit-handler.ts`, linhas 13–40 | Conta falhas a partir do resultado do resto da cadeia (D5) |
+| 5 | Montagem | `authentication-chains.ts`, linhas 27–56 | Login e step-up com as mesmas classes |
+| 6 | Verificação | `npm run check` | Tipos e 56 testes passando |
+| 7–15 | Demonstração | `npm run demo`, partes 1 a 9 | Os nove cenários listados acima |
+
+**Como foi produzido.** Um script executou os comandos no código desta branch e renderizou cada tela com a saída real (1920×1080, 30 fps, H.264); os trechos de código são os arquivos versionados, com numeração de linha. A digitação não é simulada: cada tela mostra o comando e a saída completos.
 
 ## Rastreabilidade & Elos com Outros Artefatos
 
-A [modelagem da SubEquipe_03 na Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.SubEquipe_03) é um ponto de partida. A equipe deverá indicar quais artefatos e elementos sustentam efetivamente sua decisão nesta etapa.
+A [modelagem da SubEquipe_03 na Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.SubEquipe_03) e o [NFR Framework da SubEquipe_03 na Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.3.SubEquipe_03/2.NFRFramework) são as origens das regras abaixo. Os links de código apontam para a `main`, onde a pasta estará após a integração do pull request.
 
 | Problema ou requisito | Artefato de origem (link) | Elemento do modelo | Trecho de código (link) | Evidência de execução (link) |
 | --- | --- | --- | --- | --- |
-| A preencher | A preencher | A preencher | A preencher | A preencher |
+| Login e autenticação como fluxo da SubEquipe_03 | [Escopo do Produto, Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Projeto/EscopoProduto) (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e03-e01-escopo-fluxo-login-subequipe03.png" target="_blank" rel="noopener">COR-E03</a>) | Client `LoginService` e cadeia de login | [`login-service.ts`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/login-service.ts) · [`authentication-chains.ts#L31`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/authentication-chains.ts#L31) | Demo, partes 1 e 2 · teste `é montada na ordem decidida no ADR-004` |
+| Ordem e coordenação do login não modeladas | [Modelagem Dinâmica, Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/1.1.3.2.Foco02.ModelagemDinamica) (delimitação) | Handler e [sequência](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md) | [`authentication-handler.ts#L22`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/authentication-handler.ts#L22) | Linhas `passou por` da demo |
+| A1 — rate limiting no login (O07) | NFR, Entrega 01 (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e04-e01-nfr-o05-o06-o07.png" target="_blank" rel="noopener">COR-E04</a>) | `RateLimitHandler`, `LoginRateLimiter` | [`rate-limit-handler.ts#L22`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/rate-limit-handler.ts#L22) | Demo, parte 6 · teste `cinco falhas bloqueiam a sexta tentativa…` |
+| A2 — atestação antes do hash (DE01) | Classes de autenticação, Entrega 02 (<a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e06-e02-classes-autenticacao.png" target="_blank" rel="noopener">COR-E06</a>) | `ClientIntegrityHandler`, `ClientIntegrityAttestation` | [`client-integrity-handler.ts#L26`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/client-integrity-handler.ts#L26) | Demo, parte 5 (webdriver) · testes `recusa atestação …` |
+| A3 — mesma resposta para e-mail inexistente e senha errada | OWASP *Authentication Cheat Sheet*; `Credential` da Entrega 02 (COR-E06) | `PasswordHandler` | [`password-handler.ts#L24`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/password-handler.ts#L24) | Demo, parte 5 · teste `e-mail inexistente e senha errada têm a mesma recusa` |
+| A4 — estado da conta só após a senha | `AccountStatus`, Entrega 02 (COR-E06) | `AccountStatusHandler` | [`account-status-handler.ts#L18`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/account-status-handler.ts#L18) | Demo, parte 5 (conta suspensa) · teste `conta suspensa só é revelada a quem prova a senha` |
+| A5 — senha vazada marca troca (DE02) | `LeakedPasswordBloomFilter`, Entrega 02 (COR-E06) | `LeakedPasswordHandler` | [`leaked-password-handler.ts#L20`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/leaked-password-handler.ts#L20) | Demo, parte 4 |
+| A6 — MFA de criadores (O05, C03) | NFR, Entrega 01 (COR-E04, <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e05-e01-nfr-conflito-c03.png" target="_blank" rel="noopener">COR-E05</a>) | `TwoFactorHandler`, `Account.requiresMfa` | [`two-factor-handler.ts#L23`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/two-factor-handler.ts#L23) | Demo, partes 3 e 5 · testes de `TwoFactorHandler` |
+| A7 — TOTP ±1 passo, sem reuso | RFC 6238 §5.2; `TwoFactorAuth`, Entrega 02 | `TwoFactorAuth.verifyToken` | [`two-factor-auth.ts#L40`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/dominio/two-factor-auth.ts#L40) | Demo, parte 3 (reuso) · vetores da RFC 6238 |
+| A8 — fim da cadeia recusa | [ADR-004, D2](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md?id=_4-decisão) | `AbstractAuthenticationHandler` | [`authentication-handler.ts#L35`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/authentication-handler.ts#L35) | Demo, parte 8 · teste `sem sucessor, recusa com UNHANDLED` |
+| Step-up antes de ação sensível | `StepUpAuthChallenge`, `StepUpTrigger`, Entrega 02 (COR-E06) | `buildStepUpChain`, `StepUpGrantHandler` | [`authentication-chains.ts#L48`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/cadeia/authentication-chains.ts#L48) | Demo, parte 7 · teste `conclui o desafio com senha e código` |
+| Auditoria de eventos de segurança | `IAuditLogger`, `SecurityEventType`, Entrega 02 (COR-E06) | Client `LoginService` | [`login-service.ts`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/codigo-autenticacao/src/login-service.ts) | Demo, parte 9 · testes de `LoginService` |
+
+As evidências COR-E01–COR-E06 são capturas arquivadas em [Modelagem — Chain of Responsibility](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md?id=evidências), cada uma com fonte e data no rodapé.
 
 ## Senso Crítico
 
-**A preencher.** Avaliar benefícios, custos e limitações do padrão, coerência entre UML e implementação e decisões revistas ao longo do trabalho. Relacionar a avaliação às evidências e à literatura consultada.
+**Benefícios que as evidências sustentam.**
+
+- Cada regra mora em uma classe e é testada isoladamente com um sucessor dublê; a suíte tem um grupo de testes por elo.
+- As mesmas classes montam duas cadeias (login e step-up); o step-up não duplicou nenhuma regra (demo, parte 7).
+- O Client não depende de quem responde: o `LoginService` trata da mesma forma uma recusa do primeiro elo, um desafio do sexto e uma sessão do sétimo.
+
+**Custos e limites.**
+
+- **A ordem vira contrato implícito.** O diagrama de classes não mostra a ordem; trocar dois elos de lugar quebraria A4. Mitigação: teste da ordem montada e elos que recusam quando falta a conta no contexto (D4).
+- **Mais classes.** Oito elos para o que seria um método; o padrão só se paga porque há duas cadeias e porque as regras mudam independentemente.
+- **Variações em relação ao GoF puro**, declaradas no ADR: falha fechada no fim da cadeia (D2) e elo que age na volta (D5). Ambas existem na indústria (cadeias de filtros), mas precisam ser ditas.
+- **Recorte.** Repositórios em memória e cadeia síncrona; emissão do desafio de prova de trabalho, OAuth e passkeys fora do escopo; scrypt em vez de Argon2id (D9).
+
+**Decisões revistas ao longo do trabalho.**
+
+- **A ordem senha × estado da conta foi invertida** em relação à primeira ideia (estado primeiro, por ser mais barato): verificar o estado antes revelaria contas suspensas a quem não sabe a senha (A4).
+- **O limite de tentativas passou a agir na volta.** Contar toda tentativa na ida puniria quem acertou a senha; só o fim da cadeia sabe se a falha foi de credencial (D5).
+- **Argon2id virou scrypt** ao descobrir que o Node 22 não tem Argon2 no módulo `crypto`; foi registrado como revisão (D9), não como equivalência.
+
+**Coerência entre UML e implementação.** Os diagramas foram desenhados a partir do código: classes, métodos e visibilidades coincidem com `codigo-autenticacao/src/`, e a ordem das mensagens do diagrama de sequência é a da montagem `buildLoginChain`, verificada por teste. Divergências conhecidas: o diagrama de sequência desenha cada recusa voltando só ao elo anterior (fragmento `break`), enquanto no código ela volta elo a elo até o Client — simplificação declarada na [página da sequência](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md?id=senso-crítico).
 
 ## Referências
 
-**A preencher com fontes efetivamente consultadas.** Identificar autor, título, edição ou versão, ano e link quando disponível; relacionar as referências às decisões e artefatos que fundamentam.
+Fontes efetivamente consultadas, em formato ABNT (NBR 6023:2018). Links acessados em 18 out. 2026.
+
+| Referência | Fundamenta |
+| --- | --- |
+| BIRYUKOV, Alex; DINU, Daniel; KHOVRATOVICH, Dmitry; JOSEFSSON, Simon. **Argon2 memory-hard function for password hashing and proof-of-work applications**. RFC 9106. [*S. l.*]: Internet Research Task Force, set. 2021. DOI: 10.17487/RFC9106. Disponível em: https://www.rfc-editor.org/rfc/rfc9106. Acesso em: 18 out. 2026. | Algoritmo previsto em O06 e motivo da revisão D9 |
+| BLOOM, Burton H. Space/time trade-offs in hash coding with allowable errors. **Communications of the ACM**, New York, v. 13, n. 7, p. 422-426, jul. 1970. DOI: 10.1145/362686.362692. | Filtro de senhas vazadas (A5): só falso positivo, nunca falso negativo |
+| GAMMA, Erich; HELM, Richard; JOHNSON, Ralph; VLISSIDES, John. **Padrões de projeto**: soluções reutilizáveis de software orientado a objetos. Porto Alegre: Bookman, 2000. | Intenção, aplicabilidade, estrutura e consequências do Chain of Responsibility (ADR-004 §3–§5, D1, D2). Páginas não conferidas no exemplar |
+| GRASSI, Paul A. *et al.* **Digital identity guidelines**: authentication and lifecycle management. Gaithersburg: National Institute of Standards and Technology, 2017. (NIST Special Publication 800-63B). DOI: 10.6028/NIST.SP.800-63b. | Comparação de senhas com listas de comprometidas (A5) e limitação de tentativas (A1) |
+| GRUPO 06 (FGA0208 – Turma 01). **Escopo do produto**. Entrega 01. Brasília: Universidade de Brasília, 2026. Disponível em: https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Projeto/EscopoProduto. Acesso em: 18 out. 2026. | Fluxo mínimo da SubEquipe_03 (COR-E03) |
+| GRUPO 06 (FGA0208 – Turma 01). **FOCO_01 · SIG na notação do NFR Framework — SubEquipe_03**. Entrega 01. Brasília: Universidade de Brasília, 2026. Disponível em: https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.3.SubEquipe_03/2.NFRFramework. Acesso em: 18 out. 2026. | O05, O06, O07 e C03 (COR-E04, COR-E05) |
+| GRUPO 06 (FGA0208 – Turma 01). **FOCO_01 — Modelagem estática (SubEquipe_03)**. Entrega 02. Brasília: Universidade de Brasília, 2026. Disponível em: https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/1.1.3.1.Foco01.ModelagemEstatica. Acesso em: 18 out. 2026. | Classes de autenticação usadas pelos elos (COR-E06) |
+| GRUPO 06 (FGA0208 – Turma 01). **FOCO_02 — Modelagem dinâmica (SubEquipe_03)**. Entrega 02. Brasília: Universidade de Brasília, 2026. Disponível em: https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/1.1.3.2.Foco02.ModelagemDinamica. Acesso em: 18 out. 2026. | Lacuna da modelagem dinâmica do login (contexto do problema) |
+| JONES, Michael; BRADLEY, John; SAKIMURA, Nat. **JSON Web Token (JWT)**. RFC 7519. [*S. l.*]: Internet Engineering Task Force, maio 2015. DOI: 10.17487/RFC7519. Disponível em: https://www.rfc-editor.org/rfc/rfc7519. Acesso em: 18 out. 2026. | Token emitido pelo `SessionIssuerHandler` |
+| KIRSCH, Adam; MITZENMACHER, Michael. Less hashing, same performance: building a better Bloom filter. **Random Structures & Algorithms**, v. 33, n. 2, p. 187-218, 2008. DOI: 10.1002/rsa.20208. | Cálculo dos k índices do filtro a partir de dois hashes |
+| M'RAIHI, David; BELLARE, Mihir; HOORNAERT, Frank; NACCACHE, David; RANEN, Ohad. **HOTP**: an HMAC-based one-time password algorithm. RFC 4226. [*S. l.*]: Internet Engineering Task Force, dez. 2005. DOI: 10.17487/RFC4226. Disponível em: https://www.rfc-editor.org/rfc/rfc4226. Acesso em: 18 out. 2026. | Truncamento dinâmico usado pelo TOTP |
+| M'RAIHI, David; MACHANI, Salah; PEI, Mingliang; RYDELL, Johan. **TOTP**: time-based one-time password algorithm. RFC 6238. [*S. l.*]: Internet Engineering Task Force, maio 2011. DOI: 10.17487/RFC6238. Disponível em: https://www.rfc-editor.org/rfc/rfc6238. Acesso em: 18 out. 2026. | A7 (janela e proibição de reuso, §5.2) e vetores de teste do Apêndice B |
+| NODE.JS. **Crypto**. Node.js v22 documentation. [*S. l.*]: OpenJS Foundation, [2025]. Disponível em: https://nodejs.org/api/crypto.html. Acesso em: 18 out. 2026. | scrypt, HMAC, `timingSafeEqual` e ausência de Argon2 (D9) |
+| OWASP FOUNDATION. **Authentication cheat sheet**. OWASP Cheat Sheet Series. [*S. l.*], [2025]. Disponível em: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html. Acesso em: 18 out. 2026. | A3 (mensagem genérica e tempo de resposta equivalente) |
+| OWASP FOUNDATION. **Password storage cheat sheet**. OWASP Cheat Sheet Series. [*S. l.*], [2025]. Disponível em: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html. Acesso em: 18 out. 2026. | Parâmetros mínimos do scrypt (N = 2^17, r = 8, p = 1) quando Argon2id não está disponível (D9) |
+| PERCIVAL, Colin; JOSEFSSON, Simon. **The scrypt password-based key derivation function**. RFC 7914. [*S. l.*]: Internet Engineering Task Force, ago. 2016. DOI: 10.17487/RFC7914. Disponível em: https://www.rfc-editor.org/rfc/rfc7914. Acesso em: 18 out. 2026. | Função de derivação da `Credential` |
+| REFACTORING.GURU. **Chain of Responsibility**. [*S. l.*], [2025]. Disponível em: https://refactoring.guru/pt-br/design-patterns/chain-of-responsibility. Acesso em: 18 out. 2026. | Variação em que vários elos processam o pedido antes do tratador final (D4, D5) |
+| SERRANO, Milene. **Arquitetura e desenho de software**: aula – GoFs comportamentais. Brasília: Universidade de Brasília, [2019?]. 67 slides. Material didático da disciplina FGA0208. | Definição (slide 9) e modelagem (slide 61) do padrão (COR-E01, COR-E02, D1) |
+| SOURCEMAKING. **Chain of Responsibility design pattern**. [*S. l.*], [2025]. Disponível em: https://sourcemaking.com/design_patterns/chain_of_responsibility. Acesso em: 18 out. 2026. | Estrutura e exemplos do padrão, material indicado na aula da disciplina |
+| SPRING. **Servlet authentication architecture**. Spring Security reference. [*S. l.*], [2025]. Disponível em: https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html. Acesso em: 18 out. 2026. | Exemplo industrial: `ProviderManager` delega a uma lista de `AuthenticationProvider` (ADR-004 §3) |
+| SPRING. **Architecture**. Spring Security reference. [*S. l.*], [2025]. Disponível em: https://docs.spring.io/spring-security/reference/servlet/architecture.html. Acesso em: 18 out. 2026. | Exemplo industrial: `SecurityFilterChain` como cadeia de filtros (D5) |
 
 ## Versionamentos & Participações
 
@@ -76,6 +291,11 @@ Registrar apenas alterações efetivamente realizadas, incluindo autoria, revis�
 
 | Versão | Data | Integrante | Contribuição | Revisor | Comprobatório (commit/PR) |
 | --- | --- | --- | --- | --- | --- |
-| A preencher | A preencher | A preencher | A preencher | A preencher | A preencher |
+| 1.0 | 18/10/2026 | [Hugo Freitas Silva](https://github.com/HugoFreitass) | Código do Chain of Responsibility: domínio derivado da Entrega 02, Handler, oito ConcreteHandlers, montagem das cadeias de login e step-up, `LoginService`, 56 testes, demonstração e manual do código | A preencher | [`6b7cdba`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/6b7cdba) · [`21ee94d`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/21ee94d) · [`076bd49`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/076bd49) · [`38bf862`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/38bf862) |
+| 1.1 | 18/10/2026 | [Hugo Freitas Silva](https://github.com/HugoFreitass) | ADR-004: contexto, regras A1–A8, sete alternativas, decisão e decisões D1–D9 | A preencher | [`7363f87`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/7363f87) |
+| 1.2 | 18/10/2026 | [Hugo Freitas Silva](https://github.com/HugoFreitass) | Diagrama de classes (PlantUML, SVG, PNG), correspondência com a Entrega 02 e evidências COR-E01 a COR-E06 | A preencher | [`b671baf`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/b671baf) |
+| 1.3 | 18/10/2026 | [Hugo Freitas Silva](https://github.com/HugoFreitass) | Diagrama de sequência do login com segundo fator | A preencher | [`ff624e6`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/ff624e6) |
+| 1.4 | 18/10/2026 | [Hugo Freitas Silva](https://github.com/HugoFreitass) | Este relatório: estado, estrutura, relato de IA de Hugo, metodologia do padrão, contexto, escolha, modelagem, implementação, execução, vídeo do padrão em funcionamento (2 min 20 s), rastreabilidade, senso crítico e referências em ABNT | A preencher | A registrar |
+| 1.5 | 18/10/2026 | [Hugo Freitas Silva](https://github.com/HugoFreitass) | Navegação, visão geral do módulo, checklist e quadro de participações atualizados com o Chain of Responsibility | A preencher | A registrar |
 
 Atualizar também o [quadro consolidado de participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
