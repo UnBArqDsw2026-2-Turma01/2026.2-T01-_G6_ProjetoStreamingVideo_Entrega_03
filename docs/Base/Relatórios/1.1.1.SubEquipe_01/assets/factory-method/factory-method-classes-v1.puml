@@ -19,6 +19,7 @@ hide empty members
 abstract class "UserContentCreator<TInput, TContent>" as UserContentCreator <<Creator>> {
   # repository: ContentRepository
   - policy: PolicyService
+  + UserContentCreator(dependencies: CreatorDependencies)
   + submit(input: TInput): TContent
   # {abstract} createContent(input: TInput): TContent
   # nextId(): string
@@ -40,9 +41,9 @@ abstract class UserContent <<Product>> {
   + {readonly} ownerId: UUID
   + {readonly} title: string
   + {readonly} visibility: ContentVisibility
-  + createdAt: Date {readOnly}
-  + publicationStatus: PublicationStatus {readOnly}
-  + moderationStatus: ModerationResult {readOnly}
+  + {readonly} createdAt: Date
+  + {readonly} publicationStatus: PublicationStatus
+  + {readonly} moderationStatus: ModerationResult
   + {abstract} isMediaReady(): boolean
   + applyModeration(result: ModerationResult): void
   + publish(): void
@@ -54,22 +55,22 @@ class LiveStream <<ConcreteProduct>> {
   + {readonly} channelId: UUID
   + {readonly} latencyMode: LatencyMode
   + {readonly} recordAutomatically: boolean
-  + status: LiveStreamStatus {readOnly}
-  + startedAt: Date [0..1] {readOnly}
-  + endedAt: Date [0..1] {readOnly}
-  + failureReason: string [0..1] {readOnly}
-  + markLive(at: Date = agora): void
-  + finish(at: Date = agora): void
+  + {readonly} status: LiveStreamStatus
+  + {readonly} startedAt: Date [0..1]
+  + {readonly} endedAt: Date [0..1]
+  + {readonly} failureReason: string [0..1]
+  + markLive(at: Date = now()): void
+  + finish(at: Date = now()): void
   + fail(reason: string): void
 }
 
 class RecordedVideo <<ConcreteProduct>> {
   + {readonly} sourceStreamId: UUID
-  + processingStatus: ProcessingStatus {readOnly}
-  + durationSeconds: Real [0..1] {readOnly}
-  + storageUri: string [0..1] {readOnly}
-  + availableAt: Date [0..1] {readOnly}
-  + viewCount: Integer {readOnly}
+  + {readonly} processingStatus: ProcessingStatus
+  + {readonly} durationSeconds: Real [0..1]
+  + {readonly} storageUri: string [0..1]
+  + {readonly} availableAt: Date [0..1]
+  + {readonly} viewCount: Integer
   + markReady(ready: RecordingReadyFields): void
   + markFailed(): void
   + isReady(): boolean
@@ -81,7 +82,7 @@ class Clip <<ConcreteProduct>> {
   + {readonly} createdByUserId: UUID
   + {readonly} startOffsetSeconds: Real
   + {readonly} endOffsetSeconds: Real
-  + /durationSeconds: Real {readOnly}
+  + {readonly} /durationSeconds: Real
 }
 
 interface ContentRepository <<Existente>> {
@@ -119,8 +120,8 @@ UserContentCreator ..> UserContent : submit() usa
 UserContentCreator --> ContentRepository : repository
 UserContentCreator --> PolicyService : policy
 LiveStreamCreator ..> StreamConfig : entrada
-RecordedVideo --> "1" LiveStream : origem
-Clip --> "1" RecordedVideo : origem
+RecordedVideo ..> LiveStream : origem (construtor)
+Clip ..> RecordedVideo : origem (construtor)
 UserContent ..> ContentRuleViolationError : <<throws>>
 Client ..> UserContentCreator : usa só o Creator
 Client ..> UserContent : enxerga só o Product
@@ -149,4 +150,15 @@ note bottom of LiveStream
   finish() e fail() despublicam (F6 vale
   enquanto o conteúdo está publicado)
 end note
+class ClipRequestInput <<value object>> {
+  + {readonly} requestedByUserId: UUID
+  + {readonly} sourceStreamId: UUID
+  + {readonly} startOffsetSeconds: Real
+  + {readonly} endOffsetSeconds: Real
+  + {readonly} title: string
+}
+ClipRequestInput <.. ClipCreator : entrada
+ContentRuleViolationError <.. RecordedVideoCreator : <<throws>> F2
+ContentRuleViolationError <.. ClipCreator : <<throws>> F4
+ContentRuleViolationError --|> Error
 @enduml

@@ -6,7 +6,7 @@
 | Data | 16/10/2026 |
 | Autor | Matheus Lemes Amaral |
 | Revisor | A preencher |
-| Escopo | Modelagem (diagramas de classes e de sequência) e decisões do padrão. Implementação e testes ficam no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo), pasta `src/criacionais/factory-method/`. |
+| Escopo | Modelagem (diagramas de classes e de sequência) e decisões do padrão. Implementação e testes ficam no [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo), pasta `src/criacionais/factory-method/`. |
 
 > Como o [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md), este registro segue a ordem do raciocínio. Cada afirmação sobre o modelo da Entrega 02 aponta para uma evidência (`FM-E01`–`FM-E03`) arquivada em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/factory-method/evidencias/fm-e01-v3-recorte-conteudo-ugc.png" target="_blank" rel="noopener"><code>assets/factory-method/evidencias/</code></a>; o que não tem evidência está marcado como *decisão de projeto*.
 
