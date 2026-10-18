@@ -6,7 +6,7 @@
 | Data | 15/10/2026 |
 | Autor | Lucas Andrade Zanetti |
 | Revisor | Matheus Lemes Amaral, na conferência geral do PR que trouxe este ADR ([revisão do PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2#pullrequestreview-5554232012)). |
-| Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo). |
+| Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo). |
 
 > Este ADR registra o **processo de decisão**, na ordem em que o raciocínio aconteceu. Cada afirmação factual aponta para uma evidência (`E01`–`E12`) arquivada em [`assets/builder/evidencias/`](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md?id=evidências). O que **não** tem evidência está marcado como *decisão de projeto*.
 
