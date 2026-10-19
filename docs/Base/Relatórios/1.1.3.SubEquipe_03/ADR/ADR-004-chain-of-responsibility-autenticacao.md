@@ -81,7 +81,7 @@ Adotar **F**: Chain of Responsibility.
 
 ## 5. Consequências
 
-**Fica mais fácil:** testar cada regra isoladamente, com um sucessor dublê (cada elo tem sua suíte em `test/handlers.test.ts`); montar fluxos diferentes com os mesmos elos (login e step-up); acrescentar uma verificação — OAuth, passkeys, verificação de dispositivo — como uma classe nova e uma linha na montagem, sem editar os elos existentes.
+**Fica mais fácil:** testar cada regra isoladamente, com um sucessor dublê (cada elo tem sua suíte em `tests/handlers.test.ts`); montar fluxos diferentes com os mesmos elos (login e step-up); acrescentar uma verificação — OAuth, passkeys, verificação de dispositivo — como uma classe nova e uma linha na montagem, sem editar os elos existentes.
 
 **Fica mais difícil / custo:**
 
