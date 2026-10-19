@@ -163,7 +163,7 @@ npm run demo             # história completa (ainda com stubs em trechos F2/F3)
 | --- | --- | --- | --- |
 | F1 · Recarga | Demo interativo / pagamento | Davi Severiano Freitas | Pendente |
 | F2 · Doação e Repasse | `npm run demo:f2` | Daniel de Oliveira Lira e Pedro Henrique Freire Rodrigues | Pendente |
-| F3 · Mensagem destacada | `npm run demo:f3` | Mateus Rodrigues Barreto | Pendente |
+| F3 · Mensagem destacada | `npm run demo:f3` | Mateus Rodrigues Barreto | [Assistir](https://youtu.be/QTQMqaQhtQs) |
 | Geral · História completa | `npm run demo` | Todos | Pendente |
 
 ## Rastreabilidade & Elos com Outros Artefatos
@@ -176,7 +176,7 @@ A [modelagem da SubEquipe_02 na Entrega 02](https://unbarqdsw2026-2-turma01.gith
 | Confirmação idempotente e autêntica (O11, O14) | [NFR Framework — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/2.NFRFramework) | `ProxyConfirmacaoSegura` · `ServicoConfirmacao` | [`confirmacao/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/feature/f3-chat/src/f1-recarga/confirmacao) | `npm run demo:interativo` |
 | Preço com desconto e imposto (RN01) | [Engenharia Reversa — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/3.EngenhariaReversa) | Decorator de `Preco` | [`preco/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/feature/f3-chat/src/f1-recarga/preco) | `npm run demo:interativo` |
 | Doação coordenando financeiro e chat | [Modelagem Dinâmica — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica) | Facade + Mediator | [`src/f2-doacao/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/feature/f3-chat/src/f2-doacao) | `npm run demo:f2` · vídeo Pendente |
-| Camadas visuais da mensagem (SC01, SC02) | [Engenharia Reversa complementar — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa) | Decorator F3 · `FaixaDestaque` | [`src/f3-chat/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/feature/f3-chat/src/f3-chat) | `npm run demo:f3` · vídeo Pendente |
+| Camadas visuais da mensagem (SC01, SC02) | [Engenharia Reversa complementar — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa) | Decorator F3 · `FaixaDestaque` | [`src/f3-chat/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/feature/f3-chat/src/f3-chat) | `npm run demo:f3` · [vídeo](https://youtu.be/QTQMqaQhtQs) |
 
 ## Senso Crítico
 
