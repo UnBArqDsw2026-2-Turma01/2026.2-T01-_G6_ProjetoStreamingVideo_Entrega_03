@@ -10,6 +10,7 @@
     "server": "tsx src/server.ts",
     "demo": "tsx src/demo.ts",
     "benchmark": "tsx src/benchmark.ts",
+    "interactive": "tsx src/interactive.ts",
     "test": "tsx --test src/**/*.test.ts"
   },
   "keywords": [

@@ -43,6 +43,7 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
     ├── src/patterns/strategy/        estratégias de despacho síncrono e assíncrono
     ├── src/engine/algorithms/        algoritmos de Entropia, Visão Computacional, DMCA e dHash
     ├── src/__tests__/                13 testes unitários automatizados (Node Test Runner)
+    ├── src/interactive.ts            console interativo REPL com comandos em tempo real (Iniciativa Extra)
     ├── src/demo.ts                   demonstração interativa nos canais YouTube, Twitch e Kick
     └── src/benchmark.ts              teste de carga comparativo com 2.000 espectadores (Iniciativa Extra)
 ```
@@ -53,7 +54,7 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
 | **Modelagem UML — Classes** | ✅ Eduardo | 🟡 pendente | 🟡 pendente | [1.1.3.1](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.ModelagemObserver.md) |
 | **Modelagem UML — Sequência** | ✅ Eduardo | 🟡 pendente | 🟡 pendente | [1.1.3.2](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.SequenciaObserver.md) |
 | **Implementação e Testes** | ✅ integrado em 17/10/2026 | 🟡 pendente | 🟡 pendente | [`codigo/`](codigo/) · `npm test` |
-| **Execução documentada** | ✅ `npm run demo` / `benchmark` | 🟡 pendente | 🟡 pendente | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
+| **Execução documentada** | ✅ `npm run demo` / `benchmark` / `interactive` | 🟡 pendente | 🟡 pendente | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
 | **Vídeo** | ⬜ roteiro pronto | ⬜ a preencher | ⬜ a preencher | [1.1.3.5](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md) |
 | **IA Generativa** | 🟡 Eduardo preenchido | 🟡 a preencher | 🟡 a preencher | [1.1.3.6](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md) |
 
@@ -143,6 +144,7 @@ Concluído e integrado em [`docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo/`](c
 - `src/patterns/observer/interfaces.ts`: interfaces `ISubject`, `IObserver`, `StreamEvent`.
 - `src/patterns/observer/observers/`: observadores especializados (`AutoModObserver`, `SafetyVisionModerationObserver`, `CopyrightDMCAAudioObserver`, `HumanModeratorDashboardObserver`, `ChatRaidShieldObserver`, `PiracyVideoRestreamObserver`).
 - `src/patterns/strategy/`: estratégias de despacho síncrona e assíncrona concorrente.
+- `src/interactive.ts`: console interativo REPL com comandos em tempo real (**Iniciativa Extra**).
 - `src/__tests__/observer.test.ts`: 13 testes unitários automatizados cobrindo ciclo de vida e moderação (`npm test`).
 
 #### Focos 2 e 3: Autenticação e Chat (Hugo e Philipe)
@@ -158,9 +160,10 @@ Concluído e integrado em [`docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo/`](c
 ```bash
 cd docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo
 npm install
-npm run demo         # demonstração do GoF Observer e moderação reativa
+npm run interactive  # console interativo REPL com comandos em tempo real (Iniciativa Extra)
+npm run demo         # demonstração automatizada do GoF Observer e moderação reativa
 npm run benchmark    # teste de carga comparativo com 2.000 espectadores (Iniciativa Extra)
-npm test             # 13 testes unitários automatizados
+npm test             # 13 testes unitários automatizados nativos
 ```
 
 **Cenários Demonstrados na Moderação (`npm run demo`):**
@@ -184,9 +187,9 @@ O roteiro detalhado do vídeo encontra-se em [1.1.3.5. Vídeo](/Base/Relatórios
 
 | Problema ou Requisito | Foco / Origem (E02) | Elemento do Modelo UML | Trecho de Código no Repositório | Evidência de Execução |
 | :--- | :--- | :--- | :--- | :--- |
-| Notificação de seguidores ao abrir live | Moderação (Sessão de Live E02) | `ISubject` e `StreamChannel.goLive()` | [`StreamChannel.ts#L93`](codigo/src/patterns/observer/StreamChannel.ts) | `npm run demo` (Etapa 3) |
+| Notificação de seguidores ao abrir live | Moderação (Sessão de Live E02) | `ISubject` e `StreamChannel.goLive()` | [`StreamChannel.ts#L93`](codigo/src/patterns/observer/StreamChannel.ts) | `npm run demo` (Etapa 3) · `npm run interactive` |
 | Bloqueio da interface do streamer | Requisito Não-Funcional de Desempenho | `AsynchronousConcurrentDispatchStrategy` | [`AsynchronousConcurrentDispatchStrategy.ts`](codigo/src/patterns/strategy/AsynchronousConcurrentDispatchStrategy.ts) | `npm run benchmark` (Ganho de 116.5x) |
-| Filtragem de toxicidade no chat | Moderação de Conteúdo | `AutoModObserver` & `TextEntropyAnalyzer` | [`AutoModObserver.ts`](codigo/src/patterns/observer/observers/AutoModObserver.ts) | `npm test` (Teste 3) |
+| Filtragem de toxicidade no chat | Moderação de Conteúdo | `AutoModObserver` & `TextEntropyAnalyzer` | [`AutoModObserver.ts`](codigo/src/patterns/observer/observers/AutoModObserver.ts) | `npm test` (Teste 3) · `npm run interactive` |
 | Detecção de nudez e gore em vídeo | Moderação / Conformidade Legal | `SafetyVisionModerationObserver` | [`SafetyVisionModerationObserver.ts`](codigo/src/patterns/observer/observers/SafetyVisionModerationObserver.ts) | `npm run demo` (Etapa 6 - PPM real) |
 | Violação de direitos autorais | Diretrizes de DMCA | `CopyrightDMCAAudioObserver` | [`CopyrightDMCAAudioObserver.ts`](codigo/src/patterns/observer/observers/CopyrightDMCAAudioObserver.ts) | `npm run demo` (Etapa 5 - Audio Mute) |
 | Intervenção de moderadores | Caso de Uso "Moderar Canal" E02 | `HumanModeratorDashboardObserver` | [`HumanModeratorDashboardObserver.ts`](codigo/src/patterns/observer/observers/HumanModeratorDashboardObserver.ts) | `npm run demo` (Etapa 7 - ModView) |
@@ -220,5 +223,6 @@ O roteiro detalhado do vídeo encontra-se em [1.1.3.5. Vídeo](/Base/Relatórios
 | :---: | :---: | :--- | :--- | :--- | :---: |
 | 0.1 | 16/10/2026 | Eduardo Lôbo Moreira | Modelagem do GoF Observer (foco Moderação), diagrama de classes e sequência, ADR-003 e código do StreamChannel | A preencher | Commit inicial SubEquipe 03 |
 | 0.2 | 17/10/2026 | Eduardo Lôbo Moreira | Estruturação da divisão em 3 focos (Moderação, Autenticação e Chat) no padrão da SubEquipe 01, relato de IA e suíte de testes | A preencher | PR `docs/subequipe-03-modelagem-observer` |
+| 0.3 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do console interativo REPL (`npm run interactive`) e integração contínua (CI) | A preencher | PR `docs/subequipe-03-modelagem-observer` |
 
 O quadro consolidado de participações está em [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
