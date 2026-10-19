@@ -12,6 +12,13 @@
     .markdown-section { max-width: 960px; }
     .markdown-section table { display: block; overflow-x: auto; }
     .sidebar .app-name { font-size: 1.2rem; }
+    .zoom-cor { cursor: zoom-in; }
+    .zoom-cor-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(15, 23, 42, .92); overflow: hidden; touch-action: none; cursor: grab; }
+    .zoom-cor-overlay.arrastando { cursor: grabbing; }
+    .zoom-cor-overlay img { position: absolute; left: 0; top: 0; max-width: none; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; background: #fff; }
+    .zoom-cor-barra { position: absolute; right: 16px; top: 16px; display: flex; gap: 8px; }
+    .zoom-cor-barra button { min-width: 40px; height: 40px; border: 0; border-radius: 6px; background: #0f172a; color: #fff; font-size: 18px; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
+    .zoom-cor-dica { position: absolute; left: 16px; bottom: 16px; padding: 6px 10px; border-radius: 6px; background: rgba(15, 23, 42, .85); color: #e2e8f0; font-size: 13px; }
   </style>
 </head>
 <body>
@@ -24,8 +31,96 @@
       loadSidebar: true,
       subMaxLevel: 2,
       auto2top: true,
-      alias: { '/.*/_sidebar.md': '/_sidebar.md' }
+      alias: { '/.*/_sidebar.md': '/_sidebar.md' },
+      plugins: [zoomChainOfResponsibility]
     };
+
+    // Zoom nas figuras do Chain of Responsibility (SubEquipe_03): clique abre a
+    // imagem em tela cheia; roda do mouse ou botões ampliam, arrastar move.
+    function zoomChainOfResponsibility(hook) {
+      hook.doneEach(function () {
+        document.querySelectorAll('.markdown-section img[src*="chain-of-responsibility"]').forEach(function (img) {
+          img.classList.add('zoom-cor');
+          img.title = 'Clique para ampliar';
+          img.onclick = function () { abrirZoom(img); };
+        });
+      });
+    }
+
+    function abrirZoom(origem) {
+      var overlay = document.createElement('div');
+      overlay.className = 'zoom-cor-overlay';
+      overlay.innerHTML = '<div class="zoom-cor-barra">' +
+        '<button type="button" data-acao="mais" aria-label="Ampliar">+</button>' +
+        '<button type="button" data-acao="menos" aria-label="Reduzir">−</button>' +
+        '<button type="button" data-acao="ajustar" aria-label="Ajustar à tela">⤢</button>' +
+        '<button type="button" data-acao="fechar" aria-label="Fechar">✕</button></div>' +
+        '<div class="zoom-cor-dica">Roda do mouse ou + / − para ampliar · arraste para mover · Esc para fechar</div>';
+      var img = new Image();
+      img.alt = origem.alt;
+      overlay.insertBefore(img, overlay.firstChild);
+      document.body.appendChild(overlay);
+
+      var escala = 1, x = 0, y = 0, arraste = null;
+      function aplicar() { img.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + escala + ')'; }
+      function ajustar() {
+        escala = Math.min((innerWidth - 48) / img.naturalWidth, (innerHeight - 48) / img.naturalHeight, 1);
+        x = (innerWidth - img.naturalWidth * escala) / 2;
+        y = (innerHeight - img.naturalHeight * escala) / 2;
+        aplicar();
+      }
+      function ampliar(fator, cx, cy) {
+        var nova = Math.min(Math.max(escala * fator, 0.1), 8);
+        x = cx - (cx - x) * nova / escala;
+        y = cy - (cy - y) * nova / escala;
+        escala = nova;
+        aplicar();
+      }
+      function fechar() { overlay.remove(); document.removeEventListener('keydown', teclado); }
+      function teclado(e) {
+        if (e.key === 'Escape') fechar();
+        if (e.key === '+' || e.key === '=') ampliar(1.25, innerWidth / 2, innerHeight / 2);
+        if (e.key === '-') ampliar(0.8, innerWidth / 2, innerHeight / 2);
+      }
+
+      img.onload = ajustar;
+      img.onerror = function () { if (img.src !== origem.src) img.src = origem.src; };
+      // Diagramas têm versão SVG ao lado do PNG: nítida em qualquer ampliação.
+      img.src = /-v\d+\.png$/.test(origem.src) ? origem.src.replace(/\.png$/, '.svg') : origem.src;
+
+      overlay.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        ampliar(e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX, e.clientY);
+      }, { passive: false });
+      overlay.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('button')) return;
+        arraste = { px: e.clientX, py: e.clientY, x: x, y: y, moveu: false };
+        overlay.classList.add('arrastando');
+        overlay.setPointerCapture(e.pointerId);
+      });
+      overlay.addEventListener('pointermove', function (e) {
+        if (!arraste) return;
+        x = arraste.x + e.clientX - arraste.px;
+        y = arraste.y + e.clientY - arraste.py;
+        if (Math.abs(e.clientX - arraste.px) + Math.abs(e.clientY - arraste.py) > 4) arraste.moveu = true;
+        aplicar();
+      });
+      overlay.addEventListener('pointerup', function (e) {
+        var clicouFora = arraste && !arraste.moveu && e.target === overlay;
+        arraste = null;
+        overlay.classList.remove('arrastando');
+        if (clicouFora) fechar();
+      });
+      overlay.addEventListener('dblclick', function (e) { ampliar(2, e.clientX, e.clientY); });
+      overlay.querySelector('.zoom-cor-barra').addEventListener('click', function (e) {
+        var acao = e.target.getAttribute('data-acao');
+        if (acao === 'mais') ampliar(1.25, innerWidth / 2, innerHeight / 2);
+        if (acao === 'menos') ampliar(0.8, innerWidth / 2, innerHeight / 2);
+        if (acao === 'ajustar') ajustar();
+        if (acao === 'fechar') fechar();
+      });
+      document.addEventListener('keydown', teclado);
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>
