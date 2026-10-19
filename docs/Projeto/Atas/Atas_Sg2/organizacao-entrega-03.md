@@ -1,9 +1,12 @@
 # Organização da Entrega 3 · SubEquipe_02
 
 > **Tema**: Desenho de Software — Padrões de Projeto GoF (Padrões Estruturais) + IA Generativa.
+>
 > **Prazo interno**: 18/10/2026 · **Prazo oficial**: 19/10/2026.
+>
 > **Decisões vigentes**: [Ata S2_01](./ata-S2-01-2026-10-06.md), [Ata S2_02](./ata-S2-02-2026-10-10.md), [Ata S2_03](./ata-S2-03-2026-10-13.md), [Ata S2_04](./ata-S2-04-2026-10-16.md) e [Ata S2_05](./ata-S2-05-2026-10-18.md).
-> **Status**: 🟡 Em finalização — código das três frentes e front-end integrados na `main`; vídeos da F1 e da F3 publicados; faltam o vídeo da F2, relatos de IA e o README final da subequipe.
+>
+> **Status**: 🟢 Concluída — código das três frentes e front-end integrados na `main`; vídeos da F1 e da F3 publicados; faltam o vídeo da F2, relatos de IA e o README final da subequipe.
 
 ---
 
@@ -124,8 +127,8 @@ A divisão **não é estanque**: todos trabalham no mesmo repositório e podem c
 | **17/10** | Pull requests da F2 e da F3 · molde da página de IA Generativa | Daniel, Pedro e Mateus | ✅ PRs integrados · ✅ molde de IA concluído |
 | **18/10, 12h** | Integração do código e front-end ([Ata S2_04, D02](./ata-S2-04-2026-10-16.md)) | Mateus | ✅ Concluída em 18/10 |
 | **18/10** | Reunião S2_05 — revisão do front-end, dos diagramas e organização dos vídeos | Todos | ✅ Realizada |
-| **18/10, 20h** | Vídeos (após a integração), páginas das frentes, relatos de IA e referências | Todos | ✅ Vídeos da F1 (18/10) e da F3 (19/10) · ✅ referências · 🟡 vídeo da F2, relatos de IA e página da F2 pendentes |
-| **19/10** | README final da subequipe ([Ata S2_05, D04](./ata-S2-05-2026-10-18.md)) e entrega oficial | Davi | 🟡 Em andamento |
+| **18/10, 20h** | Vídeos (após a integração), páginas das frentes, relatos de IA e referências | Todos | ✅ Vídeos da F1 (18/10) e da F3 (19/10) · ✅ referências · ✅ vídeo da F2 (19/10), relatos de IA e página da F2|
+| **19/10** | README final da subequipe ([Ata S2_05, D04](./ata-S2-05-2026-10-18.md)) e entrega oficial | Davi | ✅ Concluída em 19/10 |
 
 ---
 
@@ -180,3 +183,4 @@ Pendências resolvidas desde a versão anterior: a integração da história com
 | 1.2 | 10/10/2026 | Atualização com as decisões da Reunião S2_02: história em quatro etapas, repasse independente da exibição no chat, saque fora do escopo, padrões adotados (Adapter, Proxy, Decorator e Facade), divisão em três frentes com responsáveis e novo cronograma de reuniões | Davi Severiano Freitas | |
 | 1.3 | 17/10/2026 | Atualização com as decisões das Reuniões S2_03 e S2_04: prazo do código em 15/10, Proxy descartado na F2, Mediator como extra comportamental, exclusão definitiva do saque e validação da mudança no O07 da F1 decididas em 17/10, integração e front-end com Mateus, vídeos após a integração, extras realizados, mudanças da F1 (sem conversão de moeda, escolha do meio e processadores reais) e novas pendências | Davi Severiano Freitas | |
 | 1.4 | 19/10/2026 | Atualização com a Reunião S2_05: um vídeo por frente, sem vídeo geral (a F1 com um vídeo por padrão); integração e front-end concluídos; novas responsabilidades (README final e diagrama integrado); cronograma e pendências da reta final | Davi Severiano Freitas | |
+| 1.5 | 19/10/2026 | Atualização do status das tarefas do cronograma | Davi Severiano Freitas | |

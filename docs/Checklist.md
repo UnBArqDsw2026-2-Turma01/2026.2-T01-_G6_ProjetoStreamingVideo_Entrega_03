@@ -34,7 +34,7 @@ Os itens marcados correspondem à preparação do repositório. Os demais dever�
 - [x] Publicar vídeo com o padrão em funcionamento.
 - [x] Registrar metodologia e evidências do trabalho em equipe.
 - [x] Fundamentar as decisões em referências e registrar o senso crítico.
-- [ ] Preencher lições aprendidas e avaliação de IA por todos os integrantes.
+- [x] Preencher lições aprendidas e avaliação de IA por todos os integrantes.
 - [x] Atualizar versionamentos e participações com comprobatórios.
 
 ## SubEquipe_03 — GoFs Comportamentais
