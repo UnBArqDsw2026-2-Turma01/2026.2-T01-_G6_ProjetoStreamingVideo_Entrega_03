@@ -1,6 +1,6 @@
 # 1.1.1. SubEquipe_01 — GoFs Criacionais + IA Generativa
 
-**Estado:** padrões entregues; faltam a metodologia e o relato de IA de Heitor (ver o quadro abaixo). Conforme o planejamento da SubEquipe_01 v1.0 (08/10/2026), a subequipe aplicou **Builder** a `StreamConfig` (padrão principal) e **Factory Method** à hierarquia `UserContent` (segundo padrão). A modelagem do Builder já está registrada em [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) e em [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md); a do Factory Method, em [1.1.1.3. Modelagem — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) e em [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md).
+**Estado:** padrões e relatos de IA entregues; falta a metodologia (ver o quadro abaixo). Conforme o planejamento da SubEquipe_01 v1.0 (08/10/2026), a subequipe aplicou **Builder** a `StreamConfig` (padrão principal) e **Factory Method** à hierarquia `UserContent` (segundo padrão). A modelagem do Builder já está registrada em [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) e em [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md); a do Factory Method, em [1.1.1.3. Modelagem — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) e em [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md).
 
 Builder e Factory Method estão modelados, implementados, integrados à `main` do [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo) e demonstrados em vídeo. Os relatos individuais de IA Generativa e o vídeo de cada padrão ficam em páginas próprias: [1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) e [1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md).
 
@@ -52,7 +52,7 @@ SubEquipe_01 — GoFs Criacionais + IA Generativa
 | Execução documentada | ✅ `npm run demo:builder` | ✅ `npm run demo:factory-method` | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
 | Vídeo | ✅ Lucas (2 min 05 s) | ✅ Matheus (1 min 44 s) | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
 | Iniciativa extra — benchmark | ✅ tempo e memória | 🟡 cenário no código ([`bench/cenarios/factory-method.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/bench/cenarios/factory-method.ts)), sem análise no relatório | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
-| IA Generativa | 🟡 Lucas preenchido; Heitor a preencher | ✅ Matheus e Pedro preenchidos | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
+| IA Generativa | ✅ Lucas e Heitor preenchidos | ✅ Matheus e Pedro preenchidos | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado.
 
@@ -60,7 +60,7 @@ Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado.
 
 Cada tema tem página própria, para não duplicar conteúdo neste relatório:
 
-- **[1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md)** — lições aprendidas e uso da IA Generativa de cada integrante, com ferramenta, apoio recebido, validação e limitações. Preenchidos: Lucas Andrade Zanetti e Matheus Lemes Amaral; a preencher: Pedro Druck Montalvão Reis e Heitor Macedo Ricardo.
+- **[1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md)** — lições aprendidas e uso da IA Generativa de cada integrante, com ferramenta, apoio recebido, validação e limitações. Preenchidos pelos quatro integrantes.
 - **[1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md)** — os dois padrões em funcionamento: Builder (2 min 05 s) e Factory Method (1 min 44 s), com roteiro e participantes.
 
 ## Metodologia
@@ -280,5 +280,6 @@ Registrar apenas alterações efetivamente realizadas, incluindo autoria, revis�
 | 1.10 | 17/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Diagramas do Factory Method alinhados ao GoF e ao código, mantendo a organização original: classes com a origem como dependência de construção, erro herdando de `Error` e lançado pelos criadores, construtor do Creator e `ClipRequestInput`; sequência com o método-fábrica como chamada do criador a si mesmo, erro propagado pelo criador, `opt` e `new Clip(fields)` | A preencher | [PR #6](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/6) |
 | 1.11 | 18/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Estado dos focos atualizado depois da integração dos PRs #2 e #4 do código (Factory Method na `main`, 137 testes); IA Generativa e vídeo retirados deste relatório para as páginas próprias, com o relato de Matheus organizado na [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md); vídeo do Builder em funcionamento (2 min 05 s) na [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md); links do repositório de código apontando para a organização; checklist e visão geral atualizados | A preencher | [PR #7](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/7) |
 | 1.12 | 18/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Relato de IA Generativa de Pedro na página [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md); estado dos focos e visão geral atualizados | A preencher | [PR #8](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/8) |
+| 1.13 | 19/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Lições aprendidas e relato de IA Generativa de Heitor na página [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md); estado dos focos e visão geral atualizados | A preencher | A preencher |
 
 Atualizar também o [quadro consolidado de participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
