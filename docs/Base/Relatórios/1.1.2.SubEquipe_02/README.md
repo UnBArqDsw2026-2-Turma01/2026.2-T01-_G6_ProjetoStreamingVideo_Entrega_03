@@ -32,6 +32,8 @@ Cada integrante deverá explicar o que aprendeu, como colaborou e, caso tenha us
 
 ## Metodologia
 
+Como contexto de planejamento inicial, a [ata da Reunião Geral 1](/Projeto/Atas/ata-G01-2026-10-05.md) registra sugestões de Adapter para integrações externas e Decorator para emblemas e personalização. A ata não registra uma escolha final; esta seção deve descrever as decisões e o trabalho efetivamente adotados pela subequipe.
+
 **A preencher.** Descrever como a subequipe trabalhou: divisão de atividades, reuniões, estudos, ferramentas, debates e revisões. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
 
 ## GoF Estrutural
