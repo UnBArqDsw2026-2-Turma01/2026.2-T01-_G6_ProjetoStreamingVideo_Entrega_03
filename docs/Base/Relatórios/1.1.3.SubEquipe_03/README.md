@@ -87,7 +87,9 @@ Cada integrante deverá explicar o que aprendeu, como colaborou e, caso tenha us
 
 ## Metodologia
 
-**Chain of Responsibility (Hugo Freitas Silva).** O trabalho seguiu quatro passos:
+Como contexto de planejamento inicial, a [ata da Reunião Geral 1](/Projeto/Atas/ata-G01-2026-10-05.md) registra a sugestão de Observer para notificações e mensagens de chat. A ata não registra uma escolha final; esta seção deve descrever as decisões e o trabalho efetivamente adotados pela subequipe.
+
+**Chain of Responsibility (Hugo Freitas Silva).** O trabalho seguiu cinco passos:
 
 1. **Estudo do padrão.** Aula de GoFs comportamentais da disciplina, slides 9 e 61 [6], capítulo do padrão no GoF [7] e materiais de referência sobre o padrão [8, 9].
 2. **Releitura das entregas anteriores.** Escopo do produto e NFR Framework da SubEquipe_03 na Entrega 01, diagrama de classes de autenticação e modelagem dinâmica da Entrega 02. Cada afirmação usada virou evidência arquivada (COR-E03 a COR-E06).
