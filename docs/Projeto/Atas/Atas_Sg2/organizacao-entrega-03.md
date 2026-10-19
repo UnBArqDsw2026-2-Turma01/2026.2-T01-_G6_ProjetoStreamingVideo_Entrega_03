@@ -2,8 +2,8 @@
 
 > **Tema**: Desenho de Software — Padrões de Projeto GoF (Padrões Estruturais) + IA Generativa.
 > **Prazo interno**: 18/10/2026 · **Prazo oficial**: 19/10/2026.
-> **Decisões vigentes**: [Ata S2_01](./ata-S2-01-2026-10-06.md), [Ata S2_02](./ata-S2-02-2026-10-10.md), [Ata S2_03](./ata-S2-03-2026-10-13.md) e [Ata S2_04](./ata-S2-04-2026-10-16.md).
-> **Status**: 🟡 Em andamento — código das três frentes na `main`; integração da história completa, vídeos e páginas em finalização.
+> **Decisões vigentes**: [Ata S2_01](./ata-S2-01-2026-10-06.md), [Ata S2_02](./ata-S2-02-2026-10-10.md), [Ata S2_03](./ata-S2-03-2026-10-13.md), [Ata S2_04](./ata-S2-04-2026-10-16.md) e [Ata S2_05](./ata-S2-05-2026-10-18.md).
+> **Status**: 🟡 Em finalização — código das três frentes e front-end integrados na `main`; vídeos da F1 e da F3 publicados; faltam o vídeo da F2, relatos de IA e o README final da subequipe.
 
 ---
 
@@ -19,11 +19,11 @@ Vamos **codificar uma história comum de uso da plataforma**, em TypeScript, ins
 | -- | -- | -- | -- |
 | 1 | **Diagrama** | Diagrama de classes UML do recorte da frente, com os papéis de cada padrão destacados ([Ata S2_03](./ata-S2-03-2026-10-13.md)) | ✅ |
 | 2 | **Código** | Implementação funcionando, no repositório único, com link direto | ✅ |
-| 3 | **Vídeo** | Vídeo da frente em execução, narrado por quem implementou, gravado após a integração ([Ata S2_04, D03](./ata-S2-04-2026-10-16.md)) | ✅ |
+| 3 | **Vídeo** | Vídeo da frente, narrado por quem implementou, com conceito, diagrama, código e execução, gravado após a integração e incorporado à página da frente ([Ata S2_04, D03](./ata-S2-04-2026-10-16.md); [Ata S2_05, D05](./ata-S2-05-2026-10-18.md)) | ✅ |
 | 4 | **Relato de IA** | Relato individual, crítico e fundamentado, sobre o uso de IA generativa (um por membro) | ✅ |
 | 5 | **Teste** | Teste automatizado comprovando o comportamento do padrão | ⭐ Pode agregar à menção |
 
-Além dos vídeos de cada frente, haverá **um vídeo geral** com a história completa em execução.
+Cada frente tem o seu vídeo; não haverá vídeo geral ([Ata S2_05, D05](./ata-S2-05-2026-10-18.md)). A F1 dividiu o seu em três vídeos, um por padrão, cada um com a execução no front-end.
 
 ---
 
@@ -95,7 +95,7 @@ A [Ata S2_03](./ata-S2-03-2026-10-13.md) reservou os dias finais para extras. As
 | Integração com processadores de pagamento **reais em modo de teste** (Mercado Pago e Stripe) atrás do mesmo Adapter | F1 | ✅ Concluída |
 | Mediator aliado à Facade | F2 | ✅ Concluída |
 | Testes automatizados em todas as frentes | Todas | ✅ Concluída |
-| Integração da história completa e front-end | Integração | 🟡 Em andamento ([Ata S2_04, D02](./ata-S2-04-2026-10-16.md)) |
+| Integração da história completa e front-end (página web com recarga, doação e chat) | Integração | ✅ Concluída em 18/10 ([PR #4](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/pull/4)) |
 
 ---
 
@@ -103,9 +103,9 @@ A [Ata S2_03](./ata-S2-03-2026-10-13.md) reservou os dias finais para extras. As
 
 | Membro | Frente | Responsabilidades |
 | -- | -- | -- |
-| **Davi Severiano Freitas** | 🟩 F1 · Recarga | Decorator, Adapter e Proxy · processadores reais em modo de teste · criação do repositório · coordenação |
+| **Davi Severiano Freitas** | 🟩 F1 · Recarga | Decorator, Adapter e Proxy · processadores reais em modo de teste · criação do repositório · coordenação · README final da subequipe ([Ata S2_05, D04](./ata-S2-05-2026-10-18.md)) |
 | **Daniel de Oliveira Lira** | 🟧 F2 · Doação e Repasse | Implementação da Facade e do Mediator · revisão dos diagramas da F1 · molde da página de IA Generativa · README da subequipe ([Ata S2_04](./ata-S2-04-2026-10-16.md)) |
-| **Pedro Henrique Freire Rodrigues** | 🟧 F2 · Doação e Repasse | Diagrama da Facade e do Mediator · consulta à professora sobre o Proxy da F2 · página da F2 |
+| **Pedro Henrique Freire Rodrigues** | 🟧 F2 · Doação e Repasse | Diagrama da Facade e do Mediator · diagrama integrado ([Ata S2_05, D03](./ata-S2-05-2026-10-18.md)) · consulta à professora sobre o Proxy da F2 · página da F2 |
 | **Mateus Rodrigues Barreto** | 🟦 F3 · Mensagem destacada | Decorator da mensagem destacada · integração do código e front-end ([Ata S2_04, D02](./ata-S2-04-2026-10-16.md)) |
 | **Todos** | — | Diagrama, código, vídeo e página da própria frente · relato individual de IA · revisão cruzada · referências |
 
@@ -121,10 +121,11 @@ A divisão **não é estanque**: todos trabalham no mesmo repositório e podem c
 | **13/10** | Reunião S2_03 — acompanhamento e ajuste de prazos | Todos | ✅ Realizada |
 | **15/10** | Diagramas **e código** de todas as frentes ([Ata S2_03, D01](./ata-S2-03-2026-10-13.md)) | Cada frente | ✅ F1 em 15/10 · F3 em 16/10 · F2 em 17/10 |
 | **16/10** | Reunião S2_04 — apresentação do código e definição da F2 | Todos | ✅ Realizada (adiada de 15/10, 21h) |
-| **17/10** | Pull requests da F2 e da F3 · molde da página de IA Generativa | Daniel, Pedro e Mateus | ✅ PRs integrados · 🟡 molde de IA pendente |
-| **18/10, 12h** | Integração do código e front-end ([Ata S2_04, D02](./ata-S2-04-2026-10-16.md)) | Mateus | 🟡 Em andamento |
-| **18/10** | Vídeos (após a integração), páginas das frentes, relatos de IA e referências | Todos | 🟡 Em andamento |
-| **19/10** | Entrega oficial | — | — |
+| **17/10** | Pull requests da F2 e da F3 · molde da página de IA Generativa | Daniel, Pedro e Mateus | ✅ PRs integrados · ✅ molde de IA concluído |
+| **18/10, 12h** | Integração do código e front-end ([Ata S2_04, D02](./ata-S2-04-2026-10-16.md)) | Mateus | ✅ Concluída em 18/10 |
+| **18/10** | Reunião S2_05 — revisão do front-end, dos diagramas e organização dos vídeos | Todos | ✅ Realizada |
+| **18/10, 20h** | Vídeos (após a integração), páginas das frentes, relatos de IA e referências | Todos | ✅ Vídeos da F1 (18/10) e da F3 (19/10) · ✅ referências · 🟡 vídeo da F2, relatos de IA e página da F2 pendentes |
+| **19/10** | README final da subequipe ([Ata S2_05, D04](./ata-S2-05-2026-10-18.md)) e entrega oficial | Davi | 🟡 Em andamento |
 
 ---
 
@@ -161,11 +162,12 @@ Para a fundamentação teórica do relatório, citamos a obra original:
 
 | # | Pendência | Prazo |
 | -- | -- | -- |
-| P01 | Integração da história completa e front-end | 18/10, 12h |
-| P02 | Vídeos das frentes e vídeo geral | 18/10 |
-| P03 | Páginas F3, IA Generativa e Referências | 18/10 |
+| P01 | Vídeo da F2, incorporado à página da frente | 19/10 |
+| P02 | Relatos de IA Generativa de Daniel, Pedro e Mateus | 19/10 |
+| P03 | Página da F2 com os links do código apontando para a `main` | 19/10 |
+| P04 | README final da subequipe, com o diagrama integrado, a rastreabilidade, o senso crítico e os vídeos de todas as frentes | 19/10 |
 
-Pendências resolvidas desde a versão anterior: a exclusão definitiva do saque do criador do escopo (decidida em 17/10), a validação da mudança no O07 da F1 para escolha do meio de pagamento com troca automática apenas sem escolha (decidida em 17/10), o uso de Proxy na F2 (descartado na [Ata S2_04](./ata-S2-04-2026-10-16.md)) e o horário das reuniões de acompanhamento.
+Pendências resolvidas desde a versão anterior: a integração da história completa e o front-end (18/10), os vídeos da F1 e da F3, a página da F3, o molde da página de IA Generativa e a consolidação das referências.
 
 ---
 
@@ -177,3 +179,4 @@ Pendências resolvidas desde a versão anterior: a exclusão definitiva do saque
 | 1.1 | 10/10/2026 | Substituição dos nomes por frentes de trabalho; novo fluxo da demonstração; remoção do bloqueio de mensagens; inclusão do Composite opcional | Davi Severiano Freitas | |
 | 1.2 | 10/10/2026 | Atualização com as decisões da Reunião S2_02: história em quatro etapas, repasse independente da exibição no chat, saque fora do escopo, padrões adotados (Adapter, Proxy, Decorator e Facade), divisão em três frentes com responsáveis e novo cronograma de reuniões | Davi Severiano Freitas | |
 | 1.3 | 17/10/2026 | Atualização com as decisões das Reuniões S2_03 e S2_04: prazo do código em 15/10, Proxy descartado na F2, Mediator como extra comportamental, exclusão definitiva do saque e validação da mudança no O07 da F1 decididas em 17/10, integração e front-end com Mateus, vídeos após a integração, extras realizados, mudanças da F1 (sem conversão de moeda, escolha do meio e processadores reais) e novas pendências | Davi Severiano Freitas | |
+| 1.4 | 19/10/2026 | Atualização com a Reunião S2_05: um vídeo por frente, sem vídeo geral (a F1 com um vídeo por padrão); integração e front-end concluídos; novas responsabilidades (README final e diagrama integrado); cronograma e pendências da reta final | Davi Severiano Freitas | |
