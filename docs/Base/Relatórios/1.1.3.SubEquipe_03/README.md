@@ -77,9 +77,9 @@ Os pontos de vista individuais ficam em [1.1.3.6. IA Generativa](/Base/Relatóri
 
 ## Metodologia
 
-**A preencher em conjunto pela subequipe.** Descrever a dinâmica colaborativa de trabalho: divisão de atividades pelos três focos (Moderação, Autenticação e Chat), reuniões de alinhamento, estudos dos slides da Profa. Dra. Milene Serrano (*AULA - GOFS COMPORTAMENTAIS*), ferramentas e revisão por pares. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
+Como contexto de planejamento inicial, a [ata da Reunião Geral 1](/Projeto/Atas/ata-G01-2026-10-05.md) registra a sugestão de Observer para notificações e mensagens de chat. A ata não registra uma escolha final; esta seção deve descrever as decisões e o trabalho efetivamente adotados pela subequipe.
 
----
+**A preencher.** Descrever como a subequipe trabalhou: divisão de atividades, reuniões, estudos, ferramentas, debates e revisões. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
 
 ## GoF Comportamental
 

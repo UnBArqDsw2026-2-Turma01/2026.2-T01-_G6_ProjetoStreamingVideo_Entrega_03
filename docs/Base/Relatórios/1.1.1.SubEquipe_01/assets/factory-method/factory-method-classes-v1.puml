@@ -1,0 +1,164 @@
+@startuml factory-method-classes-v1
+!pragma layout smetana
+title Factory Method aplicado a UserContent — diagrama de classes
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor<<Product>> #DAE8FC
+  BackgroundColor<<ConcreteProduct>> #DAE8FC
+  BackgroundColor<<Creator>> #FFE6CC
+  BackgroundColor<<ConcreteCreator>> #FFE6CC
+  BackgroundColor<<Client>> #E1D5E7
+  BackgroundColor<<Existente>> #F5F5F5
+  BackgroundColor<<Error>> #F8CECC
+}
+hide empty members
+
+abstract class "UserContentCreator<TInput, TContent>" as UserContentCreator <<Creator>> {
+  # repository: ContentRepository
+  - policy: PolicyService
+  + UserContentCreator(dependencies: CreatorDependencies)
+  + submit(input: TInput): TContent
+  # {abstract} createContent(input: TInput): TContent
+  # nextId(): string
+  # currentTime(): Date
+}
+
+class LiveStreamCreator <<ConcreteCreator>> {
+  # createContent(input: LiveStreamInput): LiveStream
+}
+class RecordedVideoCreator <<ConcreteCreator>> {
+  # createContent(input: RecordingInput): RecordedVideo
+}
+class ClipCreator <<ConcreteCreator>> {
+  # createContent(input: ClipRequestInput): Clip
+}
+
+abstract class UserContent <<Product>> {
+  + {readonly} id: UUID
+  + {readonly} ownerId: UUID
+  + {readonly} title: string
+  + {readonly} visibility: ContentVisibility
+  + {readonly} createdAt: Date
+  + {readonly} publicationStatus: PublicationStatus
+  + {readonly} moderationStatus: ModerationResult
+  + {abstract} isMediaReady(): boolean
+  + applyModeration(result: ModerationResult): void
+  + publish(): void
+  + unpublish(): void
+  + isPublished(): boolean
+}
+
+class LiveStream <<ConcreteProduct>> {
+  + {readonly} channelId: UUID
+  + {readonly} latencyMode: LatencyMode
+  + {readonly} recordAutomatically: boolean
+  + {readonly} status: LiveStreamStatus
+  + {readonly} startedAt: Date [0..1]
+  + {readonly} endedAt: Date [0..1]
+  + {readonly} failureReason: string [0..1]
+  + markLive(at: Date = now()): void
+  + finish(at: Date = now()): void
+  + fail(reason: string): void
+}
+
+class RecordedVideo <<ConcreteProduct>> {
+  + {readonly} sourceStreamId: UUID
+  + {readonly} processingStatus: ProcessingStatus
+  + {readonly} durationSeconds: Real [0..1]
+  + {readonly} storageUri: string [0..1]
+  + {readonly} availableAt: Date [0..1]
+  + {readonly} viewCount: Integer
+  + markReady(ready: RecordingReadyFields): void
+  + markFailed(): void
+  + isReady(): boolean
+  + incrementViewCount(): void
+}
+
+class Clip <<ConcreteProduct>> {
+  + {readonly} sourceVideoId: UUID
+  + {readonly} createdByUserId: UUID
+  + {readonly} startOffsetSeconds: Real
+  + {readonly} endOffsetSeconds: Real
+  + {readonly} /durationSeconds: Real
+}
+
+interface ContentRepository <<Existente>> {
+  + save(content: UserContent): void
+  + findContentById(contentId: UUID): UserContent [0..1]
+  + findRecordingByStream(streamId: UUID): RecordedVideo [0..1]
+}
+
+interface PolicyService <<Existente>> {
+  + moderate(contentId: UUID): ModerationResult
+}
+
+class "StreamConfig" as StreamConfig <<Existente>> {
+  produto do Builder (ADR-001)
+}
+
+class ContentRuleViolationError <<Error>> {
+  + {readonly} rule: F1..F6
+}
+
+class "registrar(creator, input)" as Client <<Client>>
+
+UserContentCreator <|-- LiveStreamCreator
+UserContentCreator <|-- RecordedVideoCreator
+UserContentCreator <|-- ClipCreator
+
+UserContent <|-- LiveStream
+UserContent <|-- RecordedVideo
+UserContent <|-- Clip
+
+LiveStreamCreator ..> LiveStream : <<create>>
+RecordedVideoCreator ..> RecordedVideo : <<create>>
+ClipCreator ..> Clip : <<create>>
+UserContentCreator ..> UserContent : submit() usa
+UserContentCreator --> ContentRepository : repository
+UserContentCreator --> PolicyService : policy
+LiveStreamCreator ..> StreamConfig : entrada
+RecordedVideo ..> LiveStream : origem (construtor)
+Clip ..> RecordedVideo : origem (construtor)
+UserContent ..> ContentRuleViolationError : <<throws>>
+Client ..> UserContentCreator : usa só o Creator
+Client ..> UserContent : enxerga só o Product
+
+note right of UserContentCreator
+  submit(input):
+  1. content = createContent(input)  ← método-fábrica
+  2. repository.save(content)
+  3. content.applyModeration(policy.moderate(content.id))
+  4. se APPROVED e isMediaReady(): content.publish()   (F6)
+  5. repository.save(content)
+end note
+
+note bottom of Clip
+  F4 origem READY · F5 0 ≤ início < fim ≤ duração
+  dono = dono da gravação (regra 7 do v3)
+end note
+
+note bottom of RecordedVideo
+  F2 origem ENDED com gravação automática;
+     uma gravação por transmissão (RecordedVideoCreator)
+  F3 READY exige duração, storageUri e availableAt válidos
+end note
+
+note bottom of LiveStream
+  finish() e fail() despublicam (F6 vale
+  enquanto o conteúdo está publicado)
+end note
+class ClipRequestInput <<value object>> {
+  + {readonly} requestedByUserId: UUID
+  + {readonly} sourceStreamId: UUID
+  + {readonly} startOffsetSeconds: Real
+  + {readonly} endOffsetSeconds: Real
+  + {readonly} title: string
+}
+ClipRequestInput <.. ClipCreator : entrada
+ContentRuleViolationError <.. RecordedVideoCreator : <<throws>> F2
+ContentRuleViolationError <.. ClipCreator : <<throws>> F4
+ContentRuleViolationError --|> Error
+@enduml

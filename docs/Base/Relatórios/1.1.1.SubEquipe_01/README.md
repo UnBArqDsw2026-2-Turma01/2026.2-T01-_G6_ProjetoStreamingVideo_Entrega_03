@@ -1,8 +1,8 @@
 # 1.1.1. SubEquipe_01 — GoFs Criacionais + IA Generativa
 
-**Estado:** em elaboração. O planejamento da SubEquipe_01 v1.0 (08/10/2026) propõe **Builder** para `StreamConfig` como padrão principal e **Factory Method** para a hierarquia `UserContent` como segundo padrão; a proposta ainda depende de validação dos quatro integrantes na reunião da subequipe. A modelagem do Builder já está registrada em [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) e em [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md).
+**Estado:** padrões e relatos de IA entregues; falta a metodologia (ver o quadro abaixo). Conforme o planejamento da SubEquipe_01 v1.0 (08/10/2026), a subequipe aplicou **Builder** a `StreamConfig` (padrão principal) e **Factory Method** à hierarquia `UserContent` (segundo padrão). A modelagem do Builder já está registrada em [1.1.1.1. Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) e em [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md); a do Factory Method, em [1.1.1.3. Modelagem — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) e em [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md).
 
-Este relatório reúne os espaços necessários à Entrega 03. O conteúdo técnico e os relatos individuais serão produzidos pelos integrantes abaixo.
+Builder e Factory Method estão modelados, implementados, integrados à `main` do [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo) e demonstrados em vídeo. Os relatos individuais de IA Generativa e o vídeo de cada padrão ficam em páginas próprias: [1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) e [1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md).
 
 ## Integrantes
 
@@ -27,38 +27,45 @@ SubEquipe_01 — GoFs Criacionais + IA Generativa
 │   ├── README.md                     relatório geral (contexto, escolha, execução, versões)
 │   ├── 1.1.1.1.ModelagemBuilder.md   UML de classes antes/depois + evidências E01–E12
 │   ├── 1.1.1.2.SequenciaBuilder.md   UML de sequência (Director → Builder → build())
+│   ├── 1.1.1.3.ModelagemFactoryMethod.md  UML de classes antes/depois + evidências FM-E01–FM-E03
+│   ├── 1.1.1.4.SequenciaFactoryMethod.md  UML de sequência (ClipCreator.submit)
 │   ├── 1.1.1.5.Video.md              vídeo do padrão em funcionamento
 │   ├── 1.1.1.6.IAGenerativa.md       pontos de vista individuais
+│   ├── 1.1.1.7.BenchmarkBuilder.md   iniciativa extra: tempo e memória (padrão × manual)
 │   ├── ADR/ADR-001-builder-stream-config.md
-│   └── assets/builder/               .puml, .svg, .png e evidências
+│   ├── ADR/ADR-002-factory-method-user-content.md
+│   ├── assets/builder/               .puml, .svg, .png, evidências e vídeo
+│   └── assets/factory-method/        .puml, .svg, .png, evidências e vídeo
 └── 💻 Código · repositório separado · g6-streaming-entrega03-subgrupo01-codigo
-    └── src/criacionais/builder/      Product, Builder, ConcreteBuilder, Director, demo.ts
+    ├── src/criacionais/builder/      Product, Builder, ConcreteBuilder, Director, demo.ts
+    ├── src/criacionais/factory-method/  Product, ConcreteProducts, Creator, ConcreteCreators, demo.ts
+    ├── bench/                        medidor TypeScript (cenários, rodadas, gc)
+    └── benchmark/                    Python: gerar_relatorio.py, gráficos, relatório
 ```
 
 | Foco da entrega | Builder (`StreamConfig`) | Factory Method (`UserContent`) | Onde |
 | --- | --- | --- | --- |
-| Contexto e justificativa | ✅ | 🟡 pendente (Matheus e Pedro) | [Contexto](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=contexto-problema) · [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md) |
-| Modelagem UML — classes | ✅ Lucas | 🟡 pendente | [1.1.1.1](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) |
-| Modelagem UML — sequência | ✅ Heitor | 🟡 pendente | [1.1.1.2](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md) |
-| Implementação e testes | ✅ integrado em 16/10/2026 | 🟡 pendente | [Repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo) |
-| Execução documentada | ✅ `npm run demo:builder` | 🟡 pendente | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
-| Vídeo | ⬜ a preencher | ⬜ a preencher | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
-| IA Generativa | 🟡 Lucas preenchido | 🟡 a preencher | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
+| Contexto e justificativa | ✅ | ✅ | [Contexto](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=contexto-problema) · [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md) · [ADR-002](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md) |
+| Modelagem UML — classes | ✅ Lucas | ✅ Matheus | [1.1.1.1](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md) · [1.1.1.3](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md) |
+| Modelagem UML — sequência | ✅ Heitor | ✅ Matheus | [1.1.1.2](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md) · [1.1.1.4](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.4.SequenciaFactoryMethod.md) |
+| Implementação e testes | ✅ integrado em 16/10/2026 ([PR #1](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/1)) · 53 testes | ✅ integrado em 17/10/2026 ([PR #2](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/2) e [PR #4](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/4)) · 84 testes | [Repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo) |
+| Execução documentada | ✅ `npm run demo:builder` | ✅ `npm run demo:factory-method` | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
+| Vídeo | ✅ Lucas (2 min 05 s) | ✅ Matheus (1 min 44 s) | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
+| Iniciativa extra — benchmark | ✅ tempo e memória | 🟡 cenário no código ([`bench/cenarios/factory-method.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/bench/cenarios/factory-method.ts)), sem análise no relatório | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
+| IA Generativa | ✅ Lucas e Heitor preenchidos | ✅ Matheus e Pedro preenchidos | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado.
 
 ## IA Generativa e vídeo
 
-Os pontos de vista individuais ficam em [1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) e o vídeo do padrão em [1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md).
+Cada tema tem página própria, para não duplicar conteúdo neste relatório:
 
-| Integrante | Lições aprendidas | Uso da IA Generativa (senso crítico) |
-| --- | --- | --- |
-| Lucas Andrade Zanetti | A preencher pelo integrante | [Preenchido](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md?id=lucas-andrade-zanetti) |
-| Matheus Lemes Amaral | A preencher pelo integrante | A preencher pelo integrante |
-| Pedro Druck Montalvão Reis | A preencher pelo integrante | A preencher pelo integrante |
-| Heitor Macedo Ricardo | A preencher pelo integrante | A preencher pelo integrante |
+- **[1.1.1.6. IA Generativa](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md)** — lições aprendidas e uso da IA Generativa de cada integrante, com ferramenta, apoio recebido, validação e limitações. Preenchidos pelos quatro integrantes.
+- **[1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md)** — os dois padrões em funcionamento: Builder (2 min 05 s) e Factory Method (1 min 44 s), com roteiro e participantes.
 
 ## Metodologia
+
+Como contexto de planejamento inicial, a [ata da Reunião Geral 1](/Projeto/Atas/ata-G01-2026-10-05.md) registra sugestões de Builder para configurações de transmissão e Factory Method para tipos de usuário. As escolhas e o processo efetivamente adotados pela subequipe estão descritos nos artefatos desta seção.
 
 **A preencher.** Descrever como a subequipe trabalhou: divisão de atividades, reuniões, estudos, ferramentas, debates e revisões. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
 
@@ -72,7 +79,9 @@ O problema de criação só existe de fato quando os parâmetros de vídeo entra
 
 Essa incorporação é uma **revisão declarada** do modelo da Entrega 02 (decisão D1 do ADR-001) e precisa de aceite do grupo. O levantamento completo do problema, com as evidências que sustentam cada interdependência, está em [ADR-001 §1–§2](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_1-contexto).
 
-**Pendente:** contexto do Factory Method (dupla Matheus + Pedro).
+**Factory Method — `UserContent`.** Na Entrega 02, `LiveStream`, `RecordedVideo` e `Clip` herdam de `UserContent` (decisão DE03) e nascem em três pontos diferentes do fluxo `LiveStream → RecordedVideo → ClipRequest → Clip`: `LiveStreamService.createStream`, `MediaProcessingService.persistRecording` e a extração do clipe coordenada por `ClipService`. O v3 oferece os elementos de um caminho comum de registro — `ContentRepository.save(content: UserContent)`, `PolicyService.moderate(contentId)` e a regra 8 da nota "Regras do fluxo de clipes", segundo a qual publicar exige moderação aprovada e mídia pronta para qualquer conteúdo —, mas não desenha esse fluxo. Aplicada a regra 8 aos três tipos, o caminho ficaria repetido em cada serviço, e o código que registra conteúdo precisaria conhecer a classe concreta criada.
+
+Ao contrário do Builder, o padrão não exige revisar atributos do v3: os três pontos de criação e a hierarquia aparecem no diagrama e nas evidências FM-E01 a FM-E03; o caminho comum é proposta desta entrega ([ADR-002 §1](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md?id=_1-contexto)).
 
 ### Escolha e justificativa
 
@@ -82,7 +91,11 @@ Alternativas consideradas e descartadas, com o argumento de cada uma — constru
 
 **Limite declarado:** com os quatro atributos do v3, o Builder teria ganho pequeno e um construtor simples bastaria. A justificativa do padrão depende do aceite da revisão D1.
 
-**Pendente:** escolha e justificativa do Factory Method (dupla Matheus + Pedro).
+**Factory Method** (padrão criacional GoF) para a hierarquia `UserContent`: o Creator abstrato `UserContentCreator` escreve uma vez a operação comum (`submit`: criar, persistir, moderar, publicar quando possível) e delega ao **método-fábrica** `createContent` de cada subclasse — `LiveStreamCreator`, `RecordedVideoCreator`, `ClipCreator` — a decisão de qual classe instanciar e de onde vêm os dados. É a intenção do padrão no GoF: deixar as subclasses decidirem qual classe instanciar. O `LiveStreamCreator` recebe o `StreamConfig` montado pelo Builder, o que liga os dois padrões da subequipe.
+
+Alternativas descartadas — `new` em cada serviço com o caminho repetido (como no v3), fábrica simples com `switch` sobre o tipo, composição com uma função de criação, Abstract Factory e Builder — estão em [ADR-002 §3](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md?id=_3-alternativas-consideradas), junto das nove decisões derivadas (DF1–DF9) e das regras F1–F6. F2 a F6 vêm da nota do v3 (F2 também da máquina M4); F1 e alguns refinamentos de F3 são decisões de projeto.
+
+**Limites declarados:** a entrada do método-fábrica é tipada por genéricos (adaptação, não a variante parametrizada do GoF); cada produto novo custa também um criador novo (hierarquias paralelas); e o pedido de clipe feito antes de a gravação ficar pronta é recusado, e não enfileirado como no v3, porque a fila é responsabilidade do `ClipService`.
 
 ### Modelagem (notação UML)
 
@@ -90,20 +103,32 @@ Alternativas consideradas e descartadas, com o argumento de cada uma — constru
 
 **Builder — sequência concluída.** Diagrama de sequência do preset montado pelo `StreamConfigDirector` (Client → Director → Builder → `build()`), com o caminho de erro de validação e a correspondência mensagem a mensagem com o código: [1.1.1.2. Sequência — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md). Fonte editável em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/builder-sequencia-v1.puml" target="_blank" rel="noopener"><code>builder-sequencia-v1.puml</code></a>. Autoria: Heitor Macedo Ricardo.
 
-**Pendente.** Diagrama de classes e de sequência do Factory Method (Matheus e Pedro).
+**Factory Method — concluído.** Diagrama de classes desenhado a partir do código, recorte "antes" do componente UGC do v3, correspondência entre participantes GoF, serviços do v3 e classes, regras F1–F6 e evidências: [1.1.1.3. Modelagem — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.3.ModelagemFactoryMethod.md). Diagrama de sequência de `ClipCreator.submit`, separando o método-fábrica da operação comum, com os caminhos de erro: [1.1.1.4. Sequência — Factory Method](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.4.SequenciaFactoryMethod.md). Fontes em PlantUML e exportações PNG/SVG ficam em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/factory-method/factory-method-classes-v1.puml" target="_blank" rel="noopener"><code>assets/factory-method/</code></a>. Autoria: Matheus Lemes Amaral; ajustes da versão 1.2 dos dois diagramas: Pedro Druck Montalvão Reis.
 
 ### Implementação (código)
 
-**Concluído no código integrado à `main` em 16/10/2026.** Implementação TypeScript do Builder, `StreamConfigDirector`, validação acumulada e testes estão no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo), integrado pelo [PR #1](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/1).
+**Builder — concluído no código integrado à `main` em 16/10/2026.** Implementação TypeScript do Builder, `StreamConfigDirector`, validação acumulada e testes estão no [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo), integrado pelo [PR #1](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/1).
+
+**Factory Method — concluído no código integrado à `main` em 17/10/2026.** Código em [`src/criacionais/factory-method/`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method) do repositório de código (TypeScript, sem dependência de execução; integrado à `main` em 17/10/2026 pelo [PR #2 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/2), com as correções do [PR #4](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/4)). Um arquivo por participante:
+
+| Participante | Arquivo | Trecho que realiza o padrão |
+| --- | --- | --- |
+| Product | `user-content.ts` | classe abstrata `UserContent`; `publish()` aplica F6 com o gancho abstrato `isMediaReady()` |
+| ConcreteProduct | `live-stream.ts`, `recorded-video.ts`, `clip.ts` | cada um implementa `isMediaReady()`; `RecordedVideo` e `Clip` recebem a origem e verificam F2–F5 |
+| Creator | `user-content-creator.ts` | `submit()` chama `this.createContent(input)` e segue só com `UserContent`; `createContent` é `protected abstract` |
+| ConcreteCreator | `live-stream-creator.ts`, `recorded-video-creator.ts`, `clip-creator.ts` | sobrescrevem `createContent` com o `new` da classe concreta e a busca da origem no repositório |
+| Client | `demo.ts` | `registrar(creator, input)` aceita qualquer `UserContentCreator` |
+
+O README do padrão, no repositório de código, explica as decisões de estrutura e os limites. São 84 testes do Factory Method (137 no total, com os 53 do Builder), com 100% de cobertura de linhas, ramos e funções no código instrumentado (demos e benchmark ficam fora da medição).
 
 ### Execução e vídeo do padrão em funcionamento
 
-Código no [repositório de código da SubEquipe_01](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo), separado deste para que código e testes não interfiram no GitHub Pages.
+Código no [repositório de código da SubEquipe_01](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo), separado deste para que código e testes não interfiram no GitHub Pages.
 
 **Pré-requisitos:** Node 22 ou superior e npm. Nenhuma outra dependência global; o TypeScript roda direto pelo `tsx`, sem etapa de build.
 
 ```bash
-git clone https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo.git
+git clone https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo.git
 cd g6-streaming-entrega03-subgrupo01-codigo
 npm ci                # instala as dependências travadas no package-lock
 npm run check         # formatação → lint → tipos → testes (a mesma sequência da CI)
@@ -129,9 +154,50 @@ Título vazio + 4K com latência ULTRA_LOW + 75 fps + 2 Mbps (abaixo do piso de 
   - R5 bitrate 2000000 bps está abaixo do mínimo de 14000000 bps para R2160P a 75 fps
 ```
 
-`npm run check` deve terminar sem erro. O Builder foi integrado à `main` em 16/10/2026 ([PR #1](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo/pull/1)), com 53 testes passando e 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
+`npm run check` deve terminar sem erro. O Builder foi integrado à `main` em 16/10/2026 ([PR #1](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/1)), com 53 testes passando e 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
 
-**Pendente.** Execução do Factory Method (`npm run demo:factory-method`, dupla Matheus + Pedro). O vídeo do padrão em funcionamento tem página própria: [1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md).
+**Factory Method (`demo:factory-method`).** Mesmos pré-requisitos e repositório, a partir da `main`.
+
+```bash
+npm run demo:factory-method  # live → gravação → clipe pela mesma função cliente
+```
+
+**Cenário demonstrado.** Um repositório em memória e uma política de moderação que recusa o termo "spoiler" são compartilhados pelos três criadores:
+
+1. **`LiveStreamCreator`** — cria a live a partir do preset `highQuality` do Builder. Ela é aprovada, mas fica fora do ar até `markLive()`, porque a mídia ainda não existe (F6).
+2. **`RecordedVideoCreator`** — cria a gravação da live encerrada em `PROCESSING`; com `markReady()` (evento `RecordingAvailable`), ela é publicada.
+3. **`ClipCreator`** — um espectador recorta 30 s da gravação; o clipe nasce publicado, com o dono da gravação e o espectador em `createdByUserId`.
+4. **Pedidos recusados** — clipe com termo bloqueado (criado, mas `REJECTED` e fora do ar), recorte além do fim da gravação (F5), gravação de live sem gravação automática (F2) e clipe de transmissão sem gravação (F4).
+
+**Resultado esperado** (trecho das partes 3 e 4, saída real):
+
+```text
+=== 3. ClipCreator — um espectador recorta a gravação ===
+  classe:        Clip
+  id:            conteudo-03
+  título:        O refrão do show
+  dono:          criadora
+  visibilidade:  PUBLIC
+  moderação:     APPROVED
+  mídia pronta:  sim
+  publicação:    PUBLISHED
+  pedido por:    espectador (30 s de recorte)
+
+=== 4. Pedidos recusados ===
+...
+Clipe que passa do fim da gravação (3600 s):
+  ContentRuleViolationError: F5 recorte 3590s–3700s fora de 0 ≤ início < fim ≤ 3600s
+
+Gravação de uma live com gravação automática desligada:
+  ContentRuleViolationError: F2 a transmissão conteudo-06 não tem gravação automática habilitada
+
+Clipe de uma transmissão que não tem gravação:
+  ContentRuleViolationError: F4 a transmissão conteudo-06 não tem gravação para recortar
+```
+
+O id `conteudo-05` não aparece porque o recorte recusado por F5 chegou a reservar um id antes de o construtor de `Clip` rejeitá-lo; nada foi persistido.
+
+**Vídeos.** Os dois padrões em funcionamento — Builder (2 min 05 s, `demo:builder`) e Factory Method (1 min 44 s, `demo:factory-method`) — estão em [1.1.1.5. Vídeo](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md), com roteiro, participantes e data de gravação.
 
 ## Rastreabilidade & Elos com Outros Artefatos
 
@@ -139,15 +205,61 @@ A [modelagem da SubEquipe_01 na Entrega 02](https://unbarqdsw2026-2-turma01.gith
 
 | Problema ou requisito | Artefato de origem (link) | Elemento do modelo | Trecho de código (link) | Evidência de execução (link) |
 | --- | --- | --- | --- | --- |
-| A preencher | A preencher | A preencher | A preencher | A preencher |
+| `StreamConfig` com sete parâmetros interdependentes cria combinações inválidas (D1) | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e01-planejamento-premissa-streamconfig.png" target="_blank" rel="noopener">E01</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e02-v3-streamconfig-quatro-atributos.png" target="_blank" rel="noopener">E02</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e04-e02-livestreamservice-recebe-streamconfig.png" target="_blank" rel="noopener">E04</a> · [ADR-001 §1](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_1-contexto) | Product `StreamConfig` («value object» revisado) | [`stream-config.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/stream-config.ts) | `npm run demo:builder`, parte 1 |
+| R1 — título obrigatório (D7) | [ADR-001 §4](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_4-decisão) | ConcreteBuilder · `validate()` | [`default-stream-config-builder.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/default-stream-config-builder.ts#L115) | Parte 3 do demo (`R1 título é obrigatório…`) · testes `R1 — título obrigatório` |
+| R2 — resolução, fps e bitrate informados juntos | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png" target="_blank" rel="noopener">E10</a> | `VideoSettings` (garantia pelo tipo, não por `validate()`) | [`video-settings.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/video-settings.ts) | Teste `deixa os três campos de vídeo indefinidos quando não há perfil (R2)` |
+| R3 — taxa de quadros até 60 fps | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e11-taxa-de-quadros-ate-60-e-codecs.png" target="_blank" rel="noopener">E11</a> | ConcreteBuilder · `validate()` | [`default-stream-config-builder.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/default-stream-config-builder.ts#L129) | Parte 3 do demo (75 fps rejeitado) · testes `R3 — teto de taxa de quadros` |
+| R4 — latência baixa incompatível com 4K | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e08-latencia-baixa-incompativel-com-4k.png" target="_blank" rel="noopener">E08</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e09-4k-forca-latencia-normal.png" target="_blank" rel="noopener">E09</a> | ConcreteBuilder · `validate()` | [`default-stream-config-builder.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/default-stream-config-builder.ts#L135) | Parte 3 do demo (`ULTRA_LOW` + 2160p) · testes `R4` |
+| R5 — bitrate mínimo por resolução × fps | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e10-bitrate-depende-de-codec-resolucao-fps.png" target="_blank" rel="noopener">E10</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e12-plataforma-a-bitrate-por-resolucao.png" target="_blank" rel="noopener">E12</a> | `minimumBitrateBps` (tabela de pisos) | [`bitrate-floor.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/bitrate-floor.ts#L49) | Parte 3 do demo (`2000000 bps … mínimo de 14000000`) · `bitrate-floor.test.ts` |
+| Presets de transmissão sem repetir validação em cada cliente | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e06-e02-encoder-parametros-do-cliente.png" target="_blank" rel="noopener">E06</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e07-e02-sequencia-createstream.png" target="_blank" rel="noopener">E07</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e12-plataforma-a-bitrate-por-resolucao.png" target="_blank" rel="noopener">E12</a> · [Sequência](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.2.SequenciaBuilder.md) | Director `StreamConfigDirector` | [`stream-config-director.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/stream-config-director.ts) | Parte 1 do demo (3 presets) · teste `chama reset() primeiro e build() por último` |
+| Início da transmissão envia `StreamConfig` ao serviço (Client) | <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e04-e02-livestreamservice-recebe-streamconfig.png" target="_blank" rel="noopener">E04</a>, <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/builder/evidencias/b-e07-e02-sequencia-createstream.png" target="_blank" rel="noopener">E07</a> | Client `LiveStreamService` / `demo.ts` | [`demo.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/builder/demo.ts) | `npm run demo:builder` completo |
+| Custo do padrão e decisão D6 eram hipóteses no ADR-001 | [ADR-001 §5](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_5-consequências) | Cenário de benchmark, três braços | [`bench/cenarios/builder.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/bench/cenarios/builder.ts) · [`gerar_relatorio.py`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/benchmark/gerar_relatorio.py) | [1.1.1.7. Benchmark](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) · [relatório gerado](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/benchmark/relatorio/relatorio-benchmark.md) |
+| Factory Method: conteúdo nasce em três serviços e passa pelo mesmo caminho de registro | [Modelagem Estática da Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica) (FM-E02) | `UserContentCreator.submit` / `createContent` | [`user-content-creator.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/user-content-creator.ts) | Demo, partes 1–3 |
+| Hierarquia `UserContent` (DE03) | [Conteúdo Gerado pelo Usuário](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.2.Foco01.ConteudoGeradoUsuario) (FM-E01) | Product e ConcreteProducts | [`user-content.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/user-content.ts), [`clip.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/clip.ts) | Demo, linha `classe:` de cada conteúdo |
+| Regra 8: publicar exige `APPROVED` e mídia pronta (F6) | Nota "Regras do fluxo de clipes" do v3 (FM-E03) | `UserContent.publish`, `isMediaReady` | [`user-content.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/user-content.ts) | Demo, partes 1 e 2 e clipe `REJECTED` da parte 4 |
+| Regras 1, 2, 4 e 7: origem e janela do recorte, dono preservado (F2, F4, F5) | Nota do v3 (FM-E03) | Construtores de `RecordedVideo` e `Clip` | [`clip.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/clip.ts), [`recorded-video.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/recorded-video.ts) | Demo, partes 3 e 4 |
+| `createStream(userId, config: StreamConfig)` liga Builder e Factory Method | [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md) e diagrama v3 | `LiveStreamCreator` | [`live-stream-creator.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/src/criacionais/factory-method/live-stream-creator.ts) | Demo, parte 1 |
+
+As evidências E01–E12 são capturas de tela arquivadas em [Modelagem — Builder](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md?id=evidências); cada linha acima aponta para as que sustentam a escolha. Os links de código do Builder apontam para a `main` do repositório de código; os do Factory Method também, desde a integração do [PR #2 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/2) em 17/10/2026.
 
 ## Senso Crítico
 
-**A preencher.** Avaliar benefícios, custos e limitações do padrão, coerência entre UML e implementação e decisões revistas ao longo do trabalho. Relacionar a avaliação às evidências e à literatura consultada.
+**Benefícios que as evidências sustentam.**
+
+- A validação ficou em um só ponto: `build()` executa R1, R3, R4 e R5 e devolve **todas** as violações de uma vez, e o produto sai imutável. A demonstração da parte 3 mostra quatro violações simultâneas, cada uma com o id da regra do ADR-001.
+- A cobertura é verificável: 53 testes passando e 100% de cobertura de linhas, ramos e funções (`npm run coverage`).
+- O Director concentra os presets sem duplicar validação: um título vazio num preset sai como `InvalidStreamConfigError` com R1.
+
+**Custos medidos.** O [benchmark](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) mostrou que o Builder custa de 2,2× a 2,9× a instanciação manual em tempo (cerca de 82 a 135 ns por instância, conforme N) e 326 B contra 80 B por instância em memória (N = 100 mil). Como a configuração é criada uma vez por transmissão, o custo é irrelevante para o sistema. O braço manual não valida nada; a diferença inclui, portanto, o custo das regras, e as duas parcelas não foram separadas.
+
+**Decisões revistas ao longo do trabalho.**
+
+- **D1 é uma revisão do modelo da Entrega 02.** A premissa do planejamento ("muitos parâmetros interdependentes") só se sustentava depois de mover resolução, fps e bitrate para `StreamConfig`. Com os quatro atributos do v3 o Builder teria ganho pequeno; esse limite continua declarado e depende do aceite do grupo.
+- **R2 deixou de ser verificação.** O código agrupou os três campos de vídeo em `VideoSettings`, e a regra passou a ser garantida pelo tipo. O diagrama de classes divergiu do código e a divergência foi apontada na revisão do PR #2; o diagrama foi corrigido a partir do código integrado.
+- **D6 perdeu a justificativa de desempenho.** O resultado preliminar do benchmark (reutilizado quase 2× mais lento) era ruído de amostra curta, e a medição pareada não achou diferença de tempo. A decisão se sustenta por design (o Director reaproveita o builder que recebe) e por `reset()` ser exigido por correção. O benchmark em Python acrescentou uma economia de memória de cerca de 17%, que não era a vantagem prometida.
+
+**Coerência entre UML e implementação.** Diagrama de classes, sequência e código foram conferidos entre si: a ordem `reset → withTitle → withLatencyMode → withVideo → build` do diagrama de sequência é verificada por um teste com builder dublê. Divergências remanescentes conhecidas no Builder: nenhuma registrada até esta data. No Factory Method, os diagramas foram conferidos contra o código na versão 1.1 (Matheus) e ajustados na versão 1.2 ([PR #6](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/6), Pedro); o ADR-002 ainda descreve a F2 anterior ao [PR #4 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/4), em que a gravação que falhou deixa de contar.
+
+**Limites.** R4 e R5 vêm de documentação pública de plataformas externas, não do nosso sistema; os valores numéricos são de referência e configuráveis. Os números do benchmark valem para uma máquina e uma versão do Node: a razão entre braços mudou de cerca de 3,9× (máquina do Heitor) para 2,9× (esta execução), então não deve ser tomada como constante.
+
+**Factory Method.** O ganho é concreto e localizado: a regra 8 do v3 passou a existir em um só lugar (`submit` + `publish`), e um tipo novo de conteúdo entra como subclasse, sem tocar no Creator. O custo é a hierarquia de criadores paralela à de produtos — três classes a mais para três produtos — e um método que faz dois papéis (Template Method sobre o método-fábrica). Decisões revistas durante o trabalho: as regras saíram do criador e foram para o construtor dos produtos (DF4), para que nem um `new` fora do padrão crie conteúdo inválido; o pedido de clipe sem gravação pronta passou a ser recusado, e não enfileirado (DF8), uma simplificação declarada do fluxo assíncrono do v3; e uma revisão independente do código levou a despublicar a live ao encerrar, exigir live encerrada e gravação única em F2 (DF9), validar a data de F3 e copiar as datas dos produtos. O diagrama de classes foi desenhado depois do código e conferido contra ele; a ordem das mensagens do diagrama de sequência é verificada por teste. Detalhes em [ADR-002 §5](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md?id=_5-consequências).
 
 ## Referências
 
-**A preencher com fontes efetivamente consultadas.** Identificar autor, título, edição ou versão, ano e link quando disponível; relacionar as referências às decisões e artefatos que fundamentam.
+Fontes efetivamente consultadas, com a decisão ou artefato que cada uma fundamenta.
+
+| Fonte | Fundamenta | Observação |
+| --- | --- | --- |
+| GAMMA, E.; HELM, R.; JOHNSON, R.; VLISSIDES, J. *Padrões de Projeto: soluções reutilizáveis de software orientado a objetos*. Porto Alegre: Bookman, 2000 | Builder: participantes, estrutura e consequências ([ADR-001 §3–§4](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md?id=_3-alternativas-consideradas)) | **Páginas ainda a confirmar** no exemplar consultado; não foram verificadas |
+| Entrega 02, SubEquipe_01 — [Modelagem Estática](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica) e [Evidências da Modelagem Dinâmica](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.2.1.Foco02.Evidencias) | `StreamConfig` do v3, `QualityVariant`, sequência de `createStream` (E02–E07) | Fonte primária do "antes" |
+| Planejamento da SubEquipe_01, v1.0, 08/10/2026 | Escolha do Builder e do Factory Method, divisão de entregas e pares de revisão | Premissa do Builder conferida contra o modelo (E01) |
+| Documentação pública de uma plataforma de transmissão ao vivo (ajuda do criador e configurações do encoder) | R3, R4 e R5 (E08–E11) | Plataforma **diferente** da de referência da Entrega 02; capturas arquivadas |
+| Documentação pública da plataforma de referência da Entrega 02 | Bitrate por resolução (E12) | Convergência com a anterior sustenta tratar R5 como regra de domínio |
+| Node.js. [`process.memoryUsage()`](https://nodejs.org/api/process.html) | Medida de `heapUsed` no [benchmark](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) | Documentação oficial; versão do Node usada: v26.8.1 |
+| Node.js. [Opções de linha de comando](https://nodejs.org/api/cli.html) (`--expose-gc`, `--max-semi-space-size`) | Coleta de lixo forçada e semi-space grande na fase de memória | Documentação oficial |
+| GAMMA, E.; HELM, R.; JOHNSON, R.; VLISSIDES, J. *Padrões de Projeto: soluções reutilizáveis de software orientado a objetos*. Porto Alegre: Bookman, 2000 | Factory Method: intenção, aplicabilidade, consequências e a variação de métodos-fábrica parametrizados ([ADR-002 §3–§4](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-002-factory-method-user-content.md?id=_3-alternativas-consideradas), decisões DF1 e DF2) | **Páginas ainda a confirmar** no exemplar consultado; não foram verificadas |
+| Entrega 02, SubEquipe_01 — [Conteúdo Gerado pelo Usuário e Clipagem](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.2.Foco01.ConteudoGeradoUsuario) e [Modelagem Estática](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica) | Hierarquia `UserContent` (DE03), os três serviços que criam conteúdo e a nota "Regras do fluxo de clipes", origem das regras F2–F6 (FM-E01 a FM-E03) | Fonte primária do "antes" do Factory Method |
+| Entrega 02, SubEquipe_01 — [Diagrama de Máquina de Estados](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.10.Extra.DiagramaEstados), máquinas M2 (clipagem) e M4 (transmissão e gravação) | F2 (a gravação nasce do encerramento da live) e estados iniciais `CREATED` e `PROCESSING` dos produtos | Citada no ADR-002 e no README do padrão no repositório de código |
 
 ## Versionamentos & Participações
 
@@ -155,10 +267,19 @@ Registrar apenas alterações efetivamente realizadas, incluindo autoria, revis�
 
 | Versão | Data | Integrante | Contribuição | Revisor | Comprobatório (commit/PR) |
 | --- | --- | --- | --- | --- | --- |
-| 1.0 | 15/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Modelagem do Builder (diagrama antes/depois), ADR-001 e evidências; contexto, escolha e justificativa neste relatório | Pedro Druck Montalvão Reis (ADR-001) e Matheus Lemes Amaral (diagrama), conforme pares de revisão do planejamento | [`3c19fce`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3c19fce) · [`550571e`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/550571e) |
-| 1.1 | 15/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Diagrama de sequência do Builder (PlantUML) e presets do Director; seção Execução deste relatório; quadro de participações | A preencher (Pedro Druck Montalvão Reis, sequência) | [`b00ad0c`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/b00ad0c) |
+| 1.0 | 15/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Modelagem do Builder (diagrama antes/depois), ADR-001 e evidências; contexto, escolha e justificativa neste relatório | @1emes ([revisão do PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2#pullrequestreview-5554232012)): diagrama de classes e conferência geral, incluindo o ADR-001 | [`3c19fce`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3c19fce) · [`550571e`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/550571e) |
+| 1.1 | 15/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Diagrama de sequência do Builder (PlantUML) e presets do Director; seção Execução deste relatório; quadro de participações | @1emes ([revisão do PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2#pullrequestreview-5554232012)): conferência geral, incluindo a sequência | [`b00ad0c`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/b00ad0c) |
 | 1.2 | 16/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Imagem e links da sequência compatíveis com o roteador do Docsify | @1emes (revisão do [PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2)) | [`14126fa`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/14126fa) |
 | 1.3 | 16/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Diagrama de classes alinhado ao código integrado (`VideoSettings`, `fromBuilder`, R2 estrutural) | @1emes (revisão do [PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2)) | [`3b6aefc`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3b6aefc) |
-| 1.4 | 17/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Links 404 do ADR-001 corrigidos; históricos de versão atualizados com a autoria de Heitor; páginas de Vídeo e IA Generativa; estrutura visual da subequipe; relato de IA do Lucas | A preencher | PR `docs/subequipe-01-versionamento-ia` |
+| 1.4 | 17/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Links 404 do ADR-001 corrigidos; históricos de versão atualizados com a autoria de Heitor; páginas de Vídeo e IA Generativa; estrutura visual da subequipe; relato de IA do Lucas | Sem revisão registrada no PR | [`84b35b4`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/84b35b4) · [PR #4](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/4) |
+| 1.5 | 17/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Rastreabilidade, senso crítico e referências preenchidos; iniciativa extra: [benchmark de tempo e memória](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) (script Python e relatório gerado no repositório de código) | Sem revisão registrada no PR | [`1d7c1b0`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/1d7c1b0) · [PR #5](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/5) · [PR #3 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/3) |
+| 1.6 | 16/10/2026 | [Matheus Lemes Amaral](https://github.com/1emes) | Factory Method: diagramas de classes e de sequência (PlantUML), ADR-002, evidências FM-E01 a FM-E03; contexto, escolha e justificativa, modelagem, implementação, execução, rastreabilidade e senso crítico do padrão neste relatório; implementação, testes, demo e cenário de benchmark no repositório de código | @HeitorM50 ([comentários no ADR-002](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3#pullrequestreview-5555487760), sem aprovação) · @pedruck ([aprovação do PR #3](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3#pullrequestreview-5560570331)) | [PR #3](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3) · [PR #2 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/2) |
+| 1.7 | 17/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Conflitos do PR #3 com a `main` resolvidos sem descartar conteúdo (barra lateral, quadro de participações e este relatório: Builder e Factory Method lado a lado) e integração do PR #3 | Sem revisão registrada | [`a48982e`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/a48982e) · [PR #3](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3) |
+| 1.8 | 17/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Factory Method no código: correções nos ConcreteCreators a partir da revisão do PR #2 do código — gravação `FAILED` deixa de bloquear a transmissão, `submit` repetido após falha da moderação testado e documentado, perfil de vídeo do `StreamConfig` declarado fora da `LiveStream` (6 commits, 6 testes novos) | Revisão solicitada a @HeitorM50 | [PR #4 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/4) |
+| 1.9 | 17/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Referências do Factory Method; revisores do Builder registrados conforme as revisões que aconteceram; versões 1.4 a 1.8 com PRs e commits; estado dos focos e visão geral atualizados; seção do Factory Method na página de vídeo; quadro de participações; links internos e externos conferidos | A preencher | [`8f167c6`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/8f167c6) · [`c9c646b`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/c9c646b) · [`c4d3a1d`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/c4d3a1d) · [`70283e0`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/70283e0) · [`232d463`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/232d463) |
+| 1.10 | 17/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Diagramas do Factory Method alinhados ao GoF e ao código, mantendo a organização original: classes com a origem como dependência de construção, erro herdando de `Error` e lançado pelos criadores, construtor do Creator e `ClipRequestInput`; sequência com o método-fábrica como chamada do criador a si mesmo, erro propagado pelo criador, `opt` e `new Clip(fields)` | A preencher | [PR #6](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/6) |
+| 1.11 | 18/10/2026 | [Lucas Andrade Zanetti](https://github.com/Bappoz) | Estado dos focos atualizado depois da integração dos PRs #2 e #4 do código (Factory Method na `main`, 137 testes); IA Generativa e vídeo retirados deste relatório para as páginas próprias, com o relato de Matheus organizado na [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md); vídeo do Builder em funcionamento (2 min 05 s) na [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md); links do repositório de código apontando para a organização; checklist e visão geral atualizados | A preencher | [PR #7](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/7) |
+| 1.12 | 18/10/2026 | [Pedro Druck Montalvão Reis](https://github.com/pedruck) | Relato de IA Generativa de Pedro na página [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md); estado dos focos e visão geral atualizados | A preencher | [PR #8](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/8) |
+| 1.13 | 19/10/2026 | [Heitor Macedo Ricardo](https://github.com/HeitorM50) | Lições aprendidas e relato de IA Generativa de Heitor na página [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md); estado dos focos e visão geral atualizados | A preencher | [PR #10](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/10) |
 
 Atualizar também o [quadro consolidado de participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).

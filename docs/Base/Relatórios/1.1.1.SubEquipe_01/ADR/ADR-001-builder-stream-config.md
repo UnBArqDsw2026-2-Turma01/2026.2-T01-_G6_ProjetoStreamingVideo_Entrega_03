@@ -2,11 +2,11 @@
 
 | Campo | Valor |
 | --- | --- |
-| Status | Proposta (aguarda revisão de Pedro Druck Montalvão Reis, conforme o [planejamento](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md?id=fontes-do-planejamento)) |
+| Status | Proposta |
 | Data | 15/10/2026 |
 | Autor | Lucas Andrade Zanetti |
-| Revisor | Pedro Druck Montalvão Reis |
-| Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/Bappoz/g6-streaming-entrega03-subgrupo01-codigo). |
+| Revisor | Matheus Lemes Amaral, na conferência geral do PR que trouxe este ADR ([revisão do PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2#pullrequestreview-5554232012)). |
+| Escopo | Modelagem (diagrama de classes e regras). Implementação e testes ficam no [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo). |
 
 > Este ADR registra o **processo de decisão**, na ordem em que o raciocínio aconteceu. Cada afirmação factual aponta para uma evidência (`E01`–`E12`) arquivada em [`assets/builder/evidencias/`](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.1.ModelagemBuilder.md?id=evidências). O que **não** tem evidência está marcado como *decisão de projeto*.
 
@@ -107,7 +107,7 @@ Mínimos usados em R5 (coluna "mínimo, H.264" de E10, Mbps): 2160p60 = 14 · 21
 
 | Versão | Data | Autor | Descrição | Revisor | Comprobatório |
 | --- | --- | --- | --- | --- | --- |
-| 1.0 | 15/10/2026 | [@Bappoz](https://github.com/Bappoz) | Registro inicial da decisão, alternativas, regras R1–R5 e evidências E01–E12 | A preencher (Pedro Druck Montalvão Reis, conforme o planejamento) | [`3c19fce`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3c19fce) |
+| 1.0 | 15/10/2026 | [@Bappoz](https://github.com/Bappoz) | Registro inicial da decisão, alternativas, regras R1–R5 e evidências E01–E12 | @1emes ([revisão do PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2#pullrequestreview-5554232012)) | [`3c19fce`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3c19fce) |
 | 1.1 | 15/10/2026 | [@Bappoz](https://github.com/Bappoz) | Link do repositório de código atualizado após renomeação | A preencher | [`550571e`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/550571e) |
 | 1.2 | 16/10/2026 | [@Bappoz](https://github.com/Bappoz) | Alinhamento ao código integrado: R2 garantida pelo tipo `VideoSettings`; Director deixa de ser só contrato | @1emes ([PR #2](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/2)) | [`3b6aefc`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/3b6aefc) |
 | 1.3 | 17/10/2026 | [@Bappoz](https://github.com/Bappoz) | Links das evidências e âncoras corrigidos (404 no Docsify); Client = `LiveStreamService` / `demo.ts` atribuído a Heitor | A preencher | PR `docs/subequipe-01-versionamento-ia` |
