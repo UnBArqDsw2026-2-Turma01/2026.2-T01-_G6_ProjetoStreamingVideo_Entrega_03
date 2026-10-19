@@ -38,7 +38,7 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
 │   ├── 1.1.3.6.IAGenerativa.md       pontos de vista individuais (Eduardo preenchido; Hugo e Philipe a preencher)
 │   ├── ADR/ADR-003-observer-concorrente-notificacoes-twitch.md
 │   └── assets/                       exportações SVG/PNG de diagramas e prints de fontes
-└── 💻 Código-fonte e Executáveis · docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo/
+└── 💻 Código-fonte e Executáveis · repositório separado · g6-streaming-entrega03-subgrupo03-codigo
     ├── src/patterns/observer/        StreamChannel, interfaces e observadores de moderação
     ├── src/patterns/strategy/        estratégias de despacho síncrono e assíncrono
     ├── src/engine/algorithms/        algoritmos de Entropia, Visão Computacional, DMCA e dHash
@@ -54,7 +54,7 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
 | **Contexto e justificativa** | ✅ Eduardo | 🟡 pendente (Hugo) | 🟡 pendente (Philipe) | [Contexto](#contexto-problema) · [ADR-003](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md) |
 | **Modelagem UML — Classes** | ✅ Eduardo | 🟡 pendente | 🟡 pendente | [1.1.3.1](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.ModelagemObserver.md) |
 | **Modelagem UML — Sequência** | ✅ Eduardo | 🟡 pendente | 🟡 pendente | [1.1.3.2](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.SequenciaObserver.md) |
-| **Implementação e Testes** | ✅ integrado em 17/10/2026 | 🟡 pendente | 🟡 pendente | [`codigo/`](codigo/) · `npm test` |
+| **Implementação e Testes** | ✅ integrado em 17/10/2026 | 🟡 pendente | 🟡 pendente | [Repositório de código](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo) · `npm test` |
 | **Execução documentada** | ✅ `demo` · `benchmark` · `interactive` · `web` | 🟡 pendente | 🟡 pendente | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
 | **Vídeo** | ⬜ roteiro pronto | ⬜ a preencher | ⬜ a preencher | [1.1.3.5](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md) |
 | **IA Generativa** | 🟡 Eduardo preenchido | 🟡 a preencher | 🟡 a preencher | [1.1.3.6](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md) |
@@ -140,7 +140,7 @@ Alternativas consideradas e descartadas (*Polling* periódico pelos clientes e *
 
 #### Foco 1: Moderação Reativa (Eduardo Lôbo Moreira)
 
-Concluído e integrado em [`docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo/`](codigo/):
+Concluído e integrado no [repositório de código da SubEquipe_03](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo), mantido separado deste repositório para que código e testes não interfiram na publicação do GitHub Pages:
 - `src/patterns/observer/StreamChannel.ts`: ConcreteSubject e Context.
 - `src/patterns/observer/interfaces.ts`: interfaces `ISubject`, `IObserver`, `StreamEvent`.
 - `src/patterns/observer/observers/`: observadores especializados (`AutoModObserver`, `SafetyVisionModerationObserver`, `CopyrightDMCAAudioObserver`, `HumanModeratorDashboardObserver`, `ChatRaidShieldObserver`, `PiracyVideoRestreamObserver`).
@@ -158,8 +158,11 @@ Concluído e integrado em [`docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo/`](c
 
 **Pré-requisitos:** Node.js v20+ e npm v10+.
 
+Código no [repositório de código da SubEquipe_03](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo):
+
 ```bash
-cd docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo
+git clone https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo.git
+cd g6-streaming-entrega03-subgrupo03-codigo
 npm install
 npm run web          # Dashboard Web em Tempo Real (http://localhost:3333) - Iniciativa Extra
 npm run interactive  # Console interativo REPL com comandos em tempo real - Iniciativa Extra
@@ -193,14 +196,14 @@ A rastreabilidade bidirecional estabelece a coerência entre as necessidades de 
 
 | Requisito de Origem (E01) | Modelo de Referência (E02) | Elemento GoF / Participante (E03) | Implementação no Repositório | Comprobatório de Execução e Testes |
 | :--- | :--- | :--- | :--- | :--- |
-| **RF01:** Iniciar e encerrar transmissões ao vivo multicanal | **UC01:** Transmitir ao Vivo · **DiagSeq02:** Abertura de Live | `ISubject` & `StreamChannel` (`goLive`, `endLive`) | [`StreamChannel.ts#L90-L130`](codigo/src/patterns/observer/StreamChannel.ts) | `npm test` (Teste 2) · `npm run web` (Botão 1) |
-| **RF15:** Notificação em tempo real de seguidores e comunidades | **DiagAtiv03:** Disparo de Alertas a Inscritos | `IObserver` (`PushNotificationObserver`, `DiscordWebhookObserver`) | [`PushNotificationObserver.ts`](codigo/src/patterns/observer/observers/PushNotificationObserver.ts) · [`DiscordWebhookObserver.ts`](codigo/src/patterns/observer/observers/DiscordWebhookObserver.ts) | `npm run demo` (Etapa 3) · Push FCM e Discord |
-| **RF07:** Moderação automatizada de mensagens e toxicidade no chat | **UC04:** Moderar Canal · **DiagAtiv03:** Filtro de Chat | `AutoModObserver` & `TextEntropyAnalyzer` | [`AutoModObserver.ts`](codigo/src/patterns/observer/observers/AutoModObserver.ts) · [`TextEntropyAnalyzer.ts`](codigo/src/engine/algorithms/TextEntropyAnalyzer.ts) | `npm test` (Teste 3) · Shannon Entropy real |
-| **RF08:** Detecção e contenção de conteúdo sensível (Nudez/Gore) | **DiagSeq05:** Pipeline Reativo de Inspeção de Frame | `SafetyVisionModerationObserver` | [`SafetyVisionModerationObserver.ts`](codigo/src/patterns/observer/observers/SafetyVisionModerationObserver.ts) | `npm test` (Testes 4 e 5) · Imagem PPM real |
-| **RF12:** Fiscalização de Direitos Autorais e Diretrizes de DMCA | **DiagAtiv03:** Análise de Faixa de Áudio | `CopyrightDMCAAudioObserver` & `AudioAcousticFingerprinter` | [`CopyrightDMCAAudioObserver.ts`](codigo/src/patterns/observer/observers/CopyrightDMCAAudioObserver.ts) · [`AudioAcousticFingerprinter.ts`](codigo/src/engine/algorithms/AudioAcousticFingerprinter.ts) | `npm test` (Teste 6) · Audio Mute e Strike |
-| **RF09:** Auditoria e Intervenção de Moderadores Humanos | **UC04:** Moderar Canal (ModView E02) | `HumanModeratorDashboardObserver` | [`HumanModeratorDashboardObserver.ts`](codigo/src/patterns/observer/observers/HumanModeratorDashboardObserver.ts) | `npm run web` · `npm run interactive` (`mod`) |
-| **RNF02:** Desacoplamento arquitetural e extensibilidade (OCP) | **DiagClasses:** Arquitetura em Camadas | Interfaces canônicas `ISubject` e `IObserver` | [`interfaces.ts`](codigo/src/patterns/observer/interfaces.ts) | Adição de 8 observadores sem alterar `StreamChannel` |
-| **RNF04:** Alta vazão e liberação de thread (Desempenho) | **ADR-003:** Observer Concorrente Twitch | GoF Strategy: `AsynchronousConcurrentDispatchStrategy` | [`AsynchronousConcurrentDispatchStrategy.ts`](codigo/src/patterns/strategy/AsynchronousConcurrentDispatchStrategy.ts) | `npm run benchmark` (Speedup de 116.5x e 6.66ms) |
+| **RF01:** Iniciar e encerrar transmissões ao vivo multicanal | **UC01:** Transmitir ao Vivo · **DiagSeq02:** Abertura de Live | `ISubject` & `StreamChannel` (`goLive`, `endLive`) | [`StreamChannel.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/StreamChannel.ts) | `npm test` (Teste 2) · `npm run web` (Botão 1) |
+| **RF15:** Notificação em tempo real de seguidores e comunidades | **DiagAtiv03:** Disparo de Alertas a Inscritos | `IObserver` (`PushNotificationObserver`, `DiscordWebhookObserver`) | [`PushNotificationObserver.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/observers/PushNotificationObserver.ts) · [`DiscordWebhookObserver.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/observers/DiscordWebhookObserver.ts) | `npm run demo` (Etapa 3) · Push FCM e Discord |
+| **RF07:** Moderação automatizada de mensagens e toxicidade no chat | **UC04:** Moderar Canal · **DiagAtiv03:** Filtro de Chat | `AutoModObserver` & `TextEntropyAnalyzer` | [`AutoModObserver.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/observers/AutoModObserver.ts) · [`TextEntropyAnalyzer.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/engine/algorithms/TextEntropyAnalyzer.ts) | `npm test` (Teste 3) · Shannon Entropy real |
+| **RF08:** Detecção e contenção de conteúdo sensível (Nudez/Gore) | **DiagSeq05:** Pipeline Reativo de Inspeção de Frame | `SafetyVisionModerationObserver` | [`SafetyVisionModerationObserver.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/observers/SafetyVisionModerationObserver.ts) | `npm test` (Testes 4 e 5) · Imagem PPM real |
+| **RF12:** Fiscalização de Direitos Autorais e Diretrizes de DMCA | **DiagAtiv03:** Análise de Faixa de Áudio | `CopyrightDMCAAudioObserver` & `AudioAcousticFingerprinter` | [`CopyrightDMCAAudioObserver.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/observers/CopyrightDMCAAudioObserver.ts) · [`AudioAcousticFingerprinter.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/engine/algorithms/AudioAcousticFingerprinter.ts) | `npm test` (Teste 6) · Audio Mute e Strike |
+| **RF09:** Auditoria e Intervenção de Moderadores Humanos | **UC04:** Moderar Canal (ModView E02) | `HumanModeratorDashboardObserver` | [`HumanModeratorDashboardObserver.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/observers/HumanModeratorDashboardObserver.ts) | `npm run web` · `npm run interactive` (`mod`) |
+| **RNF02:** Desacoplamento arquitetural e extensibilidade (OCP) | **DiagClasses:** Arquitetura em Camadas | Interfaces canônicas `ISubject` e `IObserver` | [`interfaces.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/interfaces.ts) | Adição de 8 observadores sem alterar `StreamChannel` |
+| **RNF04:** Alta vazão e liberação de thread (Desempenho) | **ADR-003:** Observer Concorrente Twitch | GoF Strategy: `AsynchronousConcurrentDispatchStrategy` | [`AsynchronousConcurrentDispatchStrategy.ts`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/strategy/AsynchronousConcurrentDispatchStrategy.ts) | `npm run benchmark` (Speedup de 116.5x e 6.66ms) |
 | **Foco 2 (Autenticação):** Verificação de Sessão e Tokens | Modelagem de Sessão E02 | *GoF Comportamental a definir* | A preencher pelo integrante (**Hugo Freitas Silva**) | A preencher |
 | **Foco 3 (Chat):** Mensageria e Distribuição de Salas | Modelagem de Mensageria E02 | *GoF Comportamental a definir* | A preencher pelo integrante (**Philipe Amâncio Reis Caetano**) | A preencher |
 
@@ -212,11 +215,11 @@ A rastreabilidade bidirecional estabelece a coerência entre as necessidades de 
 | :--- | :--- | :--- | :--- |
 | `StreamChannel` | **ConcreteSubject** (GoF Observer) | Centraliza o ciclo de vida da live sem se acoplar às regras específicas de cada inteligência artificial de moderação | [ADR-003: Contexto e Decisão](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md#decisão) |
 | `attach()` / `detach()` | **Subject Operations** (Slide 53) | Permite plugar ou desplugar observadores em tempo de execução sem derrubar o canal de streaming | [1.1.3.1. Modelagem — Classes](1.1.3.1.ModelagemObserver.md) |
-| `getState()` | **Subject State Inspector** (Slide 53) | Fornece snapshot imutável do canal para clientes externos, ModView e Dashboard Web | [`interfaces.ts#L30`](codigo/src/patterns/observer/interfaces.ts) |
+| `getState()` | **Subject State Inspector** (Slide 53) | Fornece snapshot imutável do canal para clientes externos, ModView e Dashboard Web | [`interfaces.ts#L30`](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/patterns/observer/interfaces.ts) |
 | `INotificationDispatchStrategy` | **Strategy Interface** (GoF Strategy) | Isola o algoritmo de entrega de notificações, permitindo chavear entre laço síncrono e Worker Pool concorrente | [ADR-003: Estratégias Alternativas](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md#alternativas-consideradas) |
 | `AutoModObserver` | **ConcreteObserver** (Moderação) | Responde ao RF07 da E01 eliminando overhead de regex tradicional através da Entropia de Shannon | [1.1.3.2. Sequência — Pipeline](1.1.3.2.SequenciaObserver.md) |
 | `SafetyVisionModerationObserver` | **ConcreteObserver** (Moderação) | Implementa salvaguarda legal automática (Content Warning 18+) em conformidade com o Termo de Uso UGC da E01 | [1.1.3.1. Modelagem — Casos de Uso](1.1.3.1.ModelagemObserver.md#4-diagrama-de-casos-de-uso-da-plataforma-ugc) |
-| `HumanModeratorDashboardObserver` | **ConcreteObserver** (ModView) | Materializa a interface de auditoria do moderador prevista no UC04 da E02 | [Dashboard Web ModView](codigo/src/webServer.ts) |
+| `HumanModeratorDashboardObserver` | **ConcreteObserver** (ModView) | Materializa a interface de auditoria do moderador prevista no UC04 da E02 | [Dashboard Web ModView](https://github.com/EduLoboM/g6-streaming-entrega03-subgrupo03-codigo/blob/main/src/webServer.ts) |
 
 ## Senso Crítico
 
@@ -244,6 +247,7 @@ A rastreabilidade bidirecional estabelece a coerência entre as necessidades de 
 | 0.1 | 16/10/2026 | Eduardo Lôbo Moreira | Modelagem do GoF Observer (foco Moderação), diagrama de classes e sequência, ADR-003 e código do StreamChannel | A preencher | Commit inicial SubEquipe 03 |
 | 0.2 | 17/10/2026 | Eduardo Lôbo Moreira | Estruturação da divisão em 3 focos (Moderação, Autenticação e Chat) no padrão da SubEquipe 01, relato de IA e suíte de testes | A preencher | PR `docs/subequipe-03-modelagem-observer` |
 | 0.3 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do console interativo REPL (`npm run interactive`) | A preencher | Commit `6ec8a38` |
-| 0.4 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do Web ModView Dashboard (`npm run web`) e Matriz de Rastreabilidade Bidirecional Formal (E01 ➔ E02 ➔ E03) | A preencher | Branch `docs/subequipe-03-modelagem-observer` |
+| 0.4 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do Web ModView Dashboard (`npm run web`) e Matriz de Rastreabilidade Bidirecional Formal (E01 ➔ E02 ➔ E03) | A preencher | Commit `2af97fd` |
+| 0.5 | 19/10/2026 | Eduardo Lôbo Moreira | Separação do código e testes em repositório dedicado (`g6-streaming-entrega03-subgrupo03-codigo`), alinhado ao padrão da SubEquipe 01 | A preencher | Branch `docs/subequipe-03-modelagem-observer` |
 
 O quadro consolidado de participações está em [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
