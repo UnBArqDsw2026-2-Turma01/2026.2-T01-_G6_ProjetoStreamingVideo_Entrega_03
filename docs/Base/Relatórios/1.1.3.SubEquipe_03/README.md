@@ -44,7 +44,8 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
     ├── src/engine/algorithms/        algoritmos de Entropia, Visão Computacional, DMCA e dHash
     ├── src/__tests__/                13 testes unitários automatizados (Node Test Runner)
     ├── src/interactive.ts            console interativo REPL com comandos em tempo real (Iniciativa Extra)
-    ├── src/demo.ts                   demonstração interativa nos canais YouTube, Twitch e Kick
+    ├── src/webServer.ts              dashboard web de moderação em tempo real (Iniciativa Extra)
+    ├── src/demo.ts                   demonstração automatizada nos canais YouTube, Twitch e Kick
     └── src/benchmark.ts              teste de carga comparativo com 2.000 espectadores (Iniciativa Extra)
 ```
 
@@ -54,7 +55,7 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
 | **Modelagem UML — Classes** | ✅ Eduardo | 🟡 pendente | 🟡 pendente | [1.1.3.1](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.ModelagemObserver.md) |
 | **Modelagem UML — Sequência** | ✅ Eduardo | 🟡 pendente | 🟡 pendente | [1.1.3.2](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.SequenciaObserver.md) |
 | **Implementação e Testes** | ✅ integrado em 17/10/2026 | 🟡 pendente | 🟡 pendente | [`codigo/`](codigo/) · `npm test` |
-| **Execução documentada** | ✅ `npm run demo` / `benchmark` / `interactive` | 🟡 pendente | 🟡 pendente | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
+| **Execução documentada** | ✅ `demo` · `benchmark` · `interactive` · `web` | 🟡 pendente | 🟡 pendente | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
 | **Vídeo** | ⬜ roteiro pronto | ⬜ a preencher | ⬜ a preencher | [1.1.3.5](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md) |
 | **IA Generativa** | 🟡 Eduardo preenchido | 🟡 a preencher | 🟡 a preencher | [1.1.3.6](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md) |
 
@@ -160,9 +161,10 @@ Concluído e integrado em [`docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo/`](c
 ```bash
 cd docs/Base/Relatórios/1.1.3.SubEquipe_03/codigo
 npm install
-npm run interactive  # console interativo REPL com comandos em tempo real (Iniciativa Extra)
-npm run demo         # demonstração automatizada do GoF Observer e moderação reativa
-npm run benchmark    # teste de carga comparativo com 2.000 espectadores (Iniciativa Extra)
+npm run web          # Dashboard Web em Tempo Real (http://localhost:3333) - Iniciativa Extra
+npm run interactive  # Console interativo REPL com comandos em tempo real - Iniciativa Extra
+npm run demo         # Demonstração automatizada do GoF Observer e moderação reativa
+npm run benchmark    # Teste de carga comparativo com 2.000 espectadores - Iniciativa Extra
 npm test             # 13 testes unitários automatizados nativos
 ```
 
@@ -183,20 +185,38 @@ O roteiro detalhado do vídeo encontra-se em [1.1.3.5. Vídeo](/Base/Relatórios
 
 ---
 
-## Rastreabilidade & Elos com Outros Artefatos
+## Rastreabilidade Bidirecional Formal & Elos Arquiteturais (E01 ➔ E02 ➔ E03)
 
-| Problema ou Requisito | Foco / Origem (E02) | Elemento do Modelo UML | Trecho de Código no Repositório | Evidência de Execução |
+A rastreabilidade bidirecional estabelece a coerência entre as necessidades de negócio elicitadas (**Entrega 01**), os modelos estáticos/dinâmicos em notação UML (**Entrega 02**) e os Padrões de Projeto GoF implementados (**Entrega 03**), garantindo conformidade com a rubrica metodológica da disciplina de Desenho de Software.
+
+### 1. Rastreabilidade *Forward* (Dos Requisitos E01 e Modelos E02 para os Padrões GoF E03)
+
+| Requisito de Origem (E01) | Modelo de Referência (E02) | Elemento GoF / Participante (E03) | Implementação no Repositório | Comprobatório de Execução e Testes |
 | :--- | :--- | :--- | :--- | :--- |
-| Notificação de seguidores ao abrir live | Moderação (Sessão de Live E02) | `ISubject` e `StreamChannel.goLive()` | [`StreamChannel.ts#L93`](codigo/src/patterns/observer/StreamChannel.ts) | `npm run demo` (Etapa 3) · `npm run interactive` |
-| Bloqueio da interface do streamer | Requisito Não-Funcional de Desempenho | `AsynchronousConcurrentDispatchStrategy` | [`AsynchronousConcurrentDispatchStrategy.ts`](codigo/src/patterns/strategy/AsynchronousConcurrentDispatchStrategy.ts) | `npm run benchmark` (Ganho de 116.5x) |
-| Filtragem de toxicidade no chat | Moderação de Conteúdo | `AutoModObserver` & `TextEntropyAnalyzer` | [`AutoModObserver.ts`](codigo/src/patterns/observer/observers/AutoModObserver.ts) | `npm test` (Teste 3) · `npm run interactive` |
-| Detecção de nudez e gore em vídeo | Moderação / Conformidade Legal | `SafetyVisionModerationObserver` | [`SafetyVisionModerationObserver.ts`](codigo/src/patterns/observer/observers/SafetyVisionModerationObserver.ts) | `npm run demo` (Etapa 6 - PPM real) |
-| Violação de direitos autorais | Diretrizes de DMCA | `CopyrightDMCAAudioObserver` | [`CopyrightDMCAAudioObserver.ts`](codigo/src/patterns/observer/observers/CopyrightDMCAAudioObserver.ts) | `npm run demo` (Etapa 5 - Audio Mute) |
-| Intervenção de moderadores | Caso de Uso "Moderar Canal" E02 | `HumanModeratorDashboardObserver` | [`HumanModeratorDashboardObserver.ts`](codigo/src/patterns/observer/observers/HumanModeratorDashboardObserver.ts) | `npm run demo` (Etapa 7 - ModView) |
-| Autenticação e Sessão | Foco 2: Autenticação | A preencher (Hugo) | A preencher (Hugo) | A preencher |
-| Chat em Tempo Real | Foco 3: Chat | A preencher (Philipe) | A preencher (Philipe) | A preencher |
+| **RF01:** Iniciar e encerrar transmissões ao vivo multicanal | **UC01:** Transmitir ao Vivo · **DiagSeq02:** Abertura de Live | `ISubject` & `StreamChannel` (`goLive`, `endLive`) | [`StreamChannel.ts#L90-L130`](codigo/src/patterns/observer/StreamChannel.ts) | `npm test` (Teste 2) · `npm run web` (Botão 1) |
+| **RF15:** Notificação em tempo real de seguidores e comunidades | **DiagAtiv03:** Disparo de Alertas a Inscritos | `IObserver` (`PushNotificationObserver`, `DiscordWebhookObserver`) | [`PushNotificationObserver.ts`](codigo/src/patterns/observer/observers/PushNotificationObserver.ts) · [`DiscordWebhookObserver.ts`](codigo/src/patterns/observer/observers/DiscordWebhookObserver.ts) | `npm run demo` (Etapa 3) · Push FCM e Discord |
+| **RF07:** Moderação automatizada de mensagens e toxicidade no chat | **UC04:** Moderar Canal · **DiagAtiv03:** Filtro de Chat | `AutoModObserver` & `TextEntropyAnalyzer` | [`AutoModObserver.ts`](codigo/src/patterns/observer/observers/AutoModObserver.ts) · [`TextEntropyAnalyzer.ts`](codigo/src/engine/algorithms/TextEntropyAnalyzer.ts) | `npm test` (Teste 3) · Shannon Entropy real |
+| **RF08:** Detecção e contenção de conteúdo sensível (Nudez/Gore) | **DiagSeq05:** Pipeline Reativo de Inspeção de Frame | `SafetyVisionModerationObserver` | [`SafetyVisionModerationObserver.ts`](codigo/src/patterns/observer/observers/SafetyVisionModerationObserver.ts) | `npm test` (Testes 4 e 5) · Imagem PPM real |
+| **RF12:** Fiscalização de Direitos Autorais e Diretrizes de DMCA | **DiagAtiv03:** Análise de Faixa de Áudio | `CopyrightDMCAAudioObserver` & `AudioAcousticFingerprinter` | [`CopyrightDMCAAudioObserver.ts`](codigo/src/patterns/observer/observers/CopyrightDMCAAudioObserver.ts) · [`AudioAcousticFingerprinter.ts`](codigo/src/engine/algorithms/AudioAcousticFingerprinter.ts) | `npm test` (Teste 6) · Audio Mute e Strike |
+| **RF09:** Auditoria e Intervenção de Moderadores Humanos | **UC04:** Moderar Canal (ModView E02) | `HumanModeratorDashboardObserver` | [`HumanModeratorDashboardObserver.ts`](codigo/src/patterns/observer/observers/HumanModeratorDashboardObserver.ts) | `npm run web` · `npm run interactive` (`mod`) |
+| **RNF02:** Desacoplamento arquitetural e extensibilidade (OCP) | **DiagClasses:** Arquitetura em Camadas | Interfaces canônicas `ISubject` e `IObserver` | [`interfaces.ts`](codigo/src/patterns/observer/interfaces.ts) | Adição de 8 observadores sem alterar `StreamChannel` |
+| **RNF04:** Alta vazão e liberação de thread (Desempenho) | **ADR-003:** Observer Concorrente Twitch | GoF Strategy: `AsynchronousConcurrentDispatchStrategy` | [`AsynchronousConcurrentDispatchStrategy.ts`](codigo/src/patterns/strategy/AsynchronousConcurrentDispatchStrategy.ts) | `npm run benchmark` (Speedup de 116.5x e 6.66ms) |
+| **Foco 2 (Autenticação):** Verificação de Sessão e Tokens | Modelagem de Sessão E02 | *GoF Comportamental a definir* | A preencher pelo integrante (**Hugo Freitas Silva**) | A preencher |
+| **Foco 3 (Chat):** Mensageria e Distribuição de Salas | Modelagem de Mensageria E02 | *GoF Comportamental a definir* | A preencher pelo integrante (**Philipe Amâncio Reis Caetano**) | A preencher |
 
 ---
+
+### 2. Rastreabilidade *Backward* (Do Código e Padrões GoF E03 para as Decisões de Arquitetura E02/E01)
+
+| Elemento do Código GoF (E03) | Padrão e Papel Canônico | Justificativa Arquitetural no Projeto (E02/E01) | Decisão Formal Registrada |
+| :--- | :--- | :--- | :--- |
+| `StreamChannel` | **ConcreteSubject** (GoF Observer) | Centraliza o ciclo de vida da live sem se acoplar às regras específicas de cada inteligência artificial de moderação | [ADR-003: Contexto e Decisão](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md#decisão) |
+| `attach()` / `detach()` | **Subject Operations** (Slide 53) | Permite plugar ou desplugar observadores em tempo de execução sem derrubar o canal de streaming | [1.1.3.1. Modelagem — Classes](1.1.3.1.ModelagemObserver.md) |
+| `getState()` | **Subject State Inspector** (Slide 53) | Fornece snapshot imutável do canal para clientes externos, ModView e Dashboard Web | [`interfaces.ts#L30`](codigo/src/patterns/observer/interfaces.ts) |
+| `INotificationDispatchStrategy` | **Strategy Interface** (GoF Strategy) | Isola o algoritmo de entrega de notificações, permitindo chavear entre laço síncrono e Worker Pool concorrente | [ADR-003: Estratégias Alternativas](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md#alternativas-consideradas) |
+| `AutoModObserver` | **ConcreteObserver** (Moderação) | Responde ao RF07 da E01 eliminando overhead de regex tradicional através da Entropia de Shannon | [1.1.3.2. Sequência — Pipeline](1.1.3.2.SequenciaObserver.md) |
+| `SafetyVisionModerationObserver` | **ConcreteObserver** (Moderação) | Implementa salvaguarda legal automática (Content Warning 18+) em conformidade com o Termo de Uso UGC da E01 | [1.1.3.1. Modelagem — Casos de Uso](1.1.3.1.ModelagemObserver.md#4-diagrama-de-casos-de-uso-da-plataforma-ugc) |
+| `HumanModeratorDashboardObserver` | **ConcreteObserver** (ModView) | Materializa a interface de auditoria do moderador prevista no UC04 da E02 | [Dashboard Web ModView](codigo/src/webServer.ts) |
 
 ## Senso Crítico
 
@@ -223,6 +243,7 @@ O roteiro detalhado do vídeo encontra-se em [1.1.3.5. Vídeo](/Base/Relatórios
 | :---: | :---: | :--- | :--- | :--- | :---: |
 | 0.1 | 16/10/2026 | Eduardo Lôbo Moreira | Modelagem do GoF Observer (foco Moderação), diagrama de classes e sequência, ADR-003 e código do StreamChannel | A preencher | Commit inicial SubEquipe 03 |
 | 0.2 | 17/10/2026 | Eduardo Lôbo Moreira | Estruturação da divisão em 3 focos (Moderação, Autenticação e Chat) no padrão da SubEquipe 01, relato de IA e suíte de testes | A preencher | PR `docs/subequipe-03-modelagem-observer` |
-| 0.3 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do console interativo REPL (`npm run interactive`) e integração contínua (CI) | A preencher | PR `docs/subequipe-03-modelagem-observer` |
+| 0.3 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do console interativo REPL (`npm run interactive`) | A preencher | Commit `6ec8a38` |
+| 0.4 | 18/10/2026 | Eduardo Lôbo Moreira | Implementação do Web ModView Dashboard (`npm run web`) e Matriz de Rastreabilidade Bidirecional Formal (E01 ➔ E02 ➔ E03) | A preencher | Branch `docs/subequipe-03-modelagem-observer` |
 
 O quadro consolidado de participações está em [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
