@@ -65,6 +65,8 @@ Cada tema tem página própria, para não duplicar conteúdo neste relatório:
 
 ## Metodologia
 
+Como contexto de planejamento inicial, a [ata da Reunião Geral 1](/Projeto/Atas/ata-G01-2026-10-05.md) registra sugestões de Builder para configurações de transmissão e Factory Method para tipos de usuário. As escolhas e o processo efetivamente adotados pela subequipe estão descritos nos artefatos desta seção.
+
 **A preencher.** Descrever como a subequipe trabalhou: divisão de atividades, reuniões, estudos, ferramentas, debates e revisões. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
 
 ## GoF Criacional
