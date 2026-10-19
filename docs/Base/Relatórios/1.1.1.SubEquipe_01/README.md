@@ -65,7 +65,7 @@ Cada tema tem página própria, para não duplicar conteúdo neste relatório:
 
 ## Metodologia
 
-**A preencher.** Descrever como a subequipe trabalhou: divisão de atividades, reuniões, estudos, ferramentas, debates e revisões. Relacionar atas e gravações, quando houver, aos [registros de reuniões](/Projeto/Atas/README.md).
+**Registro disponível:** a Reunião 1 da SubEquipe_01 está listada em [Atas e reuniões](/Projeto/Atas/README.md), com [gravação no YouTube](https://youtu.be/zOxpWro9Y3I); não há ata, e a data e os participantes não foram informados. A descrição da divisão de atividades, dos estudos, das ferramentas, dos debates e das revisões ainda precisa ser completada.
 
 ## GoF Criacional
 
