@@ -261,6 +261,8 @@ npm run benchmark    # Teste de carga comparativo com 2.000 espectadores - Inici
 npm test             # 13 testes unitários automatizados nativos
 ```
 
+O vídeo da demonstração (2 min 13 s) está disponível no [YouTube](https://youtu.be/n7c_hAg4tUg) e em [1.1.3.5. Vídeo](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md?id=_1-vídeo-do-observer-moderação-reativa-e-transmissão).
+
 #### Foco 2: Autenticação — Chain of Responsibility (Hugo Freitas Silva)
 
 ```bash
