@@ -1,0 +1,86 @@
+@startuml chain-of-responsibility-sequencia-v1
+!pragma teoz true
+title Chain of Responsibility — login de uma criadora com segundo fator
+autonumber
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+
+actor "Criadora" as User
+participant "LoginService\n«Client»" as Client
+participant "RateLimitHandler" as RL
+participant "ClientIntegrityHandler" as CI
+participant "PasswordHandler" as PW
+participant "AccountStatusHandler" as AS
+participant "LeakedPasswordHandler" as LP
+participant "TwoFactorHandler" as TF
+participant "SessionIssuerHandler" as SI
+participant "AuditLogger" as Audit
+
+User -> Client : login(email, senha, totp, atestação)
+activate Client
+Client -> Client : new AuthenticationContext(request, now)
+Client -> RL : handle(context)
+activate RL
+break e-mail ou IP com 5 falhas na janela
+  RL --> Client : REJECTED(RATE_LIMITED)
+end
+RL -> CI : super.handle(context)
+activate CI
+break atestação ausente, expirada, webdriver ou prova inválida
+  CI --> RL : REJECTED(CLIENT_INTEGRITY_FAILED)
+end
+CI -> PW : super.handle(context)
+activate PW
+PW -> PW : findByEmail + verifyPassword\n(credencial fictícia se não houver conta)
+break conta inexistente ou senha errada
+  PW --> CI : REJECTED(INVALID_CREDENTIALS)
+end
+PW -> AS : super.handle(context) [context.account]
+activate AS
+break SUSPENDED, DEACTIVATED ou PENDING_VERIFICATION
+  AS --> PW : REJECTED(motivo do estado)
+end
+AS -> LP : super.handle(context)
+activate LP
+opt senha no filtro de Bloom
+  LP -> LP : flags += PASSWORD_CHANGE_REQUIRED
+end
+LP -> TF : super.handle(context)
+activate TF
+alt criador sem segundo fator cadastrado
+  TF --> LP : REJECTED(MFA_ENROLLMENT_REQUIRED)
+else sem código no pedido
+  TF --> LP : CHALLENGE(TOTP_REQUIRED)
+else código inválido ou reutilizado
+  TF --> LP : REJECTED(INVALID_TOTP)
+else código válido
+  TF -> SI : super.handle(context)
+  activate SI
+  SI -> SI : new Session + token HS256
+  SI --> TF : AUTHENTICATED(sessão, token, marcas)
+  deactivate SI
+  TF --> LP : resultado
+end
+deactivate TF
+LP --> AS : resultado
+deactivate LP
+AS --> PW : resultado
+deactivate AS
+PW --> CI : resultado
+deactivate PW
+CI --> RL : resultado
+deactivate CI
+RL -> RL : falha de credencial → recordFailure\nsucesso → reset(e-mail)
+RL --> Client : resultado
+deactivate RL
+Client -> Audit : log(LOGIN_SUCCESS | LOGIN_FAILURE)
+Client --> User : resultado
+deactivate Client
+
+note over CI, SI
+  Cada elo só conhece o próximo. Um elo recusa (break) ou responde com desafio,
+  e a cadeia para ali; a resposta volta pelos elos anteriores sem ser alterada,
+  exceto pelo RateLimitHandler, que a lê na volta para contar falhas.
+end note
+@enduml

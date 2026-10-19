@@ -1,0 +1,128 @@
+@startuml chain-of-responsibility-classes-v1
+!pragma layout smetana
+title Chain of Responsibility aplicado à autenticação — diagrama de classes
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor<<Handler>> #FFE6CC
+  BackgroundColor<<ConcreteHandler>> #FFE6CC
+  BackgroundColor<<Client>> #E1D5E7
+  BackgroundColor<<Request>> #DAE8FC
+  BackgroundColor<<Montagem>> #D5E8D4
+  BackgroundColor<<Entrega 02>> #F5F5F5
+}
+hide empty members
+
+interface AuthenticationHandler <<Handler>> {
+  + {readonly} name: string
+  + {readonly} next: AuthenticationHandler [0..1]
+  + setNext(next: AuthenticationHandler): AuthenticationHandler
+  + handle(context: AuthenticationContext): AuthenticationOutcome
+}
+
+abstract class AbstractAuthenticationHandler <<Handler>> {
+  - next: AuthenticationHandler [0..1]
+  + setNext(next: AuthenticationHandler): AuthenticationHandler
+  + handle(context: AuthenticationContext): AuthenticationOutcome
+}
+
+note right of AbstractAuthenticationHandler
+  handle(): registra o elo na trilha e
+  repassa ao sucessor; sem sucessor,
+  recusa com UNHANDLED (falha fechada)
+end note
+
+class RateLimitHandler <<ConcreteHandler>> {
+  + handle(context): AuthenticationOutcome
+}
+class ClientIntegrityHandler <<ConcreteHandler>> {
+  + handle(context): AuthenticationOutcome
+}
+class PasswordHandler <<ConcreteHandler>> {
+  - dummy: Credential
+  + handle(context): AuthenticationOutcome
+}
+class AccountStatusHandler <<ConcreteHandler>> {
+  + handle(context): AuthenticationOutcome
+}
+class LeakedPasswordHandler <<ConcreteHandler>> {
+  + handle(context): AuthenticationOutcome
+}
+class TwoFactorHandler <<ConcreteHandler>> {
+  - alwaysRequire: boolean
+  + handle(context): AuthenticationOutcome
+}
+class SessionIssuerHandler <<ConcreteHandler>> {
+  - ttlMs: number
+  + handle(context): AuthenticationOutcome
+}
+class StepUpGrantHandler <<ConcreteHandler>> {
+  + handle(context): AuthenticationOutcome
+}
+
+class LoginService <<Client>> {
+  + login(request: AuthenticationRequest): AuthenticationOutcome
+  + confirmStepUp(request: AuthenticationRequest): AuthenticationOutcome
+}
+
+class AuthenticationChains <<Montagem>> {
+  + {static} buildLoginChain(deps): AuthenticationHandler
+  + {static} buildStepUpChain(deps): AuthenticationHandler
+}
+
+class AuthenticationContext <<Request>> {
+  + {readonly} request: AuthenticationRequest
+  + {readonly} now: Date
+  + account: Account [0..1]
+  + {readonly} flags: Set<AuthenticationFlag>
+  + {readonly} trail: string[*]
+  + markPassed(handlerName: string): void
+  + reject(by: string, reason: RejectionReason, detail: string): Rejected
+}
+
+class "AuthenticationOutcome" as AuthenticationOutcome <<Request>> {
+  AUTHENTICATED | CHALLENGE |
+  STEP_UP_GRANTED | REJECTED
+}
+
+class LoginRateLimiter <<Entrega 02>>
+class ClientIntegrityAttestation <<Entrega 02>>
+class Account <<Entrega 02>>
+class Credential <<Entrega 02>>
+class LeakedPasswordBloomFilter <<Entrega 02>>
+class TwoFactorAuth <<Entrega 02>>
+class Session <<Entrega 02>>
+class StepUpAuthChallenge <<Entrega 02>>
+class AuditLogger <<Entrega 02>>
+
+AuthenticationHandler <|.. AbstractAuthenticationHandler
+AbstractAuthenticationHandler o--> "0..1 next" AuthenticationHandler : sucessor
+
+AbstractAuthenticationHandler <|-- RateLimitHandler
+AbstractAuthenticationHandler <|-- ClientIntegrityHandler
+AbstractAuthenticationHandler <|-- PasswordHandler
+AbstractAuthenticationHandler <|-- AccountStatusHandler
+AbstractAuthenticationHandler <|-- LeakedPasswordHandler
+AbstractAuthenticationHandler <|-- TwoFactorHandler
+AbstractAuthenticationHandler <|-- SessionIssuerHandler
+AbstractAuthenticationHandler <|-- StepUpGrantHandler
+
+LoginService --> "2" AuthenticationHandler : primeiro elo\n(login, step-up)
+LoginService --> AuditLogger
+AuthenticationChains ..> AbstractAuthenticationHandler : instancia e encadeia
+AuthenticationHandler ..> AuthenticationContext
+AuthenticationHandler ..> AuthenticationOutcome
+
+RateLimitHandler --> LoginRateLimiter
+ClientIntegrityHandler ..> ClientIntegrityAttestation
+PasswordHandler ..> Account
+PasswordHandler --> Credential
+Account *-- Credential
+Account *-- "0..1" TwoFactorAuth
+LeakedPasswordHandler --> LeakedPasswordBloomFilter
+TwoFactorHandler ..> TwoFactorAuth
+SessionIssuerHandler ..> Session : cria
+StepUpGrantHandler ..> StepUpAuthChallenge : conclui
+@enduml
