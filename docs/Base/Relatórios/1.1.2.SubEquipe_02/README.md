@@ -2,7 +2,7 @@
 
 > **Estado**: 🟢 Concluída: modelagem, código das três frentes integrado na `main`, front-end, vídeos de todas as frentes e vídeo geral.
 > **Prazo interno**: 18/10/2026 · **Prazo oficial**: 19/10/2026.
-> **Planejamento**: [Organização da Entrega 3](/Projeto/Atas/Atas_Sg2/organizacao-entrega-03.md).
+> **Planejamento**: [Organização da Entrega 3](../../../Projeto/Atas/Atas_Sg2/organizacao-entrega-03.md).
 > **Código**: [2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/main).
 
 Este relatório reúne a aplicação de padrões de projeto GoF estruturais pela SubEquipe_02. Em vez de um padrão isolado, a subequipe codifica **uma história de uso da plataforma** — da recarga de moeda virtual ao repasse ao criador — e aplica cada padrão no ponto da história em que surge um problema concreto de projeto. A história completa roda em uma página web integrada, mostrada no [vídeo geral](https://youtu.be/f_0iYes1srw) (ver a seção "Vídeos").
@@ -20,18 +20,18 @@ Este relatório reúne a aplicação de padrões de projeto GoF estruturais pela
 
 **GoFs Estruturais + IA Generativa.** A entrega mínima deste foco inclui um padrão estrutural, modelo UML, código e vídeo demonstrando sua execução, além dos pontos de vista individuais.
 
-A SubEquipe_02 aplica **quatro padrões estruturais** — Adapter, Proxy, Decorator e Facade — e, como extra, um **padrão comportamental**, o Mediator, distribuídos em três frentes que compõem uma única história executável. O detalhe por frente está em [F1](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.F1.Recarga.md), [F2](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.F2.DoacaoRepasse.md) e [F3](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.3.F3.MensagemDestacada.md).
+A SubEquipe_02 aplica **quatro padrões estruturais** — Adapter, Proxy, Decorator e Facade — e, como extra, um **padrão comportamental**, o Mediator, distribuídos em três frentes que compõem uma única história executável. O detalhe por frente está em [F1](./1.1.2.1.F1.Recarga.md), [F2](./1.1.2.2.F2.DoacaoRepasse.md) e [F3](./1.1.2.3.F3.MensagemDestacada.md).
 
 ## Participantes no foco — lições aprendidas e IA Generativa
 
-Os relatos individuais — lições aprendidas, uso crítico da IA, um acerto e um erro concretos, com comprobatórios — estão em [1.1.2.4. IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md), que também traz o relato coletivo do uso de IA no planejamento.
+Os relatos individuais — lições aprendidas, uso crítico da IA, um acerto e um erro concretos, com comprobatórios — estão em [1.1.2.4. IA Generativa](./1.1.2.4.IAGenerativa.md), que também traz o relato coletivo do uso de IA no planejamento.
 
 | Integrante | Frente | Relato individual |
 | --- | --- | --- |
-| Davi Severiano Freitas | F1 | [Ver relato](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md) |
-| Daniel de Oliveira Lira | F2 | [Ver relato](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md) |
-| Mateus Rodrigues Barreto | F3 | [Ver relato](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md) |
-| Pedro Henrique Freire Rodrigues | F2 | [Ver relato](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md) |
+| Davi Severiano Freitas | F1 | [Ver relato](./1.1.2.4.IAGenerativa.md) |
+| Daniel de Oliveira Lira | F2 | [Ver relato](./1.1.2.4.IAGenerativa.md) |
+| Mateus Rodrigues Barreto | F3 | [Ver relato](./1.1.2.4.IAGenerativa.md) |
+| Pedro Henrique Freire Rodrigues | F2 | [Ver relato](./1.1.2.4.IAGenerativa.md) |
 
 ## Metodologia
 
@@ -41,19 +41,19 @@ Os relatos individuais — lições aprendidas, uso crítico da IA, um acerto e 
 
 | Reunião | Data | Resultado | Registro |
 | --- | --- | --- | --- |
-| S2_01 | 06/10/2026 | Linguagem (TypeScript), manutenção da divisão por módulos, prazo interno e regras de anonimização | [Ata S2_01](/Projeto/Atas/Atas_Sg2/ata-S2-01-2026-10-06.md) |
-| S2_02 | 10/10/2026 | História da demonstração, padrões adotados, padrões descartados e divisão em três frentes | [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) |
-| S2_03 | 13/10/2026 | Acompanhamento das entregas, esclarecimento sobre diagramas UML e ajuste de prazos | [Ata S2_03](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md) |
-| S2_04 | 16/10/2026 | Apresentação do código, definição da Facade com Mediator na F2 e preparação da integração | [Ata S2_04](/Projeto/Atas/Atas_Sg2/ata-S2-04-2026-10-16.md) |
-| S2_05 | 18/10/2026 | Demonstração do front-end integrado, alinhamento dos diagramas ao código, padrão de documentação e organização dos vídeos | [Ata S2_05](/Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md) |
+| S2_01 | 06/10/2026 | Linguagem (TypeScript), manutenção da divisão por módulos, prazo interno e regras de anonimização | [Ata S2_01](../../../Projeto/Atas/Atas_Sg2/ata-S2-01-2026-10-06.md) |
+| S2_02 | 10/10/2026 | História da demonstração, padrões adotados, padrões descartados e divisão em três frentes | [Ata S2_02](../../../Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) |
+| S2_03 | 13/10/2026 | Acompanhamento das entregas, esclarecimento sobre diagramas UML e ajuste de prazos | [Ata S2_03](../../../Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md) |
+| S2_04 | 16/10/2026 | Apresentação do código, definição da Facade com Mediator na F2 e preparação da integração | [Ata S2_04](../../../Projeto/Atas/Atas_Sg2/ata-S2-04-2026-10-16.md) |
+| S2_05 | 18/10/2026 | Demonstração do front-end integrado, alinhamento dos diagramas ao código, padrão de documentação e organização dos vídeos | [Ata S2_05](../../../Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md) |
 
-**Estudo.** Cada integrante estudou os padrões da própria frente, com o livro do GoF, os slides e vídeos da disciplina e material complementar. A discussão em reunião comparou os sete padrões estruturais do GoF quanto à aplicabilidade na história (ver [Ata S2_02, §4](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md)).
+**Estudo.** Cada integrante estudou os padrões da própria frente, com o livro do GoF, os slides e vídeos da disciplina e material complementar. A discussão em reunião comparou os sete padrões estruturais do GoF quanto à aplicabilidade na história (ver [Ata S2_02, §4](../../../Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md)).
 
 **Uso de IA Generativa no planejamento.** Um documento de apoio elaborado com auxílio de IA serviu de ponto de partida, mas foi tratado como sugestão e submetido à análise crítica da subequipe. Inconsistências geradas pela IA foram identificadas e removidas, e o resultado final da discussão divergiu da proposta original.
 
 **Ferramentas.** TypeScript e Node.js (implementação e página web), Jest (testes), PlantUML e Miro (modelagem), Mercado Pago e Stripe em modo de teste (pagamentos reais na F1), GitHub (versionamento e revisão por pull request).
 
-**Revisão.** Os artefatos foram revisados entre as frentes antes da consolidação: os diagramas da F1, por exemplo, foram revisados por um integrante da F2 ([página da F1, §2](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.1.F1.Recarga.md)), e os pull requests de cada frente foram integrados por integrantes de outra frente.
+**Revisão.** Os artefatos foram revisados entre as frentes antes da consolidação: os diagramas da F1, por exemplo, foram revisados por um integrante da F2 ([página da F1, §2](./1.1.2.1.F1.Recarga.md)), e os pull requests de cada frente foram integrados por integrantes de outra frente.
 
 ## GoF Estrutural
 
@@ -91,7 +91,7 @@ A doação aciona dois efeitos paralelos: o repasse ao criador e a exibição da
 | **Adapter** | Estrutural | F1 | Permite tratar processadores de pagamento com interfaces incompatíveis (Mercado Pago, Stripe e simulado) por uma única interface, deixar o espectador escolher o meio e oferecer alternativas quando um deles está indisponível (O07) |
 | **Proxy** | Estrutural | F1 | Fica diante do serviço de confirmação e barra avisos de pagamento com assinatura inválida ou já creditados (O14, O11) |
 | **Facade** | Estrutural | F2 | Oferece `doar` e `doarComMensagem` ao controller, escondendo a coordenação interna da doação |
-| **Mediator** | Comportamental (extra) | F2 | Centraliza a orquestração entre `ServicoFinanceiro` e `NotificadorChat`, evitando que esses colaboradores se conheçam ([Ata S2_04, D01](/Projeto/Atas/Atas_Sg2/ata-S2-04-2026-10-16.md)) |
+| **Mediator** | Comportamental (extra) | F2 | Centraliza a orquestração entre `ServicoFinanceiro` e `NotificadorChat`, evitando que esses colaboradores se conheçam ([Ata S2_04, D01](../../../Projeto/Atas/Atas_Sg2/ata-S2-04-2026-10-16.md)) |
 
 **Alternativas consideradas e descartadas**
 
@@ -100,7 +100,7 @@ A doação aciona dois efeitos paralelos: o repasse ao criador e a exibição da
 | Flyweight | Caso teórico no compartilhamento de emotes do chat, sem necessidade real na história e com custo alto para o prazo |
 | Bridge | Sem caso de uso consensual na história |
 | Composite | Baixa utilidade para a história |
-| **Proxy na F2 (repasse)** | Planejado na [Ata S2_02](/Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) para evitar repasse duplicado; descartado após orientação da professora, porque a forma planejada usava a interface do objeto protegido sem implementá-la. A F2 adotou a Facade com o Mediator e a transferência atômica no `ServicoFinanceiro`; o Proxy permanece apenas na confirmação da F1 |
+| **Proxy na F2 (repasse)** | Planejado na [Ata S2_02](../../../Projeto/Atas/Atas_Sg2/ata-S2-02-2026-10-10.md) para evitar repasse duplicado; descartado após orientação da professora, porque a forma planejada usava a interface do objeto protegido sem implementá-la. A F2 adotou a Facade com o Mediator e a transferência atômica no `ServicoFinanceiro`; o Proxy permanece apenas na confirmação da F1 |
 
 **Limites de aplicação.**
 
@@ -110,21 +110,21 @@ A doação aciona dois efeitos paralelos: o repasse ao criador e a exibição da
 
 ### Modelagem (notação UML)
 
-O diagrama integrado dá a visão do projeto inteiro; o detalhe de cada padrão está nos diagramas de cada frente ([Ata S2_05, D03](/Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md)).
+O diagrama integrado dá a visão do projeto inteiro; o detalhe de cada padrão está nos diagramas de cada frente ([Ata S2_05, D03](../../../Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md)).
 
-[![Diagrama de classes — visão geral integrada](assets/visao-geral-integrada.svg)](assets/visao-geral-integrada.svg ':ignore')
+[![Diagrama de classes — visão geral integrada](assets/visao-geral-integrada.svg)](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.svg ':ignore')
 
-*Figura 1 — Visão geral integrada: domínio, recarga, doação e chat (clique para ampliar). Arquivo-fonte: [`assets/visao-geral-integrada.puml`](assets/visao-geral-integrada.puml ':ignore').*
+*Figura 1 — Visão geral integrada: domínio, recarga, doação e chat (clique para ampliar). Arquivo-fonte: [`assets/visao-geral-integrada.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.puml ':ignore').*
 
 | Frente | Diagrama | Imagem | Arquivo-fonte |
 | --- | --- | --- | --- |
-| 🟩 F1 | Visão geral (Decorator, Adapter e Proxy) | [SVG](assets/f1-visao-geral.svg ':ignore') | [`f1-visao-geral.puml`](assets/f1-visao-geral.puml ':ignore') |
-| 🟩 F1 | Decorator — preço do pacote | [SVG](assets/f1-decorator.svg ':ignore') | [`f1-decorator.puml`](assets/f1-decorator.puml ':ignore') |
-| 🟩 F1 | Adapter — processadores de pagamento | [SVG](assets/f1-adapter.svg ':ignore') | [`f1-adapter.puml`](assets/f1-adapter.puml ':ignore') |
-| 🟩 F1 | Proxy — confirmação do pagamento | [SVG](assets/f1-proxy.svg ':ignore') | [`f1-proxy.puml`](assets/f1-proxy.puml ':ignore') |
-| 🟧 F2 | Facade e Mediator — doação e repasse | [SVG](assets/doacao-visao-geral.svg ':ignore') | [`doacao-visao-geral.puml`](assets/doacao-visao-geral.puml ':ignore') |
-| 🟦 F3 | Decorator — mensagem destacada | [SVG](assets/f3-decorator.svg ':ignore') | [`f3-decorator.puml`](assets/f3-decorator.puml ':ignore') |
-| Integrado | Domínio, recarga, doação e chat | [SVG](assets/visao-geral-integrada.svg ':ignore') | [`visao-geral-integrada.puml`](assets/visao-geral-integrada.puml ':ignore') |
+| 🟩 F1 | Visão geral (Decorator, Adapter e Proxy) | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-visao-geral.svg ':ignore') | [`f1-visao-geral.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-visao-geral.puml ':ignore') |
+| 🟩 F1 | Decorator — preço do pacote | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-decorator.svg ':ignore') | [`f1-decorator.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-decorator.puml ':ignore') |
+| 🟩 F1 | Adapter — processadores de pagamento | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-adapter.svg ':ignore') | [`f1-adapter.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-adapter.puml ':ignore') |
+| 🟩 F1 | Proxy — confirmação do pagamento | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-proxy.svg ':ignore') | [`f1-proxy.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-proxy.puml ':ignore') |
+| 🟧 F2 | Facade e Mediator — doação e repasse | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/doacao-visao-geral.svg ':ignore') | [`doacao-visao-geral.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/doacao-visao-geral.puml ':ignore') |
+| 🟦 F3 | Decorator — mensagem destacada | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f3-decorator.svg ':ignore') | [`f3-decorator.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f3-decorator.puml ':ignore') |
+| Integrado | Domínio, recarga, doação e chat | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.svg ':ignore') | [`visao-geral-integrada.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.puml ':ignore') |
 
 **Correspondência resumida (papel GoF → classe).**
 
@@ -185,7 +185,7 @@ npm run demo:f3          # F3 · Decorator do chat
 | 5 | F2 · Facade e Mediator | 🟧 F2 | Conceito dos padrões, diagrama, código e execução (doação e repasse) | Daniel de Oliveira Lira e Pedro Henrique Freire Rodrigues | [Assistir](https://youtu.be/DNuCZrmBd_c) |
 | 6 | F3 · Decorator | 🟦 F3 | Conceito do padrão, diagrama, código e execução (mensagem destacada) | Mateus Rodrigues Barreto | [Assistir](https://youtu.be/QTQMqaQhtQs) |
 
-Cada vídeo de frente também está incorporado à página da sua frente ([Ata S2_05, D05](/Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md)).
+Cada vídeo de frente também está incorporado à página da sua frente ([Ata S2_05, D05](../../../Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md)).
 
 ## Rastreabilidade & Elos com Outros Artefatos
 
@@ -198,11 +198,11 @@ A [modelagem da SubEquipe_02 na Entrega 02](https://unbarqdsw2026-2-turma01.gith
 | Confirmação autêntica e sem crédito duplicado (O14, O11) | [NFR Framework — Entrega 01](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_01/#/Base/Relatorios/1.1.2.SubEquipe_02/2.NFRFramework) | `ProxyConfirmacaoSegura` · `ServicoConfirmacao` | [`confirmacao/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/main/src/f1-recarga/confirmacao) | [Vídeo F1 · Proxy](https://youtu.be/lYXL4zcAL70) |
 | Doação coordenando financeiro e chat | [Modelagem Dinâmica — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.2.Foco02.ModelagemDinamica) | Facade e Mediator | [`src/f2-doacao/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/main/src/f2-doacao) | [Vídeo F2](https://youtu.be/DNuCZrmBd_c) |
 | Camadas visuais da mensagem (SC01, SC02) | [Engenharia Reversa complementar — Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.Extra.EngenhariaReversa) | Decorator da mensagem · `FaixaDestaque` | [`src/f3-chat/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/main/src/f3-chat) | [Vídeo F3](https://youtu.be/QTQMqaQhtQs) |
-| História completa integrada | [Atas S2_04 e S2_05](/Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md) | Diagrama integrado | [`src/web/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/main/src/web) · [`historia-completa.ts`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/blob/main/src/demo/historia-completa.ts) | [Vídeo geral](https://youtu.be/f_0iYes1srw) |
+| História completa integrada | [Atas S2_04 e S2_05](../../../Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md) | Diagrama integrado | [`src/web/`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/tree/main/src/web) · [`historia-completa.ts`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_SubEquipe02_Codigo/blob/main/src/demo/historia-completa.ts) | [Vídeo geral](https://youtu.be/f_0iYes1srw) |
 
 ## Senso Crítico
 
-Avaliação a partir dos artefatos versionados; os relatos pessoais estão na página de [IA Generativa](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.4.IAGenerativa.md) e o senso crítico detalhado, na página de cada frente.
+Avaliação a partir dos artefatos versionados; os relatos pessoais estão na página de [IA Generativa](./1.1.2.4.IAGenerativa.md) e o senso crítico detalhado, na página de cada frente.
 
 - **Benefícios observados.** O Adapter permitiu integrar processadores de pagamento reais (Mercado Pago e Stripe, em modo de teste) depois que o sistema já funcionava com o simulado, sem alterar o serviço de recarga. O Decorator permitiu trocar o desconto único pelo progressivo sem nenhuma classe nova (F1) e combinar as camadas visuais da mensagem conforme o valor doado (F3). O Proxy concentra as verificações de O11 e O14 sem poluir a regra de crédito. A Facade reduz a superfície da F2 para o controller, e o Mediator evita o acoplamento direto entre o financeiro e o chat.
 - **Mesmo padrão, problemas distintos.** O Decorator aparece na F1 (preço) e na F3 (mensagem), o que mostra que o padrão se define pela intenção — acrescentar responsabilidades em camadas —, e não pelo domínio.
@@ -220,7 +220,7 @@ Fontes efetivamente usadas no planejamento, na modelagem PlantUML e na implement
 3. REFACTORING GURU. *Padrões de projeto estruturais*. Disponível em: <https://refactoring.guru/pt-br/design-patterns/structural-patterns>. Acesso em: out. 2026. — consulta de estrutura dos padrões durante o estudo das frentes.
 4. Atas S2_01 a S2_05 deste repositório — decisões de frentes, história da demonstração, descarte de padrões, integração e vídeos.
 
-Catálogo completo, com as documentações dos processadores de pagamento e os vídeos complementares: [1.1.2.5. Referências](/Base/Relatórios/1.1.2.SubEquipe_02/1.1.2.5.Referencias.md).
+Catálogo completo, com as documentações dos processadores de pagamento e os vídeos complementares: [1.1.2.5. Referências](./1.1.2.5.Referencias.md).
 
 ## Versionamentos & Participações
 
@@ -233,4 +233,5 @@ Registrar apenas alterações efetivamente realizadas, incluindo autoria, revis�
 | 1.2 | 19/10/2026 | Mateus Rodrigues Barreto | Registro do vídeo da F3 | — | [`d27102c`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/d27102c) |
 | 1.3 | 19/10/2026 | Daniel de Oliveira Lira | Registro do vídeo da F2 e atualização da rastreabilidade | — | [`f885d81`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/f885d81) |
 | 1.4 | 19/10/2026 | Davi Severiano Freitas | Versão final: estado concluído; Mediator registrado como extra comportamental; Reunião S2_05; diagramas de `assets/` com o integrado como Figura 1; links do código para a `main`; comandos da página web; vídeo geral do front-end e catálogo dos vídeos de todas as frentes; rastreabilidade com os vídeos; senso crítico atualizado | — | [`4734f40`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/4734f40) |
+| 1.5 | 19/10/2026 | Davi Severiano Freitas | Correção dos links internos e referências de diagramas para compatibilidade com o GitHub (remoção de ':ignore' e conversão de caminhos absolutos em relativos) | — | — |
 
