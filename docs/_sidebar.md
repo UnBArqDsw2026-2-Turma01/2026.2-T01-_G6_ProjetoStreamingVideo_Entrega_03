@@ -42,6 +42,7 @@
     - [Ata S2_03 (13/10)](/Projeto/Atas/Atas_Sg2/ata-S2-03-2026-10-13.md)
     - [Ata S2_04 (16/10)](/Projeto/Atas/Atas_Sg2/ata-S2-04-2026-10-16.md)
     - [Ata S2_05 (18/10)](/Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md)
+    - [Ata S3_01 (15/10)](/Projeto/Atas/Atas_Sg3/ata-S3-01-2026-10-15.md)
     - [Organização da Entrega 3](/Projeto/Atas/Atas_Sg2/organizacao-entrega-03.md)
   - [Modelo de ata](/Projeto/Atas/TEMPLATE.md)
   - [Entrega 02](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/)
