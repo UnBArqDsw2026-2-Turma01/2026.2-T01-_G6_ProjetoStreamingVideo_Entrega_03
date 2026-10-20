@@ -112,19 +112,19 @@ A doação aciona dois efeitos paralelos: o repasse ao criador e a exibição da
 
 O diagrama integrado dá a visão do projeto inteiro; o detalhe de cada padrão está nos diagramas de cada frente ([Ata S2_05, D03](../../../Projeto/Atas/Atas_Sg2/ata-S2-05-2026-10-18.md)).
 
-[![Diagrama de classes — visão geral integrada](assets/visao-geral-integrada.svg)](assets/visao-geral-integrada.svg)
+[![Diagrama de classes — visão geral integrada](assets/visao-geral-integrada.svg)](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.svg ':ignore')
 
-*Figura 1 — Visão geral integrada: domínio, recarga, doação e chat (clique para ampliar). Arquivo-fonte: [`assets/visao-geral-integrada.puml`](assets/visao-geral-integrada.puml).*
+*Figura 1 — Visão geral integrada: domínio, recarga, doação e chat (clique para ampliar). Arquivo-fonte: [`assets/visao-geral-integrada.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.puml ':ignore').*
 
 | Frente | Diagrama | Imagem | Arquivo-fonte |
 | --- | --- | --- | --- |
-| 🟩 F1 | Visão geral (Decorator, Adapter e Proxy) | [SVG](assets/f1-visao-geral.svg) | [`f1-visao-geral.puml`](assets/f1-visao-geral.puml) |
-| 🟩 F1 | Decorator — preço do pacote | [SVG](assets/f1-decorator.svg) | [`f1-decorator.puml`](assets/f1-decorator.puml) |
-| 🟩 F1 | Adapter — processadores de pagamento | [SVG](assets/f1-adapter.svg) | [`f1-adapter.puml`](assets/f1-adapter.puml) |
-| 🟩 F1 | Proxy — confirmação do pagamento | [SVG](assets/f1-proxy.svg) | [`f1-proxy.puml`](assets/f1-proxy.puml) |
-| 🟧 F2 | Facade e Mediator — doação e repasse | [SVG](assets/doacao-visao-geral.svg) | [`doacao-visao-geral.puml`](assets/doacao-visao-geral.puml) |
-| 🟦 F3 | Decorator — mensagem destacada | [SVG](assets/f3-decorator.svg) | [`f3-decorator.puml`](assets/f3-decorator.puml) |
-| Integrado | Domínio, recarga, doação e chat | [SVG](assets/visao-geral-integrada.svg) | [`visao-geral-integrada.puml`](assets/visao-geral-integrada.puml) |
+| 🟩 F1 | Visão geral (Decorator, Adapter e Proxy) | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-visao-geral.svg ':ignore') | [`f1-visao-geral.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-visao-geral.puml ':ignore') |
+| 🟩 F1 | Decorator — preço do pacote | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-decorator.svg ':ignore') | [`f1-decorator.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-decorator.puml ':ignore') |
+| 🟩 F1 | Adapter — processadores de pagamento | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-adapter.svg ':ignore') | [`f1-adapter.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-adapter.puml ':ignore') |
+| 🟩 F1 | Proxy — confirmação do pagamento | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-proxy.svg ':ignore') | [`f1-proxy.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f1-proxy.puml ':ignore') |
+| 🟧 F2 | Facade e Mediator — doação e repasse | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/doacao-visao-geral.svg ':ignore') | [`doacao-visao-geral.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/doacao-visao-geral.puml ':ignore') |
+| 🟦 F3 | Decorator — mensagem destacada | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/f3-decorator.svg ':ignore') | [`f3-decorator.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/f3-decorator.puml ':ignore') |
+| Integrado | Domínio, recarga, doação e chat | [SVG](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.svg ':ignore') | [`visao-geral-integrada.puml`](Base/Relatórios/1.1.2.SubEquipe_02/assets/visao-geral-integrada.puml ':ignore') |
 
 **Correspondência resumida (papel GoF → classe).**
 
