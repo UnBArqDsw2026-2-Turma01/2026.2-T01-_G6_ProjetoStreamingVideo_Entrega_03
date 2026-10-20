@@ -6,9 +6,9 @@
 | Data | 18/10/2026 |
 | Autor | Hugo Freitas Silva |
 | Revisores | Eduardo Lôbo Moreira e Philipe Amâncio Reis Caetano |
-| Escopo | Escolha do padrão, regras de autenticação e decisões de projeto. Modelagem em [1.1.3.3](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md) e [1.1.3.4](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md); código em <a href="https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/tree/feat/autenticacao-chainOfResponsibilityBehavioralGoF/" target="_blank" rel="noopener"><code>g6-streaming-entrega03-subgrupo03-codigo</code></a>. |
+| Escopo | Escolha do padrão, regras de autenticação e decisões de projeto. Modelagem em [1.1.3.3](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md) e [1.1.3.4](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md); código em <a href="https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/tree/main/" target="_blank" rel="noopener"><code>g6-streaming-entrega03-subgrupo03-codigo</code></a>. |
 
-> O número 004 segue o [ADR-003](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/tree/docs/subequipe-03-modelagem-observer) do Observer, de Eduardo Lôbo Moreira, ainda em branch própria. Cada afirmação sobre as entregas anteriores aponta para uma evidência `COR-E01`–`COR-E06` arquivada em <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e03-e01-escopo-fluxo-login-subequipe03.png" target="_blank" rel="noopener"><code>assets/chain-of-responsibility/evidencias/</code></a>. O que não tem evidência está marcado como *decisão de projeto*.
+> O número 004 segue o [ADR-003](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-003-observer-concorrente-notificacoes-twitch.md) do Observer, de Eduardo Lôbo Moreira. Cada afirmação sobre as entregas anteriores aponta para uma evidência `COR-E01`–`COR-E06` arquivada em <a href="Base/Relatórios/1.1.3.SubEquipe_03/assets/chain-of-responsibility/evidencias/cor-e03-e01-escopo-fluxo-login-subequipe03.png" target="_blank" rel="noopener"><code>assets/chain-of-responsibility/evidencias/</code></a>. O que não tem evidência está marcado como *decisão de projeto*.
 
 ## 1. Contexto
 
@@ -117,3 +117,4 @@ Adotar **F**: Chain of Responsibility.
 | --- | --- | --- | --- | --- |
 | 1.0 | 18/10/2026 | [@HugoFreitass](https://github.com/HugoFreitass) | Contexto, regras A1–A8, alternativas, decisão e decisões derivadas D1–D9 | [@EduLoboM](https://github.com/EduLoboM) e [@Phill-Chill](https://github.com/Phill-Chill): regras A1–A8 conferidas contra as Entregas 01 e 02; alternativas e decisões D1–D9 |
 | 1.1 | 18/10/2026 | [@HugoFreitass](https://github.com/HugoFreitass) | Referências numeradas no formato da SubEquipe_03 na Entrega 01, com citações numéricas no texto | [@EduLoboM](https://github.com/EduLoboM) e [@Phill-Chill](https://github.com/Phill-Chill): formato das referências e citações numéricas |
+| 1.2 | 19/10/2026 | [@HugoFreitass](https://github.com/HugoFreitass) | Link do código para a `main` e do ADR-003 para a página integrada do relatório | A revisar |
