@@ -62,7 +62,7 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
 | **Modelagem UML — Sequência** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [1.1.3.2](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.SequenciaObserver.md) · [1.1.3.4](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md) · [DYN-01 / DYN-02](#foco-3-chat-em-tempo-real-philipe-amâncio-reis-caetano) |
 | **Implementação e Testes** | ✅ 13 testes ([PR #3](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/pull/3)) | ✅ 56 testes ([PR #2](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/pull/2)) | ✅ 5 testes ([PR #1](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/pull/1)) | [Repositório unificado](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo) · 74 testes no total |
 | **Execução documentada** | ✅ `demo` · `benchmark` · `interactive` · `web` | ✅ `demo:autenticacao` · `check:autenticacao` | ✅ `npx tsc -p tsconfig.test.json && node --test tests/chat.test.js` | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
-| **Vídeo e Roteiro** | ✅ Roteiro completo e demonstrado | ✅ 2 min 05 s, narrado por Hugo | ✅ Roteiro de 7 cenários | [1.1.3.5](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md) |
+| **Vídeo e Roteiro** | ✅ Roteiro completo e demonstrado | ✅ 2 min 05 s, narrado por Hugo | ✅ Vídeo no Drive e 7 cenários | [1.1.3.5](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md) |
 | **IA Generativa** | ✅ Eduardo preenchido | ✅ Hugo preenchido | ✅ Philipe preenchido | [1.1.3.6](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue e verificado.
