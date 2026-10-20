@@ -52,7 +52,7 @@ SubEquipe_01 — GoFs Criacionais + IA Generativa
 | Execução documentada | ✅ `npm run demo:builder` | ✅ `npm run demo:factory-method` | [Execução](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=execução-e-vídeo-do-padrão-em-funcionamento) |
 | Vídeo | ✅ Lucas (2 min 05 s) | ✅ Matheus (1 min 44 s) | [1.1.1.5](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.5.Video.md) |
 | Metodologia | ✅ | ✅ | [Metodologia](/Base/Relatórios/1.1.1.SubEquipe_01/README.md?id=metodologia) |
-| Iniciativa extra — benchmark | ✅ tempo e memória | 🟡 cenário no código ([`bench/cenarios/factory-method.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/bench/cenarios/factory-method.ts)), sem análise no relatório | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
+| Iniciativa extra — benchmark | ✅ tempo e memória | ✅ cenário no código ([`bench/cenarios/factory-method.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/blob/main/bench/cenarios/factory-method.ts)), sem análise no relatório | [1.1.1.7](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.7.BenchmarkBuilder.md) |
 | IA Generativa | ✅ Lucas e Heitor preenchidos | ✅ Matheus e Pedro preenchidos | [1.1.1.6](/Base/Relatórios/1.1.1.SubEquipe_01/1.1.1.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue · 🟡 em andamento · ⬜ não iniciado.

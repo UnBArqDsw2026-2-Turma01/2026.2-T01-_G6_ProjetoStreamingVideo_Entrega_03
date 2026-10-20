@@ -21,7 +21,7 @@ Os itens marcados correspondem à preparação do repositório e ao estado de en
 - [x] Publicar vídeo com o padrão em funcionamento.
 - [x] Registrar metodologia e evidências do trabalho em equipe.
 - [x] Fundamentar as decisões em referências e registrar o senso crítico.
-- [ ] Preencher lições aprendidas e avaliação de IA por todos os integrantes.
+- [x] Preencher lições aprendidas e avaliação de IA por todos os integrantes.
 - [x] Atualizar versionamentos e participações com comprobatórios.
 
 ## SubEquipe_02 — GoFs Estruturais
@@ -52,9 +52,9 @@ Os itens marcados correspondem à preparação do repositório e ao estado de en
 
 ## Consolidação e apresentação
 
-- [ ] Conferir todos os links de modelos, código, vídeos e comprobatórios.
-- [ ] Inserir ao menos duas imagens dos artefatos na página inicial, conforme o template.
-- [ ] Revisar o quadro de participações e as avaliações de significância.
-- [ ] Preparar apresentação de aproximadamente 15 minutos com artefatos, justificativas, participações e commits.
-- [ ] Baixar os materiais antes da apresentação.
-- [ ] Registrar iniciativas extras com evidências, caso ocorram (opcional).
+- [x] Conferir todos os links de modelos, código, vídeos e comprobatórios.
+- [x] Inserir ao menos duas imagens dos artefatos na página inicial, conforme o template.
+- [x] Revisar o quadro de participações e as avaliações de significância.
+- [x] Preparar apresentação de aproximadamente 15 minutos com artefatos, justificativas, participações e commits.
+- [x] Baixar os materiais antes da apresentação.
+- [x] Registrar iniciativas extras com evidências, caso ocorram (opcional).
