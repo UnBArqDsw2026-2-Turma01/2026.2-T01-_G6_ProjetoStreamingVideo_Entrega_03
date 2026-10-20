@@ -6,7 +6,7 @@
 >
 > **Decisões vigentes**: [Ata S2_01](./ata-S2-01-2026-10-06.md), [Ata S2_02](./ata-S2-02-2026-10-10.md), [Ata S2_03](./ata-S2-03-2026-10-13.md), [Ata S2_04](./ata-S2-04-2026-10-16.md) e [Ata S2_05](./ata-S2-05-2026-10-18.md).
 >
-> **Status**: 🟢 Concluída — código das três frentes e front-end integrados na `main`; vídeos da F1 e da F3 publicados; faltam o vídeo da F2, relatos de IA e o README final da subequipe.
+> **Status**: 🟢 Concluída — código das três frentes e front-end integrados na `main`; vídeos de todas as frentes e vídeo geral publicados; relatos de IA dos quatro integrantes e README final da subequipe concluídos.
 
 ---
 
@@ -163,14 +163,9 @@ Para a fundamentação teórica do relatório, citamos a obra original:
 
 ## 8. Pendências
 
-| # | Pendência | Prazo |
-| -- | -- | -- |
-| P01 | Vídeo da F2, incorporado à página da frente | 19/10 |
-| P02 | Relatos de IA Generativa de Daniel, Pedro e Mateus | 19/10 |
-| P03 | Página da F2 com os links do código apontando para a `main` | 19/10 |
-| P04 | README final da subequipe, com o diagrama integrado, a rastreabilidade, o senso crítico e os vídeos de todas as frentes | 19/10 |
+Não há pendências em aberto.
 
-Pendências resolvidas desde a versão anterior: a integração da história completa e o front-end (18/10), os vídeos da F1 e da F3, a página da F3, o molde da página de IA Generativa e a consolidação das referências.
+Pendências resolvidas desde a versão anterior: o vídeo da F2, os relatos de IA Generativa de Daniel, Pedro e Mateus, os links do código na página da F2 e o README final da subequipe, com o vídeo geral e o catálogo dos vídeos (19/10).
 
 ---
 
@@ -184,3 +179,4 @@ Pendências resolvidas desde a versão anterior: a integração da história com
 | 1.3 | 17/10/2026 | Atualização com as decisões das Reuniões S2_03 e S2_04: prazo do código em 15/10, Proxy descartado na F2, Mediator como extra comportamental, exclusão definitiva do saque e validação da mudança no O07 da F1 decididas em 17/10, integração e front-end com Mateus, vídeos após a integração, extras realizados, mudanças da F1 (sem conversão de moeda, escolha do meio e processadores reais) e novas pendências | Davi Severiano Freitas | |
 | 1.4 | 19/10/2026 | Atualização com a Reunião S2_05: um vídeo por frente, sem vídeo geral (a F1 com um vídeo por padrão); integração e front-end concluídos; novas responsabilidades (README final e diagrama integrado); cronograma e pendências da reta final | Davi Severiano Freitas | |
 | 1.5 | 19/10/2026 | Atualização do status das tarefas do cronograma | Davi Severiano Freitas | |
+| 1.6 | 19/10/2026 | Fechamento da entrega: status final e todas as pendências resolvidas (vídeo da F2, relatos de IA, links da página da F2 e README final) | Davi Severiano Freitas | |
