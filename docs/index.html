@@ -12,6 +12,16 @@
     .markdown-section { max-width: 960px; }
     .markdown-section table { display: block; overflow-x: auto; }
     .sidebar .app-name { font-size: 1.2rem; }
+    .zoom-cor-quadro { position: relative; height: 420px; margin: 1em 0; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; overflow: hidden; touch-action: none; cursor: grab; box-shadow: 0 1px 4px rgba(15, 23, 42, .08); }
+    .zoom-cor-quadro.arrastando { cursor: grabbing; }
+    .zoom-cor-quadro img { position: absolute; left: 0; top: 0; max-width: none !important; margin: 0 !important; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
+    .zoom-cor-tela-cheia { position: fixed; inset: 0; z-index: 1000; height: auto; margin: 0; border: 0; border-radius: 0; }
+    .zoom-cor-barra { position: absolute; right: 10px; top: 10px; z-index: 1; display: flex; gap: 6px; }
+    .zoom-cor-barra button { min-width: 34px; height: 34px; padding: 0 8px; border: 0; border-radius: 6px; background: #0f172a; color: #fff; font-size: 16px; cursor: pointer; opacity: .85; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
+    .zoom-cor-barra button:hover { opacity: 1; }
+    .zoom-cor-dica { position: absolute; left: 10px; bottom: 10px; z-index: 1; padding: 4px 8px; border-radius: 6px; background: rgba(15, 23, 42, .8); color: #e2e8f0; font-size: 12px; pointer-events: none; transition: opacity .3s; }
+    .zoom-cor-quadro.usado .zoom-cor-dica { opacity: 0; }
+    .zoom-cor-nivel { position: absolute; right: 10px; bottom: 10px; z-index: 1; padding: 4px 8px; border-radius: 6px; background: rgba(15, 23, 42, .8); color: #e2e8f0; font-size: 12px; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -24,8 +34,149 @@
       loadSidebar: true,
       subMaxLevel: 2,
       auto2top: true,
-      alias: { '/.*/_sidebar.md': '/_sidebar.md' }
+      alias: { '/.*/_sidebar.md': '/_sidebar.md' },
+      plugins: [zoomChainOfResponsibility]
     };
+
+    // Figuras do Chain of Responsibility (SubEquipe_03) num quadro interativo,
+    // como um iframe: roda do mouse ou botões ampliam, arrastar move, duplo
+    // clique aproxima e ⛶ abre em tela cheia. Diagramas usam o SVG, nítido em
+    // qualquer ampliação.
+    function zoomChainOfResponsibility(hook) {
+      hook.doneEach(function () {
+        document.querySelectorAll('.markdown-section img[src*="chain-of-responsibility"]').forEach(function (img) {
+          if (img.closest('.zoom-cor-quadro')) return;
+          var quadro = document.createElement('div');
+          quadro.className = 'zoom-cor-quadro';
+          var bloco = img.parentNode.tagName === 'P' && img.parentNode.childNodes.length === 1 ? img.parentNode : img;
+          bloco.parentNode.replaceChild(quadro, bloco);
+          visualizador(quadro, img.src, img.alt, false);
+        });
+      });
+    }
+
+    function visualizador(quadro, src, alt, telaCheia) {
+      quadro.innerHTML = '<div class="zoom-cor-barra">' +
+        '<button type="button" data-acao="mais" title="Ampliar" aria-label="Ampliar">+</button>' +
+        '<button type="button" data-acao="menos" title="Reduzir" aria-label="Reduzir">−</button>' +
+        '<button type="button" data-acao="ajustar" title="Ajustar ao quadro" aria-label="Ajustar ao quadro">⤢</button>' +
+        (telaCheia
+          ? '<button type="button" data-acao="fechar" title="Fechar (Esc)" aria-label="Fechar">✕</button>'
+          : '<button type="button" data-acao="tela-cheia" title="Tela cheia" aria-label="Tela cheia">⛶</button>') +
+        '</div><div class="zoom-cor-dica">Roda do mouse ou + / − para ampliar · arraste para mover · duplo clique aproxima</div>' +
+        '<div class="zoom-cor-nivel"></div>';
+      var img = new Image();
+      img.alt = alt;
+      img.draggable = false;
+      quadro.insertBefore(img, quadro.firstChild);
+      var nivel = quadro.querySelector('.zoom-cor-nivel');
+
+      var escala = 1, inicial = 1, x = 0, y = 0, minimo = 0.1, ponteiros = {}, gesto = null;
+      function aplicar() {
+        if (img.naturalWidth && escala !== inicial) quadro.classList.add('usado');
+        img.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + escala + ')';
+        nivel.textContent = Math.round(escala * 100) + '%';
+      }
+      function ajustar() {
+        var largura = quadro.clientWidth, altura = quadro.clientHeight;
+        escala = Math.min((largura - 24) / img.naturalWidth, (altura - 24) / img.naturalHeight, telaCheia ? 1 : 2);
+        minimo = escala / 2;
+        inicial = escala;
+        x = (largura - img.naturalWidth * escala) / 2;
+        y = (altura - img.naturalHeight * escala) / 2;
+        aplicar();
+      }
+      function ampliar(fator, cx, cy) {
+        var nova = Math.min(Math.max(escala * fator, minimo), 8);
+        x = cx - (cx - x) * nova / escala;
+        y = cy - (cy - y) * nova / escala;
+        escala = nova;
+        aplicar();
+      }
+      function local(e) {
+        var r = quadro.getBoundingClientRect();
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
+      }
+      function centro() { return { x: quadro.clientWidth / 2, y: quadro.clientHeight / 2 }; }
+
+      img.onload = function () {
+        if (!telaCheia) {
+          // Altura do quadro acompanha a proporção da figura, entre 320 e 640 px.
+          var natural = img.naturalHeight * (quadro.clientWidth - 24) / img.naturalWidth + 24;
+          quadro.style.height = Math.round(Math.min(Math.max(natural, 320), 640)) + 'px';
+        }
+        ajustar();
+      };
+      img.onerror = function () { if (img.src !== src) img.src = src; };
+      img.src = /-v\d+\.png$/.test(src) ? src.replace(/\.png$/, '.svg') : src;
+
+      quadro.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        var p = local(e);
+        ampliar(e.deltaY < 0 ? 1.15 : 1 / 1.15, p.x, p.y);
+      }, { passive: false });
+      quadro.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('button')) return;
+        ponteiros[e.pointerId] = local(e);
+        quadro.setPointerCapture(e.pointerId);
+        quadro.classList.add('arrastando');
+        gesto = null;
+      });
+      quadro.addEventListener('pointermove', function (e) {
+        if (!ponteiros[e.pointerId]) return;
+        var atual = local(e), ids = Object.keys(ponteiros);
+        if (ids.length === 1) {
+          quadro.classList.add('usado');
+          x += atual.x - ponteiros[e.pointerId].x;
+          y += atual.y - ponteiros[e.pointerId].y;
+          aplicar();
+        } else if (ids.length === 2) {
+          // Pinça com dois dedos.
+          var outro = ponteiros[ids[0] == e.pointerId ? ids[1] : ids[0]];
+          var distancia = Math.hypot(atual.x - outro.x, atual.y - outro.y);
+          if (gesto) ampliar(distancia / gesto, (atual.x + outro.x) / 2, (atual.y + outro.y) / 2);
+          gesto = distancia;
+        }
+        ponteiros[e.pointerId] = atual;
+      });
+      function soltar(e) {
+        delete ponteiros[e.pointerId];
+        gesto = null;
+        if (!Object.keys(ponteiros).length) quadro.classList.remove('arrastando');
+      }
+      quadro.addEventListener('pointerup', soltar);
+      quadro.addEventListener('pointercancel', soltar);
+      quadro.addEventListener('dblclick', function (e) {
+        if (e.target.closest('button')) return;
+        var p = local(e);
+        ampliar(2, p.x, p.y);
+      });
+
+      function fechar() { quadro.remove(); document.removeEventListener('keydown', teclado); }
+      function teclado(e) {
+        if (e.key === 'Escape') fechar();
+        if (e.key === '+' || e.key === '=') ampliar(1.25, centro().x, centro().y);
+        if (e.key === '-') ampliar(0.8, centro().x, centro().y);
+      }
+      if (telaCheia) document.addEventListener('keydown', teclado);
+
+      quadro.querySelector('.zoom-cor-barra').addEventListener('click', function (e) {
+        var botao = e.target.closest('button');
+        if (!botao) return;
+        var acao = botao.getAttribute('data-acao'), c = centro();
+        if (acao === 'mais') ampliar(1.25, c.x, c.y);
+        if (acao === 'menos') ampliar(0.8, c.x, c.y);
+        if (acao === 'ajustar') ajustar();
+        if (acao === 'fechar') fechar();
+        if (acao === 'tela-cheia') {
+          var cheio = document.createElement('div');
+          cheio.className = 'zoom-cor-quadro zoom-cor-tela-cheia';
+          document.body.appendChild(cheio);
+          visualizador(cheio, src, alt, true);
+        }
+      });
+      addEventListener('resize', function () { if (quadro.isConnected && img.naturalWidth) ajustar(); });
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>

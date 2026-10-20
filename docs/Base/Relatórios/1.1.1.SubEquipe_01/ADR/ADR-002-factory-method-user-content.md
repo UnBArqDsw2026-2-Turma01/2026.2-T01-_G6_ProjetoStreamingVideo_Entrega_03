@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 | --- | --- |
-| Status | Proposta (aguarda revisão de um integrante da outra dupla, conforme o `CONTRIBUTING.md` do repositório de código) |
+| Status | Aceita. Revisada pela outra dupla, conforme o `CONTRIBUTING.md` do repositório de código; texto alinhado ao código depois das correções do [PR #4 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/4) |
 | Data | 16/10/2026 |
 | Autor | Matheus Lemes Amaral |
-| Revisor | A preencher |
+| Revisor | Heitor Macedo Ricardo ([revisão do PR #3](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3#pullrequestreview-5555487760) e [revisão do PR #2 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/2#pullrequestreview-5555487588)); Pedro Druck Montalvão Reis (aprovação do PR #3) |
 | Escopo | Modelagem (diagramas de classes e de sequência) e decisões do padrão. Implementação e testes ficam no [repositório de código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo), pasta `src/criacionais/factory-method/`. |
 
 > Como o [ADR-001](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md), este registro segue a ordem do raciocínio. Cada afirmação sobre o modelo da Entrega 02 aponta para uma evidência (`FM-E01`–`FM-E03`) arquivada em <a href="Base/Relatórios/1.1.1.SubEquipe_01/assets/factory-method/evidencias/fm-e01-v3-recorte-conteudo-ugc.png" target="_blank" rel="noopener"><code>assets/factory-method/evidencias/</code></a>; o que não tem evidência está marcado como *decisão de projeto*.
@@ -33,7 +33,7 @@ As regras não foram inventadas para o padrão: vêm da nota "Regras do fluxo de
 | Id | Regra | Origem | Onde é verificada |
 | --- | --- | --- | --- |
 | F1 | Título não vazio | *Decisão de projeto*, simétrica à R1 do ADR-001 | construtor de `UserContent` |
-| F2 | Gravação só nasce de transmissão existente, encerrada (`ENDED`) e com gravação automática habilitada | Regra 2 da nota (FM-E03); encerramento pela máquina M4 da Entrega 02 | `RecordedVideoCreator` (existência) e construtor de `RecordedVideo` |
+| F2 | Gravação só nasce de transmissão existente, encerrada (`ENDED`) e com gravação automática habilitada; uma gravação vigente por transmissão (a que falhou não conta e pode ser substituída) | Regra 2 da nota (FM-E03); encerramento pela máquina M4 da Entrega 02 | `RecordedVideoCreator` (existência) e construtor de `RecordedVideo` |
 | F3 | `READY` exige duração, `storageUri` e `availableAt` | Regra 9 da nota (FM-E03), **sem** o manifesto, que não é representado; duração positiva e data válida são *refinamentos de projeto* | `RecordedVideo.markReady` |
 | F4 | Clipe só nasce de gravação `READY` da transmissão | Regra 1 da nota (FM-E03) | `ClipCreator` (existência) e construtor de `Clip` |
 | F5 | `0 ≤ início < fim ≤ duração da gravação` | Regra 4 da nota (FM-E03) | construtor de `Clip` |
@@ -84,7 +84,8 @@ Cada ConcreteCreator ocupa o lugar de um ponto de criação do v3:
 | DF6 | `ContentVisibility` e `LatencyMode` reaproveitados do Builder, sem duplicar | Duas enumerações iguais seriam tipos incompatíveis em TypeScript; a `StreamConfig` do Builder não alimentaria a `LiveStream` | — |
 | DF7 | Clipe herda a visibilidade da gravação | *Decisão de projeto*: um clipe de gravação privada não pode nascer público | O v3 não definia a visibilidade do clipe |
 | DF8 | Pedido de clipe sem gravação pronta é **recusado** com F4 | A espera em `WAITING_RECORDING` e o reprocessamento pelo evento `RecordingAvailable` (DE04, DE05) são do `ClipService`, fora do escopo de um padrão de criação | Limite declarado; o fluxo assíncrono do v3 continua válido |
-| DF9 | Uma gravação por transmissão: o `RecordedVideoCreator` recusa a segunda | Com duas gravações da mesma live, `findRecordingByStream` poderia devolver a que falhou e o `ClipCreator` recusaria um recorte válido | O v3 sugere a unicidade (`RecordingHandle.expectedVideoId`), sem declará-la como regra |
+| DF9 | Uma gravação **vigente** por transmissão: o `RecordedVideoCreator` recusa a segunda enquanto a primeira não falhou; a gravação `FAILED` não conta como vigente (`findRecordingByStream` a ignora) e pode ser substituída por uma nova | Com duas gravações vigentes, o `ClipCreator` não teria como escolher qual recortar. Se a que falhou contasse, uma falha no processamento deixaria a transmissão sem gravação e sem clipes para sempre — caso apontado na revisão e corrigido no PR #4 do código; a que falhou fica no repositório como histórico | O v3 sugere a unicidade (`RecordingHandle.expectedVideoId`), sem declará-la como regra |
+| DF10 | O perfil de vídeo do `StreamConfig` (`resolution`, `framesPerSecond`, `bitrateBps`) **não** é copiado para a `LiveStream` | A `LiveStream` do v3 não tem esses atributos, e na Entrega 02 o perfil é configurado no encoder do cliente (E06 e E07 do ADR-001). O Builder valida o perfil para essa configuração; o conteúdo registra só o que o modelo atribui à live. Guardá-lo seria uma segunda revisão do v3, além da D1 do ADR-001 | Nenhum; registra para onde vai o que a D1 do ADR-001 acrescentou ao `StreamConfig` |
 
 ## 5. Consequências
 
@@ -94,7 +95,7 @@ Cada ConcreteCreator ocupa o lugar de um ponto de criação do v3:
 
 - Três classes de criador a mais, numa hierarquia paralela à de produtos. O GoF aponta essa consequência do padrão: para criar um produto concreto, é preciso criar também uma subclasse do Creator.
 - A operação `submit` faz o papel de um Template Method sobre o método-fábrica (o GoF observa que métodos-fábrica costumam ser chamados de dentro de Template Methods). Quem lê o código precisa reconhecer os dois papéis no mesmo método.
-- **Sem transação.** Pela ordem `save → moderate → save` (DF2), se a política ou o segundo `save` lançar erro, o erro sobe e o conteúdo fica registrado como `PENDING` e fora do ar. É um estado válido (conteúdo aguardando moderação) e pode ser moderado de novo pelo id, mas repetir o `submit` cria outro conteúdo.
+- **Sem transação.** Pela ordem `save → moderate → save` (DF2), se a política ou o segundo `save` lançar erro, o erro sobe e o conteúdo fica registrado como `PENDING` e fora do ar. É um estado válido (conteúdo aguardando moderação). Repetir o `submit` tem efeito diferente conforme o tipo: para live e clipe, cria **outro** conteúdo e o primeiro continua `PENDING`; para a gravação, é recusado com F2, porque a pendente continua sendo a gravação vigente da transmissão (DF9). Em todos os casos, o conteúdo pendente só sai de `PENDING` sendo moderado de novo pelo id, fora do `submit` (`applyModeration(policy.moderate(id))` e `save`).
 - O custo da indireção (chamada ao método-fábrica e acesso aos colaboradores pelo Creator) é **hipótese** até o benchmark: o cenário `factory-method` compara `ClipCreator.submit` com os mesmos passos escritos em linha. Este ADR não afirma número.
 
 **Riscos e limites declarados**
@@ -109,3 +110,10 @@ Cada ConcreteCreator ocupa o lugar de um ponto de criação do v3:
 - Entrega 02, SubEquipe_01: [Conteúdo Gerado pelo Usuário e Clipagem](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.2.Foco01.ConteudoGeradoUsuario) (DE03, regras do fluxo de clipes) e [Modelagem Estática](https://unbarqdsw2026-2-turma01.github.io/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/#/Base/Relat%C3%B3rios/1.1.1.SubEquipe_01/1.1.1.1.Foco01.ModelagemEstatica) (DE03–DE05, DE09).
 - [ADR-001 — Builder para `StreamConfig`](/Base/Relatórios/1.1.1.SubEquipe_01/ADR/ADR-001-builder-stream-config.md): produto consumido pelo `LiveStreamCreator`.
 - Planejamento da SubEquipe_01, v1.0, 08/10/2026 (seção 2).
+
+## Histórico de versões
+
+| Versão | Data | Autor | Descrição | Revisor |
+| --- | --- | --- | --- | --- |
+| 1.0 | 16/10/2026 | [@1emes](https://github.com/1emes) | ADR do Factory Method: contexto, regras F1–F6, alternativas, decisão, DF1–DF9 e consequências ([PR #3](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3)) | @HeitorM50 ([revisão](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/3#pullrequestreview-5555487760)) · @pedruck (aprovação) |
+| 1.1 | 19/10/2026 | [@HeitorM50](https://github.com/HeitorM50) | Texto alinhado ao código depois do [PR #4 do código](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo01-codigo/pull/4): DF9 e F2 com a gravação vigente (a que falhou não bloqueia), §5 com o efeito de repetir o `submit` por tipo, DF10 para o perfil de vídeo do `StreamConfig`; status e revisores preenchidos | A preencher |
