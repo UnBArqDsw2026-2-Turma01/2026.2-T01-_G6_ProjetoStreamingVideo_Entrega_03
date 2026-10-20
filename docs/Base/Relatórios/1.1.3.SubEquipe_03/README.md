@@ -52,18 +52,18 @@ SubEquipe_03 — GoFs Comportamentais + IA Generativa
     ├── src/webServer.ts              dashboard web de moderação em tempo real (Iniciativa Extra)
     ├── src/demo.ts                   demonstração automatizada nos canais YouTube, Twitch e Kick
     ├── src/benchmark.ts              teste de carga comparativo com 2.000 espectadores (Iniciativa Extra)
-    └── tests/                        suítes automatizadas nativas (observer.test.ts, cadeias.test.ts, chat.test.js)
+    └── tests/                        suítes da autenticação (cadeias, domínio, handlers) e do chat; a do Observer fica em src/__tests__/
 ```
 
 | Foco da entrega | Moderação: Observer (`StreamChannel`) | Autenticação: Chain of Responsibility | Chat: Observer (`ChatRoom`) | Onde |
 | :--- | :---: | :---: | :---: | :--- |
-| **Contexto e justificativa** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [Contexto](#contexto-problema) · [ADR-003](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md) · [ADR-004](ADR/ADR-004-chain-of-responsibility-autenticacao.md) |
-| **Modelagem UML — Classes** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [1.1.3.1](1.1.3.1.ModelagemObserver.md) · [1.1.3.3](1.1.3.3.ModelagemChainOfResponsibility.md) · [Modelagem Chat](#foco-3-chat-em-tempo-real-philipe-amâncio-reis-caetano-1) |
-| **Modelagem UML — Sequência** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [1.1.3.2](1.1.3.2.SequenciaObserver.md) · [1.1.3.4](1.1.3.4.SequenciaChainOfResponsibility.md) · [DYN-01 / DYN-02](#foco-3-chat-em-tempo-real-philipe-amâncio-reis-caetano) |
+| **Contexto e justificativa** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [Contexto](#contexto-problema) · [ADR-003](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-003-observer-concorrente-notificacoes-twitch.md) · [ADR-004](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-004-chain-of-responsibility-autenticacao.md) |
+| **Modelagem UML — Classes** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [1.1.3.1](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.ModelagemObserver.md) · [1.1.3.3](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.3.ModelagemChainOfResponsibility.md) · [Modelagem Chat](#foco-3-chat-em-tempo-real-gof-observer-philipe-amâncio-reis-caetano-1) |
+| **Modelagem UML — Sequência** | ✅ Eduardo | ✅ Hugo | ✅ Philipe | [1.1.3.2](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.2.SequenciaObserver.md) · [1.1.3.4](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.4.SequenciaChainOfResponsibility.md) · [DYN-01 / DYN-02](#foco-3-chat-em-tempo-real-philipe-amâncio-reis-caetano) |
 | **Implementação e Testes** | ✅ 13 testes ([PR #3](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/pull/3)) | ✅ 56 testes ([PR #2](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/pull/2)) | ✅ 5 testes ([PR #1](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/pull/1)) | [Repositório unificado](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo) · 74 testes no total |
 | **Execução documentada** | ✅ `demo` · `benchmark` · `interactive` · `web` | ✅ `demo:autenticacao` · `check:autenticacao` | ✅ `npx tsc -p tsconfig.test.json && node --test tests/chat.test.js` | [Execução](#execução-e-vídeo-do-padrão-em-funcionamento) |
-| **Vídeo e Roteiro** | ✅ Roteiro completo e demonstrado | ✅ 2 min 31 s com voz neural | ✅ Roteiro de 7 cenários | [1.1.3.5](1.1.3.5.Video.md) |
-| **IA Generativa** | ✅ Eduardo preenchido | ✅ Hugo preenchido | ✅ Philipe preenchido | [1.1.3.6](1.1.3.6.IAGenerativa.md) |
+| **Vídeo e Roteiro** | ✅ Roteiro completo e demonstrado | ✅ 2 min 05 s, narrado por Hugo | ✅ Roteiro de 7 cenários | [1.1.3.5](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md) |
+| **IA Generativa** | ✅ Eduardo preenchido | ✅ Hugo preenchido | ✅ Philipe preenchido | [1.1.3.6](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md) |
 
 Legenda: ✅ entregue e verificado.
 
@@ -75,7 +75,7 @@ Os pontos de vista individuais detalhados estão em [1.1.3.6. IA Generativa](/Ba
 
 | Integrante | Foco | Lições aprendidas | Uso da IA Generativa (senso crítico) |
 | :--- | :--- | :--- | :--- |
-| **Eduardo Lôbo Moreira** | Moderação Reativa (Observer) | Desacoplamento no GoF canônico e modelagem temporal do pipeline | [Ver relato](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md?id=eduardo-lôbo-moreira) |
+| **Eduardo Lôbo Moreira** | Moderação Reativa (Observer) | Desacoplamento no GoF canônico e modelagem temporal do pipeline | [Ver relato](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md?id=eduardo-lôbo-moreira-foco-moderação-reativa-gof-observer) |
 | **Hugo Freitas Silva** | Autenticação (Chain of Responsibility) | Mesma família de elos em duas cadeias; falha fechada; ordem dos elos como requisito de segurança | [Ver relato](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md?id=hugo-freitas-silva-foco-autenticação-chain-of-responsibility) |
 | **Philipe Amâncio Reis Caetano** | Chat em Tempo Real (Observer) | Receber mensagem não significa publicar; isolamento entre o pipeline de AutoMod e os observadores de entrega | [Ver relato](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.6.IAGenerativa.md?id=philipe-amâncio-reis-caetano-foco-chat-em-tempo-real-gof-observer) |
 
@@ -261,7 +261,7 @@ npm run benchmark    # Teste de carga comparativo com 2.000 espectadores - Inici
 npm test             # 13 testes unitários automatizados nativos
 ```
 
-O vídeo da demonstração (2 min 13 s) está disponível no [YouTube](https://youtu.be/n7c_hAg4tUg) e em [1.1.3.5. Vídeo](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md?id=_1-vídeo-do-observer-moderação-reativa-e-transmissão).
+O vídeo da demonstração (2 min 13 s) está disponível no [YouTube](https://youtu.be/n7c_hAg4tUg) e em [1.1.3.5. Vídeo](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md?id=_1-vídeo-do-observer-moderação-reativa-e-transmissão-streamchannel).
 
 #### Foco 2: Autenticação — Chain of Responsibility (Hugo Freitas Silva)
 
@@ -274,7 +274,7 @@ npm run check:autenticacao    # tipagem estrita e 56 testes automatizados
 npm run demo:autenticacao     # demonstração no terminal dos 9 cenários do ADR-004
 ```
 
-O vídeo da demonstração (2 min 31 s) está disponível em [1.1.3.5. Vídeo](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md?id=_2-vídeo-de-autenticação-chain-of-responsibility).
+O vídeo da demonstração (2 min 05 s, narrado por Hugo) está disponível em [1.1.3.5. Vídeo](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.5.Video.md?id=_2-vídeo-de-autenticação-chain-of-responsibility-authenticationhandler).
 
 #### Foco 3: Chat em Tempo Real — GoF Observer (Philipe Amâncio Reis Caetano)
 
@@ -322,10 +322,10 @@ node --test tests/chat.test.js
 
 | Elemento do Código GoF (E03) | Padrão e Papel Canônico | Justificativa Arquitetural no Projeto (E02/E01) | Decisão Formal Registrada |
 | :--- | :--- | :--- | :--- |
-| `StreamChannel` | **ConcreteSubject** (GoF Observer) | Centraliza o ciclo de vida da live sem se acoplar às regras de cada inteligência artificial de moderação | [ADR-003](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md#decisão) |
-| `attach()` / `detach()` | **Subject Operations** (Slide 53) | Permite plugar ou desplugar observadores em tempo de execução sem derrubar o canal | [1.1.3.1. Modelagem](1.1.3.1.ModelagemObserver.md) |
-| `INotificationDispatchStrategy` | **Strategy Interface** (GoF Strategy) | Isola o algoritmo de entrega de notificações, permitindo chavear entre laço síncrono e Worker Pool | [ADR-003](ADR/ADR-003-observer-concorrente-notificacoes-twitch.md#alternativas-consideradas) |
-| `ChatRoom` | **Publisher** (GoF Observer) | Desacopla a publicação de mensagens aprovadas no chat dos serviços concretos de entrega aos usuários | [Foco 3: Chat](#foco-3-chat-em-tempo-real-philipe-amâncio-reis-caetano-1) |
+| `StreamChannel` | **ConcreteSubject** (GoF Observer) | Centraliza o ciclo de vida da live sem se acoplar às regras de cada inteligência artificial de moderação | [ADR-003](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-003-observer-concorrente-notificacoes-twitch.md?id=_3-decisão-tomada) |
+| `attach()` / `detach()` | **Subject Operations** (Slide 53) | Permite plugar ou desplugar observadores em tempo de execução sem derrubar o canal | [1.1.3.1. Modelagem](/Base/Relatórios/1.1.3.SubEquipe_03/1.1.3.1.ModelagemObserver.md) |
+| `INotificationDispatchStrategy` | **Strategy Interface** (GoF Strategy) | Isola o algoritmo de entrega de notificações, permitindo chavear entre laço síncrono e Worker Pool | [ADR-003](/Base/Relatórios/1.1.3.SubEquipe_03/ADR/ADR-003-observer-concorrente-notificacoes-twitch.md?id=_2-padrões-e-alternativas-consideradas-fundamentação-teórica) |
+| `ChatRoom` | **Publisher** (GoF Observer) | Desacopla a publicação de mensagens aprovadas no chat dos serviços concretos de entrega aos usuários | [Foco 3: Chat](#foco-3-chat-em-tempo-real-gof-observer-philipe-amâncio-reis-caetano-1) |
 | `ChatObserver` | **Subscriber Interface** (GoF Observer) | Padroniza a operação `update(message)` para qualquer serviço interessado no fluxo de chat | [Correspondência UML](#correspondência-entre-uml-e-o-padrão-observer-chat) |
 | `ChatDeliveryService` | **Concrete Subscriber** (GoF Observer) | Entrega mensagens aos participantes sem acoplamento direto com a sala | [`ChatDeliveryService.ts`](https://github.com/UnBArqDsw2026-2-Turma01/g6-streaming-entrega03-subgrupo03-codigo/blob/feat/chat-observerBehavioralGoF/src/chat/ChatDeliveryService.ts) |
 | `AutoModPipeline` / `QuarantineQueue` | **Pipeline e Fila de Retenção** | Inspeciona mensagens antes do despacho, barrando e retendo conteúdo suspeito conforme DYN-01 | [DYN-01 na Entrega 02](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_02/blob/main/docs/Base/Relat%C3%B3rios/1.1.3.SubEquipe_03/1.1.3.2.Foco02.ModelagemDinamica.md) |
@@ -405,7 +405,7 @@ A [modelagem estática](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G
 3. OPEN WEB APPLICATION SECURITY PROJECT (OWASP). **Authentication Cheat Sheet**. OWASP Foundation. Disponível em: <https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html>.
 4. OPEN WEB APPLICATION SECURITY PROJECT (OWASP). **Password Storage Cheat Sheet**. OWASP Foundation. Disponível em: <https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html>.
 5. SPRING. **Spring Security Reference: Servlet Authentication Architecture**. Disponível em: <https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html>.
-6. SERRANO, Milene. **Arquitetura e Desenho de Software — Aula: GoFs Comportamentais**. Material didático da disciplina, UnB-FGA, 2026.
+6. SERRANO, Milene. **Arquitetura e Desenho de Software — Aula: GoFs Comportamentais**. Material didático da disciplina, UnB-FGA, [2019?].
 7. GAMMA, Erich et al. **Padrões de Projeto: Soluções Reutilizáveis de Software Orientado a Objetos**. Porto Alegre: Bookman, 2000.
 8. REFACTORING.GURU. **Chain of Responsibility**. Disponível em: <https://refactoring.guru/pt-br/design-patterns/chain-of-responsibility>.
 9. SOURCEMAKING. **Chain of Responsibility Design Pattern**. Disponível em: <https://sourcemaking.com/design_patterns/chain_of_responsibility>.
@@ -433,5 +433,6 @@ A [modelagem estática](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G
 | 1.2 | 18/10/2026 | Hugo Freitas Silva | Diagramas de classes e sequência da autenticação, evidências COR-E01 a COR-E06 | Eduardo Lôbo Moreira e Philipe Amâncio Reis Caetano | [`b671baf`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/b671baf) · [`ff624e6`](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/commit/ff624e6) |
 | 1.3 | 19/10/2026 | Hugo Freitas Silva | Migração do código para repositório unificado, vídeo narrado (2 min 31 s) e integração das seções de autenticação com a documentação | Eduardo Lôbo Moreira e Philipe Amâncio Reis Caetano | [PR #12](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/12) |
 | 2.0 | 19/10/2026 | SubEquipe 03 | **Consolidação unificada da Entrega 03:** integração da frente de Chat (Philipe) com Moderação (Eduardo) e Autenticação (Hugo), alinhamento da metodologia colaborativa, rastreabilidade bidirecional completa, 100% dos relatos de IA preenchidos e 74 testes automatizados validados | SubEquipe 03 | Branch `docs/subequipe3_organizacao` |
+| 2.1 | 19/10/2026 | Hugo Freitas Silva | Vídeo do Chain of Responsibility com a narração gravada por Hugo (2 min 05 s) refletido no quadro de focos e na execução; links relativos que levavam a 404 no Docsify (ADR-003, 1.1.3.x e âncoras) passados para caminhos absolutos; âncoras do relato de IA de Eduardo e das seções de vídeo; data da aula de GoFs comportamentais alinhada ao PDF arquivado (`[2019?]`); estrutura de `tests/` | A revisar | [PR #20](https://github.com/UnBArqDsw2026-2-Turma01/2026.2-T01-_G6_ProjetoStreamingVideo_Entrega_03/pull/20) |
 
 O quadro consolidado de participações está em [1.2. Participações](/Base/1.2.ParticipacoesPadroesDeProjeto.md).
