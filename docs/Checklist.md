@@ -1,6 +1,6 @@
 # Checklist — Entrega 03
 
-Os itens marcados correspondem à preparação do repositório. Os demais deverão ser atualizados pela equipe conforme forem concluídos.
+Os itens marcados correspondem à preparação do repositório e ao estado de entrega das subequipes. Os demais deverão ser atualizados pela equipe conforme forem concluídos.
 
 ## Preparação
 
@@ -45,9 +45,9 @@ Os itens marcados correspondem à preparação do repositório. Os demais dever�
 - [x] Implementar e explicar o código do padrão.
 - [x] Documentar como executar a implementação.
 - [x] Publicar vídeo com o padrão em funcionamento.
-- [ ] Registrar metodologia e evidências do trabalho em equipe.
+- [x] Registrar metodologia e evidências do trabalho em equipe.
 - [x] Fundamentar as decisões em referências e registrar o senso crítico.
-- [ ] Preencher lições aprendidas e avaliação de IA por todos os integrantes.
+- [x] Preencher lições aprendidas e avaliação de IA por todos os integrantes.
 - [x] Atualizar versionamentos e participações com comprobatórios.
 
 ## Consolidação e apresentação
